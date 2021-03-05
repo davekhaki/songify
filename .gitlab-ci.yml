@@ -5,11 +5,13 @@ stages:
 build:
  stage: build
  script:
+    - cd songify-backend
     - ./gradlew build -x test
     
 test:
   stage: test
   script:
+    - cd songify-backend
     - ./gradlew test
     
 after_script:
