@@ -27,6 +27,7 @@ class UsersComponent extends React.Component{
                             <td>Email</td>
                             <td>Username</td>
                             <td>Password</td>
+                            <td>Role</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +39,7 @@ class UsersComponent extends React.Component{
                                     <td>{user.email}</td>
                                     <td>{user.username}</td>
                                     <td>{user.pass_hash}</td>
+                                    <td>{user.role.name}</td>
                                 </tr>
                             )
                         }

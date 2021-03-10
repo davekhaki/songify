@@ -19,14 +19,19 @@ public class User {
     @Column(name = "passhash")
     private String passhash;
 
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+
     public User() {
     }
 
-    public User(String email, String username, String passhash) {
+    public User(String email, String username, String passhash, Role role) {
         super();
         this.email = email;
         this.username = username;
         this.passhash = passhash;
+        this.role = role;
     }
 
     public long getId() {
@@ -59,5 +64,13 @@ public class User {
 
     public void setPass_hash(String passhash) {
         this.passhash = passhash;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const ROLES_REST_API_URL = 'http://localhost:8080/api/roles';
+const ROLES_REST_API_URL = 'http://localhost:8080/v1/api/roles';
 
 class RoleService{
 
