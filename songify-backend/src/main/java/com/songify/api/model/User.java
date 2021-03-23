@@ -1,6 +1,7 @@
 package com.songify.api.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -22,6 +23,11 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
+
+/*
+    @ManyToMany
+    private List<FriendRequest> friendRequests;
+*/
 
     public User() {
     }
@@ -58,19 +64,25 @@ public class User {
         this.username = username;
     }
 
-    public String getPass_hash() {
+    public String getPasshash() {
         return passhash;
     }
 
-    public void setPass_hash(String passhash) {
+    public void setPasshash(String passhash) {
         this.passhash = passhash;
     }
 
-    public Role getRole() {
-        return role;
+    public Role getRole() { return role; }
+
+    public void setRole(Role role) { this.role = role; }
+
+/*    public List<FriendRequest> getFriendRequests() {
+        return friendRequests;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setFriendRequests(List<FriendRequest> friendRequests) {
+        this.friendRequests = friendRequests;
     }
+
+    public void addFriendRequest(FriendRequest friendRequest) { this.friendRequests.add(friendRequest); }*/
 }

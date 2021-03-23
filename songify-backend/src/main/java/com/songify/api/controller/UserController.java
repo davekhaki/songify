@@ -2,6 +2,7 @@ package com.songify.api.controller;
 
 import com.songify.api.exceptions.UserNotFoundException;
 import com.songify.api.model.User;
+import com.songify.api.repository.RoleRepository;
 import com.songify.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,8 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
     @GetMapping("users")
     public List<User> getUsers(){return this.userRepository.findAll();}
@@ -26,7 +29,10 @@ public class UserController {
     }
 
     @PostMapping("users/add")
-    public User newUser(@RequestBody User newUser){ return this.userRepository.save(newUser);}
+    public User newUser(@RequestBody User newUser){
+        newUser.setRole(roleRepository.findByName(newUser.getRole().getName()));
+        return this.userRepository.save(newUser);
+    }
 
     @GetMapping("login")
     public User tryLogin(@RequestParam String username, @RequestParam String pass_hash){

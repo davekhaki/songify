@@ -1,10 +1,9 @@
 package com.songify.api.repository;
 
-import com.songify.api.model.Role;
+import com.songify.api.model.FriendRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Long> {
-    Role findByName(String roleName);
+public interface FriendRequestRepository extends JpaRepository<FriendRequest, Long> {
 }

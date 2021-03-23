@@ -23,7 +23,12 @@ class App extends React.Component {
       loggedIn: false,
       spotifyApiKey: ""
     }
+
+    console.log(TokenService.getToken());
   }
+
+  
+  
 
   loggedIn = () => {
     this.setState({
