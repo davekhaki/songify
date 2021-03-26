@@ -24,6 +24,9 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
+
+    //private List<User> friends;
+
 /*
     @ManyToMany
     private List<FriendRequest> friendRequests;

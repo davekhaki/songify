@@ -10,16 +10,9 @@ class HeaderComponent extends React.Component {
 
     render() {
         return (
-            <Navbar bg="primary" variant="dark">
-                <Navbar.Brand href="">Songify</Navbar.Brand>
-                <Nav className="mr-auto">
-                    <Nav.Link href="">Home</Nav.Link>
-                    <Nav.Link href="">Search</Nav.Link>
-                    <Nav.Link href="">Your Library</Nav.Link>
-                </Nav>
-                <Button variant="outline-light">Sign In</Button>
-
-            </Navbar>
+<div>
+    
+</div>
         )
     }
 }
