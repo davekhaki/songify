@@ -46,6 +46,7 @@ class App extends React.Component {
               <li><Link to={'/'} className="nav-link"> Songify </Link></li>
               <li><Link to={'/users'} className="nav-link"> Users </Link></li>
               <li><Link to={'/roles'} className="nav-link"> Roles </Link></li>
+              <li><Link to={'/test'} className="nav-link"> Test </Link></li>
             </ul>
             <ul className="navbar-nav ml-auto">
               <li><Link to={'/login'} className="nav-link"> Login</Link></li>
@@ -55,6 +56,7 @@ class App extends React.Component {
           <Switch>
             <Route path='/users' component={ UsersComponent } />
             <Route path='/roles' component={ RoleComponent } />
+            <Route path='/test' component={ TestComponent } />
             <Route path='/login' component={ LoginComponent } />
           </Switch>
 

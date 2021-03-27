@@ -10,7 +10,7 @@ class GenreService{
     getGenres(){
         return axios(SPOTIFY_API_URL, {
             method: 'GET',
-            headers: { 'Authorization' : 'Bearer BQD8t-aYFvd-rrdb0vNOiMaT2SDcjsFPsQWBVN8_vF0lhUHGKbE7IxQm806NW1VhuY-y-6gxhTizfdnIJ_c' }
+            headers: { 'Authorization' : 'Bearer BQBkaehuyyHEQvV9nvK56oUbfKK8Kuy5kCWjnGgC9ycELFlGthb_SsHYtR3EwmUK6I3dYI3BBYG68GRVatE' }
         })
     }
 }

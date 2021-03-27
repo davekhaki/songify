@@ -6,6 +6,7 @@ const spotify = Credentials();
 class TokenService{
 
     getToken(){
+        console.log(btoa(spotify.ClientId + ':' + spotify.ClientSecret));
         return axios('https://accounts.spotify.com/api/token', {
             headers: {
                 'Content-Type' : 'application/x-www-form-urlencoded',

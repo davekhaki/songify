@@ -45,7 +45,7 @@ class TestComponent extends React.Component{
                                     <td>{genre.id}</td>
                                     <td>{genre.name}</td>
                                     <td>{genre.href}</td>
-                                    <td>{genre.icons[1]}</td>
+                                    <td>{genre.icons[2]}</td>
                                 </tr>
                             )
                         }
