@@ -1,15 +1,18 @@
 package com.songify.api;
 
-import com.songify.api.model.FriendRequest;
-import com.songify.api.model.Role;
-import com.songify.api.model.User;
+import com.songify.api.manager.PlaylistManager;
+import com.songify.api.model.*;
 import com.songify.api.repository.FriendRequestRepository;
 import com.songify.api.repository.RoleRepository;
+import com.songify.api.repository.SongRepository;
 import com.songify.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @SpringBootApplication
@@ -26,7 +29,10 @@ public class ApiApplication implements CommandLineRunner {
     private RoleRepository roleRepository;
 
     @Autowired
-    private FriendRequestRepository friendRequestRepository;
+    private PlaylistManager playlistManager;
+
+    @Autowired
+    private SongRepository songRepository;
 
     @Override
     public void run(String... args) throws Exception{
@@ -41,6 +47,22 @@ public class ApiApplication implements CommandLineRunner {
 
         this.userRepository.save(user1);
         this.userRepository.save(user2);
+
+        var song1 = new Song(2);
+        var song2 = new Song(3);
+
+        this.songRepository.save(song1);
+        this.songRepository.save(song2);
+
+        var playlist1 = new Playlist("playlistONE", new ArrayList<Song>(), 30);
+        var playlist2 = new Playlist("ANOTHER PLAYLIST", new ArrayList<Song>(), 0);
+
+
+        playlist1.addSong(song1);
+        playlist1.addSong(song2);
+
+        this.playlistManager.savePlaylist(playlist1);
+        this.playlistManager.savePlaylist(playlist2);
 
 
     }

@@ -1,10 +1,10 @@
 package com.songify.api.controller;
 
 import com.songify.api.exceptions.UserNotFoundException;
+import com.songify.api.manager.UserManager;
 import com.songify.api.model.User;
 import com.songify.api.repository.RoleRepository;
 import com.songify.api.repository.UserRepository;
-import org.hibernate.annotations.SQLDeleteAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +22,11 @@ public class UserController {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private UserManager userManager;
+
     @GetMapping("users")
-    public List<User> getUsers(){return this.userRepository.findAll();}
+    public List<User> getUsers(){return userManager.getUsers();}
 
     @GetMapping("users/{id}")
     public User getUserById(@PathVariable Long id){
@@ -39,29 +42,29 @@ public class UserController {
     @PutMapping("users/{id}")
     public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @RequestBody User userDetails)
     {
+        //find user
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
 
+        //update the user details
         user.setEmail(userDetails.getEmail());
         user.setUsername(userDetails.getUsername());
         user.setPasshash(userDetails.getPasshash());
         //no change role for now
 
+        //save new user details and return updated user and OK http
         final User updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);
     }
 
     @DeleteMapping("users/{id}")
     public ResponseEntity deleteUser(@PathVariable(value = "id") Long userId){
+        //find user with given id
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
 
+        //delete user
         userRepository.delete(user);
 
+        //return successful deletion
         return ResponseEntity.ok("Success");
-    }
-
-
-    @GetMapping("login") //change to post
-    public User tryLogin(@RequestParam String username, @RequestParam String pass_hash){
-        return this.userRepository.findByUsernameAndPasshash(username, pass_hash);
     }
 }

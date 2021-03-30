@@ -7,8 +7,10 @@ class TestComponent extends React.Component{
     constructor(props){
         super(props)
         this.state = {
+            test:[],
             token:'',
-            genres:[]
+            genres:[],
+            
         }
     }
 
@@ -21,14 +23,48 @@ class TestComponent extends React.Component{
             this.setState({ genres: response.data.categories.items})
             console.log(this.state.genres);
         })
+
+        GenreService.test().then((response) =>{
+            this.setState({ test: response.data.items})
+            console.log(this.state.test);
+            console.log("____")
+            console.log(this.state.test[0].id);
+        })
     }
 
     render (){
         return (
             <div>
                 {this.state.token}
-                <h1 className = "text-center"> Genre list from spotify API</h1>
+                <h1 className = "text-center">test</h1>
                 <table className = "table table-striped">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Id</td>
+                            <td>Release Date</td>
+                            <td>Artist</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {
+                            this.state.test.map(
+                                test =>
+                                <tr key={test.name}>
+                                    <td>{test.name}</td>
+                                    <td>{test.id}</td>
+                                    <td>{test.release_date}</td>
+                                    <td>{test.artists[0].name}</td>
+                                </tr>
+                                
+                            )
+                        }
+
+                    </tbody>
+                </table>
+                <h1 className="text-center">genres</h1>
+                <table className="table table-striped">
                     <thead>
                         <tr>
                             <td>ID</td>
