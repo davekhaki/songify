@@ -5,6 +5,7 @@ import com.songify.api.manager.UserManager;
 import com.songify.api.model.User;
 import com.songify.api.repository.RoleRepository;
 import com.songify.api.repository.UserRepository;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +28,8 @@ public class UserController {
     public List<User> getUsers(){return userManager.getUsers();}
 
     @GetMapping("users/{id}")
-    public User getUserById(@PathVariable Long id){
-        return this.userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+    public ResponseEntity<User> getUserById(@PathVariable Long id){
+        return this.userManager.getUserById(id);
     }
 
     @PostMapping("users/add")
