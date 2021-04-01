@@ -14,7 +14,9 @@ public class LoginManager {
     private UserRepository userRepository;
 
     public ResponseEntity<User> tryLogin(String username, String pass_hash){
+        //determine if given username and password belong to a user
         var user = this.userRepository.findByUsernameAndPasshash(username, pass_hash);
+        //if so, return the user details and http 200 (OK) otherwise 404 not found
         if(user != null){ return new ResponseEntity<>(user, HttpStatus.OK);
         } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

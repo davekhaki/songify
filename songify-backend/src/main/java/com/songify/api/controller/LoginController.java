@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("v1/api/login")
 public class LoginController {
@@ -14,7 +13,7 @@ public class LoginController {
     @Autowired
     private LoginManager loginManager;
 
-    @PostMapping("") //change to post
+    @PostMapping("") //changed to post
     public ResponseEntity<User> tryLogin(@RequestParam String username, @RequestParam String pass_hash){
         return loginManager.tryLogin(username, pass_hash);
     }

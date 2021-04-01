@@ -2,7 +2,6 @@ package com.songify.api;
 
 import com.songify.api.manager.PlaylistManager;
 import com.songify.api.model.*;
-import com.songify.api.repository.FriendRequestRepository;
 import com.songify.api.repository.RoleRepository;
 import com.songify.api.repository.SongRepository;
 import com.songify.api.repository.UserRepository;
@@ -10,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,6 +21,15 @@ public class ApiApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(ApiApplication.class, args);
+    }
+
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/").allowedOrigins("http://localhost:3000");
+            }
+        };
     }
 
     @Autowired
