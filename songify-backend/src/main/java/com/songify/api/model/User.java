@@ -1,7 +1,6 @@
 package com.songify.api.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -23,14 +22,6 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
-
-
-    //private List<User> friends;
-
-/*
-    @ManyToMany
-    private List<FriendRequest> friendRequests;
-*/
 
     public User() {
     }
@@ -79,13 +70,4 @@ public class User {
 
     public void setRole(Role role) { this.role = role; }
 
-/*    public List<FriendRequest> getFriendRequests() {
-        return friendRequests;
-    }
-
-    public void setFriendRequests(List<FriendRequest> friendRequests) {
-        this.friendRequests = friendRequests;
-    }
-
-    public void addFriendRequest(FriendRequest friendRequest) { this.friendRequests.add(friendRequest); }*/
 }

@@ -5,7 +5,6 @@ import com.songify.api.manager.UserManager;
 import com.songify.api.model.User;
 import com.songify.api.repository.RoleRepository;
 import com.songify.api.repository.UserRepository;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

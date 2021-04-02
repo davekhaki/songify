@@ -51,8 +51,8 @@ public class ApiApplication implements CommandLineRunner {
         this.songRepository.save(song1);
         this.songRepository.save(song2);
 
-        var playlist1 = new Playlist("playlistONE", new ArrayList<Song>(), 30);
-        var playlist2 = new Playlist("ANOTHER PLAYLIST", new ArrayList<Song>(), 0);
+        var playlist1 = new Playlist("playlistONE", new ArrayList<>(), 30);
+        var playlist2 = new Playlist("ANOTHER PLAYLIST", new ArrayList<>(), 0);
 
 
         playlist1.addSong(song1);

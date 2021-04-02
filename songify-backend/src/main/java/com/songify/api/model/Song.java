@@ -12,14 +12,14 @@ public class Song {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "spotify_id")
-    private int spotify_id;
+    @Column(name = "spotifyId")
+    private int spotifyId;
 
     public Song() {
     }
 
     public Song(int spotify_id) {
-        this.spotify_id = spotify_id;
+        this.spotifyId = spotify_id;
     }
 
     public long getId() {
@@ -30,11 +30,11 @@ public class Song {
         this.id = id;
     }
 
-    public int getSpotify_id() {
-        return spotify_id;
+    public int getSpotifyId() {
+        return spotifyId;
     }
 
-    public void setSpotify_id(int spotify_id) {
-        this.spotify_id = spotify_id;
+    public void setSpotifyId(int spotify_id) {
+        this.spotifyId = spotify_id;
     }
 }

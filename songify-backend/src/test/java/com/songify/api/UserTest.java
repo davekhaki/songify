@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UserTest {
+class UserTest {
 
     @Test
-    public void UserEmailTest(){
+    void UserEmailTest(){
         User user = new User("email@gmail.com", "name", "75hahgh30", new Role("role"));
 
         String toCompare = user.getEmail();

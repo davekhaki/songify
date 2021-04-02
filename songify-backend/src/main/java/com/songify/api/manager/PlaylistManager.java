@@ -26,11 +26,11 @@ public class PlaylistManager {
         return this.playlistRepository.save(p);
     }
 
-    public Song addSong(Long playlist_id, Long song_id){
+    public Song addSong(Long playlistId, Long songId){
         //determine song based on given id
-        var song = songRepository.findById(song_id);
+        var song = songRepository.findById(songId);
         //determine playlist based on given id
-        var playlist = playlistRepository.findById(playlist_id);
+        var playlist = playlistRepository.findById(playlistId);
 
         //get playlist and add song to it
         playlist.get().addSong(song.get());

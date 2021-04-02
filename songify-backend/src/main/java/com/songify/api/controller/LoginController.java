@@ -14,7 +14,7 @@ public class LoginController {
     private LoginManager loginManager;
 
     @PostMapping("") //changed to post
-    public ResponseEntity<User> tryLogin(@RequestParam String username, @RequestParam String pass_hash){
-        return loginManager.tryLogin(username, pass_hash);
+    public ResponseEntity<User> tryLogin(@RequestParam String username, @RequestParam String passHash){
+        return loginManager.tryLogin(username, passHash);
     }
 }
