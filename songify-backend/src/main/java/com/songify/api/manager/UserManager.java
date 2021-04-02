@@ -28,7 +28,7 @@ public class UserManager {
     public ResponseEntity<User> getUserById(Long id) throws UserNotFoundException{
         var user = this.userRepository.findById(id);
 
-        if(user != null) return new ResponseEntity<>(user.get(), HttpStatus.OK);
+        if(user.isPresent()) return new ResponseEntity<>(user.get(), HttpStatus.OK);
         else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }

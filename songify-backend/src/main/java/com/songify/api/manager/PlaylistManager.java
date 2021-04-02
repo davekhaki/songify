@@ -32,13 +32,15 @@ public class PlaylistManager {
         //determine playlist based on given id
         var playlist = playlistRepository.findById(playlistId);
 
-        //get playlist and add song to it
-        playlist.get().addSong(song.get());
-        //save the updated playlist
-        playlistRepository.save(playlist.get());
-
+        if(playlist.isPresent() && song.isPresent()) {
+            //get playlist and add song to it
+            playlist.get().addSong(song.get());
+            //save the updated playlist
+            playlistRepository.save(playlist.get());
+        }
         //return the added song
         return playlist.get().addSong(song.get());
+
 
     }
 }
