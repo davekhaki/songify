@@ -1,0 +1,8 @@
+{
+    "SPOTIFY_CREDENTIALS": {
+        "CLIENT_ID": "34581c98d6b84aa0b19e4817b1d6c902",
+        "CLIENT_SECRET": "ad4e8c3f816643688f7fd5df7e9e470d"
+    },
+
+    "REST_API_URL": "http://localhost:8080/v1/api/"
+}

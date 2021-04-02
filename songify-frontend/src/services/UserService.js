@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const USERS_REST_API_URL = 'http://localhost:8080/v1/api/users';
+const config = require('../config.json');
 
 class UserService{
 
     getUsers(){
-        return axios.get(USERS_REST_API_URL);
+        return axios.get(config.REST_API_URL + "users");
     }
 }
 

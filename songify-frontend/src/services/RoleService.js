@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const ROLES_REST_API_URL = 'http://localhost:8080/v1/api/roles';
+const config = require('../config.json');
 
 class RoleService{
 
     getRoles(){
-        return axios.get(ROLES_REST_API_URL);
+        return axios.get(config.REST_API_URL + "roles");
     }
 }
 
