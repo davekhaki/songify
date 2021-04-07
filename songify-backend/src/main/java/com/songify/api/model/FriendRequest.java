@@ -11,6 +11,7 @@ public class FriendRequest {
     private long id;
 
     public FriendRequest() {
+        //not implemented yet
     }
 
     public long getId() {

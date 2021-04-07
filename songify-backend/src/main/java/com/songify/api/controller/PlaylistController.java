@@ -4,6 +4,7 @@ import com.songify.api.manager.PlaylistManager;
 import com.songify.api.model.Playlist;
 import com.songify.api.model.Song;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class PlaylistController {
     }
 
     @PostMapping("/add/{playlist}/{song}")
-    public Song addSongToPlaylist(@PathVariable Long playlist, @PathVariable Long song){
+    public ResponseEntity<Song> addSongToPlaylist(@PathVariable Long playlist, @PathVariable Long song){
         return playlistManager.addSong(playlist, song);
     }
 }

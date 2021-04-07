@@ -1,5 +1,6 @@
 package com.songify.api.controller;
 
+import com.songify.api.dto.UserDTO;
 import com.songify.api.manager.UserManager;
 import com.songify.api.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,11 @@ public class UserController {
     }
 
     @PostMapping("")
-    public ResponseEntity<User> addUser(@RequestBody User user){ return this.userManager.addUser(user); }
+    public ResponseEntity<User> addUser(@RequestBody UserDTO userDTO){ return this.userManager.addUser(userDTO); }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @RequestBody User userDetails) { return this.userManager.updateUser(userId, userDetails); }
+    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @RequestBody UserDTO userDTO) { return this.userManager.updateUser(userId, userDTO); }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteUser(@PathVariable(value = "id") Long userId){ return this.userManager.deleteUser(userId); }
+    public ResponseEntity<String> deleteUser(@PathVariable(value = "id") Long userId){ return this.userManager.deleteUser(userId); }
 }

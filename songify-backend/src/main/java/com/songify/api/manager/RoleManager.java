@@ -2,13 +2,11 @@ package com.songify.api.manager;
 
 import com.songify.api.exceptions.ResourceNotFoundException;
 import com.songify.api.model.Role;
-import com.songify.api.model.User;
 import com.songify.api.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.ResourceAccessException;
 
 import java.util.List;
 

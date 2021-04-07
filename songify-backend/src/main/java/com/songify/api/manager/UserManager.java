@@ -1,5 +1,6 @@
 package com.songify.api.manager;
 
+import com.songify.api.dto.UserDTO;
 import com.songify.api.exceptions.UserNotFoundException;
 import com.songify.api.model.User;
 import com.songify.api.repository.RoleRepository;
@@ -37,23 +38,28 @@ public class UserManager {
 
     }
 
-    public ResponseEntity<User> addUser(User u){
-        //set the role for the user
-        u.setRole(roleRepository.findByName(u.getRole().getName()));
+    public ResponseEntity<User> addUser(UserDTO DTO){
+        User actual = new User();
+
+        actual.setEmail(DTO.getEmail());
+        actual.setUsername(DTO.getUsername());
+        actual.setPassHash(DTO.getPassHash());
+        actual.setRole(roleRepository.findByName(DTO.getRole().getName()));
+
         //save the user
-        this.userRepository.save(u);
-        return new ResponseEntity<>(u, HttpStatus.ACCEPTED);
+        this.userRepository.save(actual);
+        return new ResponseEntity<>(actual, HttpStatus.ACCEPTED);
     }
 
-    public ResponseEntity<User> updateUser(Long userId, User updatedUser)
+    public ResponseEntity<User> updateUser(Long userId, UserDTO DTO)
     {
         //find user
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
 
         //update the user details
-        user.setEmail(updatedUser.getEmail());
-        user.setUsername(updatedUser.getUsername());
-        user.setPasshash(updatedUser.getPasshash());
+        user.setEmail(DTO.getEmail());
+        user.setUsername(DTO.getUsername());
+        user.setPassHash(DTO.getPassHash());
         //no change role for now
 
         //save new user details and return updated user and OK http
@@ -61,7 +67,7 @@ public class UserManager {
         return ResponseEntity.ok(updated);
     }
 
-    public ResponseEntity deleteUser(Long id) {
+    public ResponseEntity<String> deleteUser(Long id) {
         //find user with given id
         User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
 
@@ -69,6 +75,6 @@ public class UserManager {
         userRepository.delete(user);
 
         //return successful deletion
-        return ResponseEntity.ok("Success");
+        return new ResponseEntity<>("Success", HttpStatus.OK);
     }
 }
