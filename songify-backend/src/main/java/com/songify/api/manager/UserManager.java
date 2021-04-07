@@ -38,28 +38,28 @@ public class UserManager {
 
     }
 
-    public ResponseEntity<User> addUser(UserDTO DTO){
+    public ResponseEntity<User> addUser(UserDTO Dto){
         User actual = new User();
 
-        actual.setEmail(DTO.getEmail());
-        actual.setUsername(DTO.getUsername());
-        actual.setPassHash(DTO.getPassHash());
-        actual.setRole(roleRepository.findByName(DTO.getRole().getName()));
+        actual.setEmail(Dto.getEmail());
+        actual.setUsername(Dto.getUsername());
+        actual.setPassHash(Dto.getPassHash());
+        actual.setRole(roleRepository.findByName(Dto.getRole().getName()));
 
         //save the user
         this.userRepository.save(actual);
         return new ResponseEntity<>(actual, HttpStatus.ACCEPTED);
     }
 
-    public ResponseEntity<User> updateUser(Long userId, UserDTO DTO)
+    public ResponseEntity<User> updateUser(Long userId, UserDTO Dto)
     {
         //find user
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
 
         //update the user details
-        user.setEmail(DTO.getEmail());
-        user.setUsername(DTO.getUsername());
-        user.setPassHash(DTO.getPassHash());
+        user.setEmail(Dto.getEmail());
+        user.setUsername(Dto.getUsername());
+        user.setPassHash(Dto.getPassHash());
         //no change role for now
 
         //save new user details and return updated user and OK http

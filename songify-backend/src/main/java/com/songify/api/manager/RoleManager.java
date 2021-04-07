@@ -1,5 +1,6 @@
 package com.songify.api.manager;
 
+import com.songify.api.dto.RoleDTO;
 import com.songify.api.exceptions.ResourceNotFoundException;
 import com.songify.api.model.Role;
 import com.songify.api.repository.RoleRepository;
@@ -30,13 +31,15 @@ public class RoleManager {
         else return null;
     }
 
-    public ResponseEntity<Role> addRole(Role role){
+    public ResponseEntity<Role> addRole(RoleDTO Dto){
+        Role role = new Role();
+        role.setName(Dto.getName());
         return new ResponseEntity<>(roleRepository.save(role), HttpStatus.OK);
     }
 
-    public ResponseEntity<Role> updateRole(Long id, Role role){
+    public ResponseEntity<Role> updateRole(Long id, RoleDTO Dto){
         var old = roleRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("update role, find by id"));
-        old.setName(role.getName());
+        old.setName(Dto.getName());
         final Role updated = roleRepository.save(old);
         return ResponseEntity.ok(updated);
     }
