@@ -18,8 +18,8 @@ public class Song {
     public Song() {
     }
 
-    public Song(int spotify_id) {
-        this.spotifyId = spotify_id;
+    public Song(int spotifyId) {
+        this.spotifyId = spotifyId;
     }
 
     public long getId() {
@@ -34,7 +34,7 @@ public class Song {
         return spotifyId;
     }
 
-    public void setSpotifyId(int spotify_id) {
-        this.spotifyId = spotify_id;
+    public void setSpotifyId(int spotifyId) {
+        this.spotifyId = spotifyId;
     }
 }
