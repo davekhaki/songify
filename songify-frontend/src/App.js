@@ -16,9 +16,9 @@ class App extends React.Component {
     }
 
     TokenService.getToken().then(response => {
-      console.log("SPOTIFY ACCESS TOKEN: " + response.data.access_token);
+      //console.log("SPOTIFY ACCESS TOKEN: " + response.data.access_token);
       this.setState({spotifyApiKey: response.data.access_token});
-      console.log("token in state: " + this.spotifyApiKey);
+      //console.log("token in state: " + this.spotifyApiKey);
     });
   }
 

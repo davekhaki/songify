@@ -35,8 +35,7 @@ class TestComponent extends React.Component{
     render (){
         return (
             <div>
-                {this.state.token}
-                <h1 className = "text-center">test</h1>
+                <h1 className = "text-center">List of Avicii Songs:</h1>
                 <table className = "table table-striped">
                     <thead>
                         <tr>
@@ -63,7 +62,7 @@ class TestComponent extends React.Component{
 
                     </tbody>
                 </table>
-                <h1 className="text-center">genres</h1>
+                <h1 className="text-center">Genres</h1>
                 <table className="table table-striped">
                     <thead>
                         <tr>
@@ -81,7 +80,7 @@ class TestComponent extends React.Component{
                                     <td>{genre.id}</td>
                                     <td>{genre.name}</td>
                                     <td>{genre.href}</td>
-                                    <td>{genre.icons[2]}</td>
+                                    <td><img src={genre.icons[0].url}/></td>
                                 </tr>
                             )
                         }
