@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("v1/api/login")
+@RequestMapping("v1/api/loginpoint")
 public class LoginController {
 
     @Autowired

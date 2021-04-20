@@ -14,6 +14,13 @@ public class Playlist {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "description")
+    private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "user")
+    private User createdBy;
+
     @ManyToMany
     @JoinColumn(name = "id")
     private List<Song> songs;
@@ -24,8 +31,10 @@ public class Playlist {
     public Playlist() {
     }
 
-    public Playlist(String title, List<Song> songs, int plays) {
+    public Playlist(String title, String description, User createdBy, List<Song> songs, int plays) {
         this.title = title;
+        this.description = description;
+        this.createdBy = createdBy;
         this.songs = songs;
         this.plays = plays;
     }
@@ -44,6 +53,22 @@ public class Playlist {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 
     public List<Song> getSongs() {

@@ -1,4 +1,4 @@
-package com.songify.api.dto;
+package com.songify.api.model.dto;
 
 public class RoleDTO {
     Long id;

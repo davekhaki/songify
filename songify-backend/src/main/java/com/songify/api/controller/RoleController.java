@@ -1,6 +1,6 @@
 package com.songify.api.controller;
 
-import com.songify.api.dto.RoleDTO;
+import com.songify.api.model.dto.RoleDTO;
 import com.songify.api.manager.RoleManager;
 import com.songify.api.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;

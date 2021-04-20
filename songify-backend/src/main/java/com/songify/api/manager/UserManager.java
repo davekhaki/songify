@@ -1,30 +1,25 @@
 package com.songify.api.manager;
 
-import com.songify.api.dto.UserDTO;
+import com.songify.api.model.dto.UserDto;
 import com.songify.api.exceptions.UserNotFoundException;
 import com.songify.api.model.User;
 import com.songify.api.repository.RoleRepository;
 import com.songify.api.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserManager {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
-
-    public UserManager(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public List<User> getUsers(){
         return this.userRepository.findAll();
@@ -38,12 +33,12 @@ public class UserManager {
 
     }
 
-    public ResponseEntity<User> addUser(UserDTO Dto){
+    public ResponseEntity<User> addUser(UserDto Dto){
         User actual = new User();
 
         actual.setEmail(Dto.getEmail());
         actual.setUsername(Dto.getUsername());
-        actual.setPassHash(Dto.getPassHash());
+        actual.setPassword(passwordEncoder.encode(Dto.getPassword()));
         actual.setRole(roleRepository.findByName(Dto.getRole().getName()));
 
         //save the user
@@ -51,7 +46,7 @@ public class UserManager {
         return new ResponseEntity<>(actual, HttpStatus.ACCEPTED);
     }
 
-    public ResponseEntity<User> updateUser(Long userId, UserDTO Dto)
+    public ResponseEntity<User> updateUser(Long userId, UserDto Dto)
     {
         //find user
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
@@ -59,7 +54,7 @@ public class UserManager {
         //update the user details
         user.setEmail(Dto.getEmail());
         user.setUsername(Dto.getUsername());
-        user.setPassHash(Dto.getPassHash());
+        user.setPassword(Dto.getPassword());
         //no change role for now
 
         //save new user details and return updated user and OK http
@@ -77,4 +72,9 @@ public class UserManager {
         //return successful deletion
         return new ResponseEntity<>("Success", HttpStatus.OK);
     }
+
+    public User readUserByUsername(String username){
+        return userRepository.findByUsername(username);
+    }
+
 }

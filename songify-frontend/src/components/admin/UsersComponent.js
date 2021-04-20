@@ -1,6 +1,8 @@
 import React from 'react';
 import UserService from './../../services/UserService.js';
 
+import { DataGrid } from '@material-ui/data-grid';
+
 class UsersComponent extends React.Component{
 
     constructor(props){
@@ -9,6 +11,14 @@ class UsersComponent extends React.Component{
             users:[]
         }
     }
+
+    columns = [
+        { field: 'id', headerName: 'ID', width: 100 },
+        { field: 'email', headerName: 'Email', width: 300 },
+        { field: 'username', headerName: 'Username', width: 300 },
+        { field: 'passHash', headerName: 'Hashed Password', width: 300 },
+        { field: 'role', headerName: 'Role Name', width: 200 }
+    ];
 
     componentDidMount(){
         UserService.getUsers().then((response)=>{
@@ -20,6 +30,11 @@ class UsersComponent extends React.Component{
         return (
             <div>
                 <h1 className = "text-center"> Users List</h1>
+
+                <div style={{ height: 400, width: '100%' }}>
+                    <DataGrid rows={this.state.users} columns={this.columns} pageSize={5} checkboxSelection />
+                </div>
+
                 <table className = "table table-striped">
                     <thead>
                         <tr>
@@ -46,7 +61,7 @@ class UsersComponent extends React.Component{
 
                     </tbody>
                 </table>
-                
+            
             </div>
         )
     }

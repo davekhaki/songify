@@ -1,6 +1,7 @@
-import userEvent from '@testing-library/user-event';
 import React from 'react';
 import RoleService from './../../services/RoleService.js';
+
+import { DataGrid } from '@material-ui/data-grid';
 
 class RoleComponent extends React.Component{
 
@@ -10,6 +11,11 @@ class RoleComponent extends React.Component{
             roles:[]
         }
     }
+
+    columns = [
+        { field: 'id', headerName: 'ID' },
+        { field: 'name', headerName: 'Name'}
+    ];
 
     componentDidMount(){
         RoleService.getRoles().then((response)=>{
@@ -21,27 +27,9 @@ class RoleComponent extends React.Component{
         return (
             <div>
                 <h1 className = "text-center"> Roles List</h1>
-                <table className = "table table-striped">
-                    <thead>
-                        <tr>
-                            <td>Role ID</td>
-                            <td>Role Name</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.state.roles.map(
-                                role =>
-                                <tr key={role.id}>
-                                    <td>{role.id}</td>
-                                    <td>{role.name}</td>
-                                </tr>
-                            )
-                        }
-
-                    </tbody>
-                </table>
-                
+                <div style={{ height: 400, width: '100%' }}>
+                    <DataGrid rows={this.state.roles} columns={this.columns} pageSize={5} checkboxSelection />
+                </div>
             </div>
         )
     }

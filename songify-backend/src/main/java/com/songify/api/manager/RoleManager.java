@@ -1,6 +1,6 @@
 package com.songify.api.manager;
 
-import com.songify.api.dto.RoleDTO;
+import com.songify.api.model.dto.RoleDTO;
 import com.songify.api.exceptions.ResourceNotFoundException;
 import com.songify.api.model.Role;
 import com.songify.api.repository.RoleRepository;
