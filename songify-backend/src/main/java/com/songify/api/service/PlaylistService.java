@@ -3,9 +3,10 @@ package com.songify.api.service;
 import com.songify.api.exceptions.ResourceNotFoundException;
 import com.songify.api.model.Playlist;
 import com.songify.api.model.Song;
+import com.songify.api.model.dto.NewPlaylistRequest;
 import com.songify.api.repository.PlaylistRepository;
 import com.songify.api.repository.SongRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -13,19 +14,31 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PlaylistService {
 
-    @Autowired
-    private PlaylistRepository playlistRepository;
-
-    @Autowired
-    private SongRepository songRepository;
+    private final PlaylistRepository playlistRepository;
+    private final SongRepository songRepository;
 
     public List<Playlist> getPlaylists(){
         return this.playlistRepository.findAll();
+    }
+
+    public Playlist addPlaylist(NewPlaylistRequest newPlaylist) {
+        var playlist = new Playlist();
+
+        // CHOSEN VALUES
+        playlist.setTitle(newPlaylist.getTitle());
+        playlist.setDescription(newPlaylist.getDesc());
+        // NEW PLAYLIST AUTOMATIC VALUES
+        playlist.setPlays(0);
+        playlist.setSongs(new ArrayList<>());
+
+        return this.playlistRepository.save(playlist);
     }
 
     //returns the 8 more popular playlists as a 'page'
