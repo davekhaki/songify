@@ -33,28 +33,28 @@ public class UserService {
 
     }
 
-    public ResponseEntity<User> addUser(UserDto Dto){
+    public ResponseEntity<User> addUser(UserDto dto){
         User actual = new User();
 
-        actual.setEmail(Dto.getEmail());
-        actual.setUsername(Dto.getUsername());
-        actual.setPassword(passwordEncoder.encode(Dto.getPassword()));
-        actual.setRole(roleRepository.findByName(Dto.getRole().getName()));
+        actual.setEmail(dto.getEmail());
+        actual.setUsername(dto.getUsername());
+        actual.setPassword(passwordEncoder.encode(dto.getPassword()));
+        actual.setRole(roleRepository.findByName(dto.getRole().getName()));
 
         //save the user
         this.userRepository.save(actual);
         return new ResponseEntity<>(actual, HttpStatus.ACCEPTED);
     }
 
-    public ResponseEntity<User> updateUser(Long userId, UserDto Dto)
+    public ResponseEntity<User> updateUser(Long userId, UserDto dto)
     {
         //find user
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
 
         //update the user details
-        user.setEmail(Dto.getEmail());
-        user.setUsername(Dto.getUsername());
-        user.setPassword(Dto.getPassword());
+        user.setEmail(dto.getEmail());
+        user.setUsername(dto.getUsername());
+        user.setPassword(dto.getPassword());
         //no change role for now
 
         //save new user details and return updated user and OK http

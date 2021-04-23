@@ -1,6 +1,11 @@
 package com.songify.api.config;
 
 public class AuthenticationConstants {
+
+    private AuthenticationConstants(){ // Adding private constructor to hide implicit public (SonarQube)
+        throw new IllegalStateException("Utility class");
+    }
+
     public static final String SECRET = "Java_to_Dev_Secret";
     public static final long EXPIRATION_TIME = 864000000; // 10 days
     public static final String TOKEN_PREFIX = "Bearer ";
