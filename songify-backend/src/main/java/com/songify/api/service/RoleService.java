@@ -1,6 +1,6 @@
-package com.songify.api.manager;
+package com.songify.api.service;
 
-import com.songify.api.model.dto.RoleDTO;
+import com.songify.api.model.dto.RoleDto;
 import com.songify.api.exceptions.ResourceNotFoundException;
 import com.songify.api.model.Role;
 import com.songify.api.repository.RoleRepository;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RoleManager {
+public class RoleService {
 
     @Autowired
     private RoleRepository roleRepository;
@@ -31,13 +31,13 @@ public class RoleManager {
         else return null;
     }
 
-    public ResponseEntity<Role> addRole(RoleDTO Dto){
+    public ResponseEntity<Role> addRole(RoleDto Dto){
         Role role = new Role();
         role.setName(Dto.getName());
         return new ResponseEntity<>(roleRepository.save(role), HttpStatus.OK);
     }
 
-    public ResponseEntity<Role> updateRole(Long id, RoleDTO Dto){
+    public ResponseEntity<Role> updateRole(Long id, RoleDto Dto){
         var old = roleRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("update role, find by id"));
         old.setName(Dto.getName());
         final Role updated = roleRepository.save(old);

@@ -1,4 +1,4 @@
-package com.songify.api.manager;
+package com.songify.api.service;
 
 import com.songify.api.model.User;
 import com.songify.api.repository.UserRepository;
@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LoginManager {
+public class LoginService {
 
     @Autowired
     private UserRepository userRepository;

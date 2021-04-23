@@ -1,6 +1,6 @@
 package com.songify.api.controller;
 
-import com.songify.api.manager.UserManager;
+import com.songify.api.service.UserService;
 import com.songify.api.model.User;
 import com.songify.api.model.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserManager userManager;
+    private UserService userManager;
 
     @GetMapping("")
     public List<User> getUsers(){return userManager.getUsers();}

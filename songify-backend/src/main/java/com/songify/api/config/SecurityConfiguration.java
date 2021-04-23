@@ -2,9 +2,8 @@ package com.songify.api.config;
 
 import com.songify.api.filter.JWTAuthenticationFilter;
 import com.songify.api.filter.JWTAuthorizationFilter;
-import com.songify.api.manager.AuthenticationUserDetailService;
+import com.songify.api.service.AuthenticationUserDetailService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -25,12 +24,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override protected void configure (HttpSecurity http) throws Exception{
         http.headers().frameOptions().sameOrigin();
         http.csrf().disable().authorizeRequests()
-                //.antMatchers(HttpMethod.POST, AuthenticationConstants.SIGN_UP_URL).permitAll()
+                .antMatchers(HttpMethod.POST, AuthenticationConstants.SIGN_UP_URL).permitAll()
 
                 .antMatchers("/v1/api/users/add").permitAll()
                 .antMatchers("/v1/**").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
-
 
                 .anyRequest().authenticated()
                 .and()

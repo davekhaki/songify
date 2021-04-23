@@ -1,4 +1,4 @@
-package com.songify.api.manager;
+package com.songify.api.service;
 
 import com.songify.api.exceptions.ResourceNotFoundException;
 import com.songify.api.model.Playlist;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PlaylistManager {
+public class PlaylistService {
 
     @Autowired
     private PlaylistRepository playlistRepository;

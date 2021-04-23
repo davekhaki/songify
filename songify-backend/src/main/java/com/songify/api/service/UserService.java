@@ -1,4 +1,4 @@
-package com.songify.api.manager;
+package com.songify.api.service;
 
 import com.songify.api.model.dto.UserDto;
 import com.songify.api.exceptions.UserNotFoundException;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserManager {
+public class UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;

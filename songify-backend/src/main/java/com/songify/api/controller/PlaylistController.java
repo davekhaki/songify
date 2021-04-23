@@ -1,6 +1,6 @@
 package com.songify.api.controller;
 
-import com.songify.api.manager.PlaylistManager;
+import com.songify.api.service.PlaylistService;
 import com.songify.api.model.Playlist;
 import com.songify.api.model.Song;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.List;
 public class PlaylistController {
 
     @Autowired
-    private PlaylistManager playlistManager;
+    private PlaylistService playlistManager;
 
     @GetMapping("")
     public List<Playlist> getPlaylists(){

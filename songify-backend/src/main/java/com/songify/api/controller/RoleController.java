@@ -1,7 +1,7 @@
 package com.songify.api.controller;
 
-import com.songify.api.model.dto.RoleDTO;
-import com.songify.api.manager.RoleManager;
+import com.songify.api.model.dto.RoleDto;
+import com.songify.api.service.RoleService;
 import com.songify.api.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 public class RoleController {
 
     @Autowired
-    private RoleManager roleManager;
+    private RoleService roleManager;
 
     @GetMapping("")
     public ResponseEntity<List<Role>> getRoles(){ return this.roleManager.getRoles(); }
@@ -23,10 +23,10 @@ public class RoleController {
     public ResponseEntity<Role> getRoleById(@PathVariable Long id){ return this.roleManager.getRoleById(id); }
 
     @PostMapping("")
-    public ResponseEntity<Role> addRole(@RequestBody RoleDTO Dto){ return this.roleManager.addRole(Dto); }
+    public ResponseEntity<Role> addRole(@RequestBody RoleDto Dto){ return this.roleManager.addRole(Dto); }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Role> updateRole(@PathVariable Long id, @RequestBody RoleDTO Dto){ return this.roleManager.updateRole(id , Dto); }
+    public ResponseEntity<Role> updateRole(@PathVariable Long id, @RequestBody RoleDto Dto){ return this.roleManager.updateRole(id , Dto); }
 
     //no delete
 }

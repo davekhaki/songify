@@ -1,10 +1,10 @@
 package com.songify.api.model.dto;
 
-public class RoleDTO {
+public class RoleDto {
     Long id;
     String name;
 
-    public RoleDTO(Long id, String name) {
+    public RoleDto(Long id, String name) {
         this.id = id;
         this.name = name;
     }
