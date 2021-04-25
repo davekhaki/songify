@@ -5,7 +5,7 @@ import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AuditableTests {
+class AuditableTests {
 
     @Test
     void auditableGetAndSetCreatedByTest(){

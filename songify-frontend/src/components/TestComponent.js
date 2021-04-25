@@ -16,6 +16,7 @@ class TestComponent extends React.Component{
 
     componentDidMount(){
         TokenService.getToken().then((response)=>{
+            console.log(response.data.access_token);
             this.setState({ token: response.data.access_token})
         });
 
