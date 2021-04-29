@@ -1,41 +1,46 @@
 package com.songify.api.service.external;
 
 import com.songify.api.model.dto.SpotifyGenre;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 @Service
 public class GenreService {
 
-    final String url = "https://api.spotify.com/v1/browse/categories";
-    URI setUri(String url){
-        try{
-            URI uri = new URI(url);
-            return uri;
-        } catch (URISyntaxException e){
-            e.printStackTrace();
-        }
-        return null;
+    private final static TokenService tokenService = new TokenService();
+
+    static String url = "https://api.spotify.com/v1/browse/categories";
+
+    static RestTemplate restTemplate = new RestTemplate();
+
+    public static void exchangeRestTemplate(){
+        tokenService.refreshToken();
+        System.out.println("----------------------------");
+        System.out.println(tokenService.getToken());
+        System.out.println("----------------------------");
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.set("Authorization" , "Bearer BQAFrAH-F57n2Zg8wmKFiBs-vOtovV2c6IvKIAAMMZNQ0QTpqEgXBUHR12Zg_ligdrKpeDujSolmvyio9zI");
+
+        HttpEntity<Object> requestEntity = new HttpEntity<>(headers);
+
+        ResponseEntity<String> responseEntity = restTemplate.exchange(url,
+                HttpMethod.GET,
+                requestEntity,
+                String.class);
+
+        HttpStatus statusCode = responseEntity.getStatusCode();
+        System.out.println("status code - " + statusCode);
+        String user = responseEntity.getBody();
+        System.out.println("response body - " + user);
+        HttpHeaders responseHeaders = responseEntity.getHeaders();
+        System.out.println("response Headers - " + responseHeaders);
     }
 
-    final HttpHeaders headers = new HttpHeaders();
-    //headers.set("Authorization", "Bearer BQDRWQ7rNsJgHushi1qWCKhF-e0nH05zj9XAMaXseeGjYb4_VSeZWyJKSHiqNAWOQ1iZa8429Kfe3udNYi4");
-
-
-
-    HttpEntity<SpotifyGenre> entity = new HttpEntity<>(null, headers);
 
     public ResponseEntity<SpotifyGenre> getAllGenres() {
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<SpotifyGenre> genres = restTemplate.exchange(setUri(url), HttpMethod.GET, entity, SpotifyGenre.class );
-        return genres;
+        exchangeRestTemplate();
+        return null;
     }
 }

@@ -5,6 +5,7 @@ const config = require('../../config.json');
 class TokenService{
 
     getToken(){
+        console.log(btoa(config.SPOTIFY_CREDENTIALS.CLIENT_ID + ':' + config.SPOTIFY_CREDENTIALS.CLIENT_SECRET))
         return axios('https://accounts.spotify.com/api/token', {
             headers: {
                 'Content-Type' : 'application/x-www-form-urlencoded',
