@@ -5,6 +5,7 @@ import RoleComponent from './admin/RoleComponent';
 import UsersComponent from './admin/UsersComponent';
 import TestComponent from './TestComponent';
 import LoginComponent from './auth/LoginComponent';
+import UpdateUserComponent from './admin/UpdateUserComponent';
 
 class HeaderComponent extends React.Component {
 
@@ -33,6 +34,7 @@ class HeaderComponent extends React.Component {
                         <Route path='/roles' component={RoleComponent} />
                         <Route path='/test' component={TestComponent} />
                         <Route path='/login' component={LoginComponent} />
+                        <Route path='/update-user/:id' component={UpdateUserComponent} />
                     </Switch>
 
                 </Router>

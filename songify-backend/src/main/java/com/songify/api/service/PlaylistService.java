@@ -37,6 +37,9 @@ public class PlaylistService {
         // NEW PLAYLIST AUTOMATIC VALUES
         playlist.setPlays(0);
         playlist.setSongs(new ArrayList<>());
+        // AUDITABLE VALUES
+        playlist.setCreatedBy("");
+        playlist.setLastModifiedBy("");
 
         return this.playlistRepository.save(playlist);
     }

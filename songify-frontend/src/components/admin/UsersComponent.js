@@ -1,8 +1,6 @@
 import React from 'react';
 import UserService from './../../services/UserService.js';
 
-import { DataGrid } from '@material-ui/data-grid';
-
 class UsersComponent extends React.Component{
 
     constructor(props){
@@ -12,17 +10,19 @@ class UsersComponent extends React.Component{
         }
     }
 
-    columns = [
-        { field: 'id', headerName: 'ID', width: 100 },
-        { field: 'email', headerName: 'Email', width: 300 },
-        { field: 'username', headerName: 'Username', width: 300 },
-        { field: 'passHash', headerName: 'Hashed Password', width: 300 },
-        { field: 'role', headerName: 'Role Name', width: 200 }
-    ];
-
     componentDidMount(){
         UserService.getUsers().then((response)=>{
             this.setState({ users: response.data})
+        });
+    }
+
+    editUser(id){
+        this.props.history.push(`/update-user/${id}`);
+    }
+
+    deleteUser(id){
+        UserService.deleteUser(id).then((response)=>{
+            this.setState({ users: this.state.users.filter((user) => user.id !== id)}); 
         });
     }
 
@@ -31,18 +31,16 @@ class UsersComponent extends React.Component{
             <div>
                 <h1 className = "text-center"> Users List</h1>
 
-                <div style={{ height: 400, width: '100%' }}>
-                    <DataGrid rows={this.state.users} columns={this.columns} pageSize={5} checkboxSelection />
-                </div>
-
-                <table className = "table table-striped">
+                 <table className = "table table-striped">
                     <thead>
                         <tr>
                             <td>ID</td>
                             <td>Email</td>
                             <td>Username</td>
                             <td>Password</td>
-                            <td>Role</td>
+                            <td>Role ID</td>
+                            <td>Role Name</td>
+                            <td>Actions</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,15 +51,20 @@ class UsersComponent extends React.Component{
                                     <td>{user.id}</td>
                                     <td>{user.email}</td>
                                     <td>{user.username}</td>
-                                    <td>{user.passHash}</td>
+                                    <td>{user.password}</td>
+                                    <td>{user.role.id}</td>
                                     <td>{user.role.name}</td>
+                                    <td>              
+                                        <button type="button" class="btn btn-primary" onClick={() => this.editUser(user.id)} >Edit</button>
+                                        <button type="button" class="btn btn-danger" onClick={() => this.deleteUser(user.id)} >Delete</button>
+                                    </td>
                                 </tr>
                             )
                         }
 
                     </tbody>
                 </table>
-            
+
             </div>
         )
     }
