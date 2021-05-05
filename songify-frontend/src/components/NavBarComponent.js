@@ -11,6 +11,12 @@ class HeaderComponent extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {loggedIn: true};
+    }
+
+    
+    static getDerivedStateFromProps(props, state){
+        return {loggedIn: props.loggedIn };
     }
 
     render() {

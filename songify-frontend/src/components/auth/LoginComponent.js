@@ -7,6 +7,7 @@ class LoginComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            loggedIn: true,
             username: "",
             password: ""
         };
@@ -14,6 +15,10 @@ class LoginComponent extends React.Component {
         this.usernameChange = this.usernameChange.bind(this);
         this.passwordChange = this.passwordChange.bind(this);
         this.loginSubmit = this.loginSubmit.bind(this);
+    }
+
+    static getDerivedStateFromProps(props, state){
+        return {loggedIn: props.loggedIn };
     }
 
     usernameChange(event) {
@@ -25,9 +30,8 @@ class LoginComponent extends React.Component {
     }
 
     loginSubmit(){
-        LoginService.tryLogin(this.state["username"], this.state["password"]).then(response=>{
-            if(response.status == 200) console.log(response.data);
-        })
+        console.log("fuck");
+        console.log(this.state.loggedIn);
     }
 
     render() {
@@ -49,6 +53,11 @@ class LoginComponent extends React.Component {
                             <div className="form-group d-md-flex">
                                 <div className="w-50">
                                 <a href="#">Forgot Password</a>
+                                </div>
+                            </div>
+                            <div className="form-group d-md-flex">
+                                <div className="w-50">
+                                <a href="#">Create Account</a>
                                 </div>
                             </div>
                         </form>
