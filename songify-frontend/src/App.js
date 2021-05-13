@@ -3,25 +3,34 @@ import './App.css';
 import React from 'react';
 
 import NavBarComponent from './components/NavBarComponent';
-import PopularPlaylistComponent from './components/home/PopularPlaylistComponent';
-
-import TokenService from './services/external/TokenService';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      loggedIn: false,
+      loggedIn: true,
+      role: "USER",
       apiToken: "",
       username: "",
     }
+
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  handleLogin(){
+    this.setState({loggedIn: true});
+  }
+
+  handleLogout(){
+    this.setState({loggedIn: false});
   }
 
   render() {
     return (
       <div className="App">
-        <NavBarComponent></NavBarComponent>
+        <NavBarComponent loggedIn={this.state.loggedIn} role={this.state.role} handleLogin={this.handleLogin}/>
         {/* <PopularPlaylistComponent></PopularPlaylistComponent> */}
       </div>
     );

@@ -55,16 +55,14 @@ class UsersComponent extends React.Component{
                                     <td>{user.role.id}</td>
                                     <td>{user.role.name}</td>
                                     <td>              
-                                        <button type="button" class="btn btn-primary" onClick={() => this.editUser(user.id)} >Edit</button>
-                                        <button type="button" class="btn btn-danger" onClick={() => this.deleteUser(user.id)} >Delete</button>
+                                        <button type="button" className="btn btn-primary" onClick={() => this.editUser(user.id)} >Edit</button>
+                                        <button type="button" className="btn btn-danger" onClick={() => this.deleteUser(user.id)} >Delete</button>
                                     </td>
                                 </tr>
                             )
                         }
-
                     </tbody>
                 </table>
-
             </div>
         )
     }

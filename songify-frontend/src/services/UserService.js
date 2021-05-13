@@ -12,6 +12,19 @@ class UserService{
         return axios.get(config.REST_API_URL + "users/" + id)
     }
 
+    addUser(usernameParam, passwordParam, emailParam){
+        axios({
+            method: 'post',
+            url: config.REST_API_URL + "users/",
+            data: {
+                username: usernameParam,
+                password: passwordParam,
+                email: emailParam,
+                role: "USER"
+            }
+        })
+    }
+
     updateUser(user, id){
         return axios.put(config.REST_API_URL + "users/" + id, user)
     }

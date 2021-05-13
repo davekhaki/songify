@@ -1,5 +1,5 @@
 import React from 'react';
-import UserService from './../../services/UserService.js';
+import UserService from '../../services/UserService.js';
 
 class UpdateUserComponent extends React.Component{
 

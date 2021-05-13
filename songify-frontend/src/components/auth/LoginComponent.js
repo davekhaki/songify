@@ -51,13 +51,11 @@ class LoginComponent extends React.Component {
                                 <button type="submit" className="form-control btn btn-primary rounded submit px-3">Login</button>
                             </div>
                             <div className="form-group d-md-flex">
-                                <div className="w-50">
-                                <a href="#">Forgot Password</a>
+                                <div className="w-100">
+                                <a href="">Forgot Password</a>
                                 </div>
-                            </div>
-                            <div className="form-group d-md-flex">
-                                <div className="w-50">
-                                <a href="#">Create Account</a>
+                                <div className="w-100">
+                                <a href="/register">Create Account</a>
                                 </div>
                             </div>
                         </form>
