@@ -19,7 +19,7 @@ class NavbarComponent extends React.Component {
     }
 
     login() {
-        this.props.handle
+        this.props.handle();
     }
 
     renderNav(loggedIn, role) { //add role as param for user or admin nav bar
