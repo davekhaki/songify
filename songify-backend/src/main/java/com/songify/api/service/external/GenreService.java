@@ -36,11 +36,11 @@ public class GenreService {
                 String.class);
 
         HttpStatus statusCode = responseEntity.getStatusCode();
-        logger.info("status code - " + statusCode);
+        logger.info("Status Code: {} .", statusCode);
         String user = responseEntity.getBody();
-        logger.info("response body - " + user);
+        logger.info("Response Body: {} .", user);
         HttpHeaders responseHeaders = responseEntity.getHeaders();
-        logger.info("response Headers - " + responseHeaders);
+        logger.info("Response Headers: {} .",responseHeaders);
     }
 
 
