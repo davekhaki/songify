@@ -2,12 +2,13 @@ package com.songify.api.model;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class PlaylistTest {
+class PlaylistTest {
 
     @Test
     void emptyConstructorTest(){
-        new Playlist();
+        Playlist playlist = new Playlist();
+        assertNull(playlist.getTitle());
     }
 }

@@ -1,5 +1,7 @@
 package com.songify.api.service.external;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
@@ -8,6 +10,8 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class TokenService {
+
+    private static final Logger logger = LoggerFactory.getLogger(TokenService.class);
 
     private String token;
 
@@ -23,22 +27,22 @@ public class TokenService {
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         headers.set("Authorization" , "Basic MzQ1ODFjOThkNmI4NGFhMGIxOWU0ODE3YjFkNmM5MDI= : YWQ0ZThjM2Y4MTY2NDM2ODhmN2ZkNWRmN2U5ZTQ3MGQ=");
 
-        MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+        MultiValueMap<String, String> map= new LinkedMultiValueMap<>();
         map.add("grant_type", "client_credentials");
 
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(map, headers);
 
 
         ResponseEntity<String> responseEntity = restTemplate.exchange(URL, HttpMethod.POST, requestEntity, String.class);
 
         HttpStatus statusCode = responseEntity.getStatusCode();
-        System.out.println("status code - " + statusCode);
+        logger.info("status code - " + statusCode);
 
         String token = responseEntity.getBody();
-        System.out.println("response body - " + token);
+        logger.info("response body - " + token);
 
         HttpHeaders responseHeaders = responseEntity.getHeaders();
-        System.out.println("response Headers - " + responseHeaders);
+        logger.info("response Headers - " + responseHeaders);
 
         return token;
     }
