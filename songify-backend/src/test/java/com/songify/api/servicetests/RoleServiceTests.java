@@ -32,9 +32,9 @@ class RoleServiceTests {
     @Test
     void getRoleByIdTest(){
         Role role = new Role();
-        role.setId(1L);
-        role.setName("test");
-        roleService.addRole(new RoleDto(1L, "test"));
+        role.setId(4L);
+        role.setName("no");
+        roleService.addRole(new RoleDto(4L, "no"));
 
         String roleName = roleService.getRoleById(1L).getBody().getName();
 
