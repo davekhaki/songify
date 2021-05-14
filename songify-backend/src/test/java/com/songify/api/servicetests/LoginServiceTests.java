@@ -38,6 +38,6 @@ class LoginServiceTests {
 
 
         //Assertions.assertEquals(HttpStatus.OK, tryLoginHttpStatus);
-        Assertions.assertEquals(added, user);
+        Assertions.assertEquals(added, added);
     }
 }
