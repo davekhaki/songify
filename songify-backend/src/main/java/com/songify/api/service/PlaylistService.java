@@ -47,10 +47,6 @@ public class PlaylistService {
     //returns the 8 more popular playlists as a 'page'
     public Page<Playlist> getPopularPlaylists() { return this.playlistRepository.findAll(PageRequest.of(0,8, Sort.by(Sort.Direction.DESC, "Plays"))); }
 
-    public Playlist savePlaylist(Playlist p){
-        return this.playlistRepository.save(p);
-    }
-
     public ResponseEntity<Song> addSong(Long playlistId, Long songId){
         //determine song based on given id
         var song = songRepository.findById(songId).orElseThrow(()-> new ResourceNotFoundException("Adding song to playlist, song not found"));

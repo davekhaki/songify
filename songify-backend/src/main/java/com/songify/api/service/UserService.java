@@ -33,6 +33,10 @@ public class UserService {
 
     }
 
+    public User getUserByUsernameAndPassword(String username, String password){
+        return this.userRepository.findByUsernameAndPassword(username, password);
+    }
+
     public ResponseEntity<User> addUser(UserDto dto){
         User actual = new User();
 
