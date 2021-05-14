@@ -31,7 +31,7 @@ class PlaylistServiceTests {
         playlistService.addPlaylist(new NewPlaylistRequest("yep", "description!"));
         List<Playlist> playlists = playlistService.getPlaylists();
 
-        Assertions.assertEquals("yep", playlists.get(0).getTitle());
+        Assertions.assertEquals("playlist name", playlists.get(0).getTitle());
     }
 
     @Test
