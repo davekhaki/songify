@@ -2,6 +2,7 @@ package com.songify.api.servicetests;
 
 import com.songify.api.model.Role;
 import com.songify.api.model.User;
+import com.songify.api.model.dto.LoginRequest;
 import com.songify.api.model.dto.UserDto;
 import com.songify.api.service.LoginService;
 import com.songify.api.service.UserService;
@@ -28,16 +29,8 @@ class LoginServiceTests {
         role.setName("role");
         User added = userService.addUser(new UserDto("username", "password", "email@gmail.com", role)).getBody();
 
-        //HttpStatus tryLoginHttpStatus = loginService.tryLogin("username", "password").getStatusCode();
+        User user = loginService.tryLogin(new LoginRequest("username", "password"));
 
-        var users = userService.getUsers();
-
-        User user = userService.getUserByUsernameAndPassword("username", "password");
-        User user1 = userService.getUserById(0L).getBody();
-        User user2 = userService.getUserById(1L).getBody();
-
-
-        //Assertions.assertEquals(HttpStatus.OK, tryLoginHttpStatus);
         assert added != null;
         Assertions.assertEquals(added.getUsername(), user.getUsername());
     }
