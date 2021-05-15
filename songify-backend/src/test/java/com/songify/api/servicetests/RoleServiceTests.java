@@ -31,8 +31,8 @@ class RoleServiceTests {
         createTestData();
         List<Role> roles = roleService.getRoles().getBody();
 
-        Assertions.assertEquals(roles.get(0).getName(), "test");
-        Assertions.assertEquals(roles.get(1).getName(), "test2");
+        Assertions.assertEquals("test", roles.get(0).getName());
+        Assertions.assertEquals("test2", roles.get(1).getName());
     }
 
     @Test
@@ -43,7 +43,7 @@ class RoleServiceTests {
 
         String roleName = roleService.getRoleById(4L).getBody().getName();
 
-        Assertions.assertEquals(roleName, role.getName());
+        Assertions.assertEquals("no", roleName);
     }
 
     @Test

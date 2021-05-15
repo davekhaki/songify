@@ -33,13 +33,7 @@ class PlaylistServiceTests {
         Assertions.assertEquals("playlist name", playlists.get(0).getTitle());
     }
 
-    @Test
-    void addSongToPlaylistTest(){
-        // NOT TESTABLE YET
-    }
+    // TODO: add song to playlist test
 
-    @Test
-    void getPopularPlaylistsTest(){
-        // NOT TESTABLE YET
-    }
+    // TODO: get popular playlists test
 }
