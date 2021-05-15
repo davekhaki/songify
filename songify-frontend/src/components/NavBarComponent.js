@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import RoleComponent from './tables/RolesTable';
-import UsersComponent from './admin/UsersComponent';
+import RoleTable from './tables/RolesTable';
+import UsersTable from './tables/UsersTable';
 import TestComponent from './TestComponent';
 import LoginForm from './forms/LoginForm';
 import UpdateUserComponent from './forms/UpdateUserComponent';
@@ -19,7 +19,7 @@ class NavbarComponent extends React.Component {
     }
 
     login() {
-        this.props.handle();
+        this.props.handleLogin();
     }
 
     renderNav(loggedIn, role) { //add role as param for user or admin nav bar
@@ -77,8 +77,8 @@ class NavbarComponent extends React.Component {
                     {this.renderNav(this.props.loggedIn, this.props.role)}
 
                     <Switch>
-                        <Route path='/users' component={UsersComponent} />
-                        <Route path='/roles' component={RoleComponent} />
+                        <Route path='/users' component={UsersTable} />
+                        <Route path='/roles' component={RoleTable} />
                         <Route path='/test' component={TestComponent} />
                         <Route path='/login' component={LoginForm} />
                         <Route path='/update-user/:id' component={UpdateUserComponent} />

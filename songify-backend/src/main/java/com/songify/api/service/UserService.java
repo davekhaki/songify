@@ -34,7 +34,10 @@ public class UserService {
     }
 
     public User getUserByUsernameAndPassword(String username, String password){
-        return this.userRepository.findByUsernameAndPassword(username, password);
+        if(passwordEncoder.matches(password, passwordEncoder.encode(password))){
+            return readUserByUsername(username);
+        }
+        else return null;
     }
 
     public ResponseEntity<User> addUser(UserDto dto){
@@ -58,7 +61,7 @@ public class UserService {
         //update the user details
         user.setEmail(dto.getEmail());
         user.setUsername(dto.getUsername());
-        user.setPassword(dto.getPassword());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         //no change role for now
 
         //save new user details and return updated user and OK http

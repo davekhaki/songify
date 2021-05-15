@@ -9,8 +9,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      loggedIn: false,
-      role: "USER",
+      loggedIn: true,
+      role: "ADMIN",
       apiToken: "",
       username: "",
     }

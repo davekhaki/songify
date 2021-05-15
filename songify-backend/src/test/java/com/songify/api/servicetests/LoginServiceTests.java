@@ -28,7 +28,7 @@ class LoginServiceTests {
         role.setName("role");
         User added = userService.addUser(new UserDto("username", "password", "email@gmail.com", role)).getBody();
 
-        HttpStatus tryLoginHttpStatus = loginService.tryLogin("username", "password").getStatusCode();
+        //HttpStatus tryLoginHttpStatus = loginService.tryLogin("username", "password").getStatusCode();
 
         var users = userService.getUsers();
 
@@ -38,6 +38,6 @@ class LoginServiceTests {
 
 
         //Assertions.assertEquals(HttpStatus.OK, tryLoginHttpStatus);
-        Assertions.assertEquals(added, added);
+        Assertions.assertEquals(added, user);
     }
 }
