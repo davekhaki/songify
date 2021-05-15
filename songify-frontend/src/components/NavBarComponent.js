@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import RoleComponent from './tables/RolesTable';
 import UsersComponent from './admin/UsersComponent';
 import TestComponent from './TestComponent';
-import LoginComponent from './auth/LoginComponent';
+import LoginForm from './forms/LoginForm';
 import UpdateUserComponent from './forms/UpdateUserComponent';
 import AddPlaylistComponent from './forms/AddPlaylistComponent';
 import RegisterForm from './forms/RegisterForm';
@@ -80,7 +80,7 @@ class NavbarComponent extends React.Component {
                         <Route path='/users' component={UsersComponent} />
                         <Route path='/roles' component={RoleComponent} />
                         <Route path='/test' component={TestComponent} />
-                        <Route path='/login' component={LoginComponent} />
+                        <Route path='/login' component={LoginForm} />
                         <Route path='/update-user/:id' component={UpdateUserComponent} />
                         <Route path='/newplaylist' component={AddPlaylistComponent} />
                         <Route path='/register' component={RegisterForm} />

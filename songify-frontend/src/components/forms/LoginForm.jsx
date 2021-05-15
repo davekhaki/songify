@@ -2,7 +2,7 @@ import React from 'react';
 
 import LoginService from '../../services/LoginService';
 
-class LoginComponent extends React.Component {
+class LoginForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -66,4 +66,4 @@ class LoginComponent extends React.Component {
     }
 }
 
-export default LoginComponent
+export default LoginForm
