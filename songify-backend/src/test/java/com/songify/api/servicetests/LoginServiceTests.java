@@ -38,6 +38,7 @@ class LoginServiceTests {
 
 
         //Assertions.assertEquals(HttpStatus.OK, tryLoginHttpStatus);
-        Assertions.assertEquals(added, user);
+        assert added != null;
+        Assertions.assertEquals(added.getUsername(), user.getUsername());
     }
 }
