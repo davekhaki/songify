@@ -59,12 +59,12 @@ public class UserServiceTests {
 
     @Test
     void deleteUser(){
-        userService.deleteUser(2L);
+        userService.deleteUser(3L);
 
         List<User> users = userService.getUsers();
 
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
-            users.get(2);
+            users.get(3);
         });
     }
 
