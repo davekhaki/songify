@@ -1,12 +1,11 @@
 package com.songify.api.model.dto;
 
-import com.songify.api.model.Role;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class RoleDtoTests {
+class RoleDtoTests {
 
     @Test
     void getIdTest(){
