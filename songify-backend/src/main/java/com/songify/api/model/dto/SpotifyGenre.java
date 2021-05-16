@@ -6,10 +6,6 @@ public class SpotifyGenre {
     private String href;
     private String iconUrl;
 
-    public SpotifyGenre(){
-        // Empty on purpose
-    }
-
     public SpotifyGenre(int id, String name, String href, String iconUrl) {
         this.id = id;
         this.name = name;
