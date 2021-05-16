@@ -39,6 +39,13 @@ public class UserServiceTests {
     }
 
     @Test
+    void getUserByUsernameAndPasswordWrongInput(){
+        User user = userService.getUserByUsernameAndPassword("fghak", "AwghfH");
+
+        Assertions.assertNull(user);
+    }
+
+    @Test
     void updateUser(){
         userService.updateUser(3L, new UserDto("updatedUsername", "updatedPassword", "updatedEmail", new Role())).getBody();
 
