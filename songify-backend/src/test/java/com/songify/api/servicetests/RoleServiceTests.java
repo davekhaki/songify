@@ -1,5 +1,6 @@
 package com.songify.api.servicetests;
 
+import com.songify.api.exceptions.ResourceNotFoundException;
 import com.songify.api.model.Role;
 import com.songify.api.model.dto.RoleDto;
 import com.songify.api.service.RoleService;
@@ -55,5 +56,12 @@ class RoleServiceTests {
         String newName = roleService.getRoleById(1L).getBody().getName();
 
         Assertions.assertEquals(updatedRole.getName(), newName);
+    }
+
+    @Test
+    void updateRoleResourceNotFoundExceptionThrownTest(){
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+            roleService.updateRole(7573L, new RoleDto(58185L, "yep"));
+        });
     }
 }

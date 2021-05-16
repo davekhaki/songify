@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
@@ -37,28 +38,35 @@ public class UserServiceTests {
     }
 
     @Test
-    void getUserByUsernameAndPassword(){
+    void getUserByIdIsPresentTest(){
+        HttpStatus status = userService.getUserById(500L).getStatusCode();
+
+        Assertions.assertEquals(HttpStatus.NOT_FOUND, status);
+    }
+
+    @Test
+    void getUserByUsernameAndPasswordTest(){
         User user = userService.getUserByUsernameAndPassword("number1", "first");
 
         Assertions.assertEquals("uno", user.getEmail());
     }
 
     @Test
-    void getUserByUsernameAndPasswordWrongInput(){
+    void getUserByUsernameAndPasswordWrongInputTest(){
         User user = userService.getUserByUsernameAndPassword("fghak", "AwghfH");
 
         Assertions.assertNull(user);
     }
 
     @Test
-    void updateUser(){
+    void updateUserTest(){
         userService.updateUser(3L, new UserDto("updatedUsername", "updatedPassword", "updatedEmail", new Role())).getBody();
 
         Assertions.assertEquals("updatedUsername", userService.getUserById(3L).getBody().getUsername());
     }
 
     @Test
-    void deleteUser(){
+    void deleteUserTest(){
         userService.deleteUser(3L);
 
         List<User> users = userService.getUsers();
