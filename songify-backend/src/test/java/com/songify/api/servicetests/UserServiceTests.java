@@ -1,5 +1,6 @@
 package com.songify.api.servicetests;
 
+import com.songify.api.exceptions.UserNotFoundException;
 import com.songify.api.model.Role;
 import com.songify.api.model.User;
 import com.songify.api.model.dto.LoginRequest;
@@ -63,6 +64,13 @@ public class UserServiceTests {
         userService.updateUser(3L, new UserDto("updatedUsername", "updatedPassword", "updatedEmail", new Role())).getBody();
 
         Assertions.assertEquals("updatedUsername", userService.getUserById(3L).getBody().getUsername());
+    }
+
+    @Test
+    void updateUserThrowsUserNotFoundExceptionTest(){
+        Assertions.assertThrows(UserNotFoundException.class, () -> {
+            userService.updateUser(578123L, new UserDto(".", ".", ".", new Role()));
+        });
     }
 
     @Test
