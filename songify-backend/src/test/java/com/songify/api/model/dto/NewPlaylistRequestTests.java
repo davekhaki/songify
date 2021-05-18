@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class NewPlaylistRequestTests {
+class NewPlaylistRequestTests {
 
     @Test
     void getTitleTest(){

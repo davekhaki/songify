@@ -1,37 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import LoginService from '../../services/LoginService';
+import AuthService from '../../services/auth/auth.service';
 
-class LoginForm extends React.Component {
-
+export default class Login extends Component {
     constructor(props) {
         super(props);
+
+        this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
+        
         this.state = {
-            loggedIn: true,
             username: "",
             password: ""
         };
-
-        this.usernameChange = this.usernameChange.bind(this);
-        this.passwordChange = this.passwordChange.bind(this);
-        this.loginSubmit = this.loginSubmit.bind(this);
     }
 
-    static getDerivedStateFromProps(props, state){
-        return {loggedIn: props.loggedIn };
+    onChangeUsername(e){
+        this.setState({username: e.target.value})
     }
 
-    usernameChange(event) {
-        this.setState({username: event.target.value})
+    onChangePassword(e){
+        this.setState({password: e.target.value})
     }
 
-    passwordChange(event){
-        this.setState({password: event.target.value})
-    }
+    handleLogin(e) {
+        e.preventDefault();
 
-    loginSubmit(){
-        console.log("fuck");
-        console.log(this.state.loggedIn);
+        AuthService.login(this.state.username, this.state.password).then((response) => {
+                console.log("RESEPONSE: " + response);
+                this.props.history.push("/profile");
+                window.location.reload();
+            },
+            error => {
+                console.log(error);
+            }
+        )
     }
 
     render() {
@@ -40,12 +44,12 @@ class LoginForm extends React.Component {
                 <div className="col-md-7 col-lg-5">
                     <div className="login-wrap p-4 p-md-5">
                         <h3 className="text-center mb-4">Login</h3>
-                        <form onSubmit={this.loginSubmit} action="#" className="login-form">
+                        <form onSubmit={this.handleLogin} action="#" className="login-form">
                             <div className="form-group">
-                                <input type="text" value={this.state.username} onChange={this.usernameChange} className="form-control rounded-left" placeholder="Username" required="" />
+                                <input type="text" value={this.state.username} onChange={this.onChangeUsername} className="form-control rounded-left" placeholder="Username" required="" />
                             </div>
                             <div class="form-group d-flex">
-                                <input type="password" value={this.state.password} onChange={this.passwordChange} className="form-control rounded-left" placeholder="Password" required="" />
+                                <input type="password" value={this.state.password} onChange={this.onChangePassword} className="form-control rounded-left" placeholder="Password" required="" />
                             </div>
                             <div className="form-group">
                                 <button type="submit" className="form-control btn btn-primary rounded submit px-3">Login</button>
@@ -65,5 +69,3 @@ class LoginForm extends React.Component {
         )
     }
 }
-
-export default LoginForm

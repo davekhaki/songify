@@ -1,31 +1,42 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 
 import RoleTable from './tables/RolesTable';
 import UsersTable from './tables/UsersTable';
 import TestComponent from './TestComponent';
-import LoginForm from './forms/LoginForm';
+import Login from './forms/login.component';
 import UpdateUserComponent from './forms/UpdateUserComponent';
 import AddPlaylistComponent from './forms/AddPlaylistComponent';
-import RegisterForm from './forms/RegisterForm';
+import RegisterForm from './forms/register.component';
 
-class NavbarComponent extends React.Component {
+import AuthService from '../services/auth/auth.service';
+import Profile from './profile.component';
 
+export default class NavbarComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            currentUser: undefined,
+        };
 
+    }
+
+    componentDidMount() {
+        const user = AuthService.getCurrentUser();
+
+        AuthService.refreshToken();
+        AuthService.getToken();
+
+        if (user) {
+            this.setState({
+                currentUser: user,
+            });
         }
     }
 
-    login() {
-        this.props.handleLogin();
-    }
-
-    renderNav(loggedIn, role) { //add role as param for user or admin nav bar
-        console.log("loggedIn value: " + loggedIn);
-        console.log("role value: " + role);
-        if (loggedIn && role === "USER") { // nav bar for regular users
+    renderNav(user) {
+        if (user && user.role.name == "USER") { // nav bar for regular users
+            console.log("** loggedin and user **")
             return (
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <ul className="navbar-nav mr-auto">
@@ -34,13 +45,14 @@ class NavbarComponent extends React.Component {
                         <li><Link to={'/'} className="nav-link"> Browse Playlists </Link></li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
-                        <li><Link to={'/profile'} className="nav-link"> **Username** </Link></li>
-                        <li><Link to={'/logout'} className="nav-link"> Logout </Link></li>
+                        <li><Link to={'/profile'} className="nav-link"> {this.state.currentUser.username}</Link></li>
+                        <li onClick={AuthService.logout}><Link to={'/'} className="nav-link"> Logout </Link></li>
                     </ul>
                 </nav>
             )
         }
-        else if (loggedIn && role === "ADMIN") { // nav bar for admins
+        else if (user && user.role.name == "ADMIN") { // nav bar for admins
+            console.log("** loggedin and admin **")
             return (
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <ul className="navbar-nav mr-auto">
@@ -50,13 +62,14 @@ class NavbarComponent extends React.Component {
                         <li><Link to={'/test'} className="nav-link"> Test </Link></li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
-                        <li><Link to={'/profile'} className="nav-link"> **Username** </Link></li>
-                        <li><Link to={'/login'} className="nav-link"> Logout </Link></li>
+                        <li><Link to={'/profile'} className="nav-link"> {this.state.currentUser.username} </Link></li>
+                        <li onClick={AuthService.logout}><Link to={'/'} className="nav-link"> Logout </Link></li>
                     </ul>
                 </nav>
             )
         }
         else {
+            console.log("** not loggedin**")
             return (
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <ul className="navbar-nav mr-auto">
@@ -74,13 +87,13 @@ class NavbarComponent extends React.Component {
         return (
             <div id="nav">
                 <Router>
-                    {this.renderNav(this.props.loggedIn, this.props.role)}
-
+                    {this.renderNav(this.state.currentUser)}
                     <Switch>
+                        <Route path='/profile' component={Profile} />
                         <Route path='/users' component={UsersTable} />
                         <Route path='/roles' component={RoleTable} />
                         <Route path='/test' component={TestComponent} />
-                        <Route path='/login' component={LoginForm} />
+                        <Route path='/login' component={Login} />
                         <Route path='/update-user/:id' component={UpdateUserComponent} />
                         <Route path='/newplaylist' component={AddPlaylistComponent} />
                         <Route path='/register' component={RegisterForm} />
@@ -91,5 +104,3 @@ class NavbarComponent extends React.Component {
         )
     }
 }
-
-export default NavbarComponent;

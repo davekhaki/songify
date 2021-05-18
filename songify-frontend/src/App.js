@@ -4,33 +4,31 @@ import React from 'react';
 
 import NavBarComponent from './components/NavBarComponent';
 
+import AuthService from './services/auth/auth.service';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      loggedIn: true,
-      role: "ADMIN",
-      apiToken: "",
-      username: "",
+      currentUser: undefined,
+    };
+  
+  }
+
+  componentDidMount() {
+    const user = AuthService.getCurrentUser();
+
+    if (user) {
+      this.setState({
+        currentUser: user,
+      });
     }
-
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
-  }
-
-  handleLogin(){
-    this.setState({loggedIn: true});
-  }
-
-  handleLogout(){
-    this.setState({loggedIn: false});
   }
 
   render() {
     return (
       <div className="App">
-        <NavBarComponent loggedIn={this.state.loggedIn} role={this.state.role} handleLogin={this.handleLogin}/>
+        <NavBarComponent/>
         {/* <PopularPlaylistComponent></PopularPlaylistComponent> */}
       </div>
     );
