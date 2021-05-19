@@ -23,10 +23,10 @@ However, in the 4th sprint the information that is sent to the console is now st
 
 
 
-Users List (Same as sprint 3):
-This list of users is retrieved from my own API
-![](images/sprint-3/users-list.png)
+Users List:
+The list of users is now only accessable by logged in admins, and also has the option to edit or delete a user
+![](images/sprint-4/user-list.png)
 
 Roles List (Same as sprint 3):
-This list of roles is also retrieved from my own API
-![](images/sprint-3/roles-list.png)
+The list of roles has stayed the same except for the fact that only admins can see it
+![](images/sprint-4/roles-list.png)
