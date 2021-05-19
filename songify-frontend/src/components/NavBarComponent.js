@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-ro
 import RoleTable from './tables/RolesTable';
 import UsersTable from './tables/UsersTable';
 import TestComponent from './TestComponent';
-import Login from './forms/login.component';
+import Login from './auth/login.component';
 import UpdateUserComponent from './forms/UpdateUserComponent';
 import AddPlaylistComponent from './forms/AddPlaylistComponent';
-import RegisterForm from './forms/register.component';
+import Register from './auth/register.component';
 
 import AuthService from '../services/auth/auth.service';
 import Profile from './profile.component';
@@ -24,8 +24,7 @@ export default class NavbarComponent extends React.Component {
     componentDidMount() {
         const user = AuthService.getCurrentUser();
 
-        AuthService.refreshToken();
-        AuthService.getToken();
+        
 
         if (user) {
             this.setState({
@@ -36,7 +35,6 @@ export default class NavbarComponent extends React.Component {
 
     renderNav(user) {
         if (user && user.role.name == "USER") { // nav bar for regular users
-            console.log("** loggedin and user **")
             return (
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <ul className="navbar-nav mr-auto">
@@ -51,8 +49,7 @@ export default class NavbarComponent extends React.Component {
                 </nav>
             )
         }
-        else if (user && user.role.name == "ADMIN") { // nav bar for admins
-            console.log("** loggedin and admin **")
+        else if (user && user.role.name == "ADMIN") { // nav bar for admin
             return (
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <ul className="navbar-nav mr-auto">
@@ -69,7 +66,6 @@ export default class NavbarComponent extends React.Component {
             )
         }
         else {
-            console.log("** not loggedin**")
             return (
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <ul className="navbar-nav mr-auto">
@@ -96,7 +92,7 @@ export default class NavbarComponent extends React.Component {
                         <Route path='/login' component={Login} />
                         <Route path='/update-user/:id' component={UpdateUserComponent} />
                         <Route path='/newplaylist' component={AddPlaylistComponent} />
-                        <Route path='/register' component={RegisterForm} />
+                        <Route path='/register' component={Register} />
                     </Switch>
 
                 </Router>

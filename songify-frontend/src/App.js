@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {
       currentUser: undefined,
     };
-  
+
   }
 
   componentDidMount() {
@@ -28,7 +28,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <NavBarComponent/>
+        <NavBarComponent />
         {/* <PopularPlaylistComponent></PopularPlaylistComponent> */}
       </div>
     );
