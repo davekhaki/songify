@@ -17,10 +17,6 @@ class RegisterForm extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount(){
-
-    }
-
     handleUsernameChange(event){
         this.setState({username: event.target.value});
     }
@@ -38,22 +34,41 @@ class RegisterForm extends Component{
     handleSubmit(event){
         event.preventDefault();
         UserService.addUser(this.state.username, this.state.password, this.state.email);
+        alert("Account created.")
+        this.props.history.push("/login");
     }
 
     render (){
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>Username:
-                    <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
-                </label>
-                <label>Password:
-                    <input type="text" value={this.state.password} onChange={this.handlePasswordChange} />
-                </label>
-                <label>Email:
-                    <input type="text" value={this.state.email} onChange={this.handleEmailChange} />
-                </label>
-                <input type="submit" value="Sign Up" />
-            </form>
+            <div className="row justify-content-center">
+            <div className="col-md-7 col-lg-5">
+                <div className="login-wrap p-4 p-md-5">
+                    <h3 className="text-center mb-4">Register</h3>
+                    <form onSubmit={this.handleSubmit} action="#" className="register-form">
+                        <label>Email:</label>
+                        <div className="form-group">
+                        <input type="text" value={this.state.email} onChange={this.handleEmailChange} />
+                        </div>
+                        <label>Username:</label>
+                        <div class="form-group">
+                        <input type="text" value={this.state.username} onChange={this.handleUsernameChange} />
+                        </div>
+                        <label>Password:</label>
+                        <div className="form-group">
+                        <input type="text" value={this.state.password} onChange={this.handlePasswordChange} />
+                        </div>
+                        <div className="form-group">
+                            <button type="submit" className="form-control btn btn-primary rounded submit px-3">Sign up</button>
+                        </div>
+                        <div className="form-group d-md-flex">
+                            <div className="w-100">Already have an account?
+                            <a href="/register"> Log in</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         )
     }
 }
