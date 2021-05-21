@@ -28,6 +28,10 @@ public class PlaylistService {
         return this.playlistRepository.findAll();
     }
 
+    public Playlist getPlaylistById(Long id) {
+        return this.playlistRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Playlist not found with id"));
+    }
+
     public List<Playlist> getPlaylistsByUsername(String username){
         return this.playlistRepository.getPlaylistByCreatedBy(username);
     }

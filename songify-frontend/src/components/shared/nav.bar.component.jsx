@@ -11,6 +11,7 @@ import Register from '../auth/register.component';
 import AuthService from '../../services/auth/auth.service';
 import Profile from './profile.component';
 import MyPlaylists from '../user/my.playlists.component';
+import SpecificPlaylist from '../user/specific.playlist.component';
 
 export default class Navbar extends Component {
     constructor(props) {
@@ -88,6 +89,7 @@ export default class Navbar extends Component {
                         {/* USER ROUTES : */}
                         <Route path='/my-playlists' component={MyPlaylists}/>
                         <Route path='/new-playlist' component={AddPlaylist} />
+                        <Route path='/playlist/:id' component={SpecificPlaylist}/>
                         {/* ADMIN ROUTES : */}
                         <Route path='/users' component={Users} />
                         <Route path='/roles' component={Roles} />                        

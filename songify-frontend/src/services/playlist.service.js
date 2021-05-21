@@ -9,12 +9,19 @@ class PlaylistService{
         return axios.get(config.REST_API_URL + "playlists");
     }
 
+    getPlaylistById(id){
+        return axios({
+            method: 'get',
+            url: config.REST_API_URL + "playlists/id/" + id,
+        })
+    }
+
     getPopularPlaylists(){
         return axios.get(config.REST_API_URL + "playlists/popular");
     }
 
     addPlaylist(playlistTitle, playlistDesc){
-        axios({
+        return axios({
             method: 'post',
             url: config.REST_API_URL + 'playlists',
             data: {

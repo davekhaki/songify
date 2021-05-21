@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PlaylistService from '../../services/playlist.service';
 
-class AddPlaylistComponent extends React.Component{
+export default class AddPlaylist extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             playlistTitle: "",
@@ -15,36 +15,45 @@ class AddPlaylistComponent extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount(){
 
+    handleTitleChange(event) {
+        this.setState({ playlistTitle: event.target.value });
     }
 
-    handleTitleChange(event){
-        this.setState({playlistTitle: event.target.value});
+    handleDescChange(event) {
+        this.setState({ playlistDesc: event.target.value });
     }
 
-    handleDescChange(event){
-        this.setState({playlistDesc: event.target.value});
-    }
-
-    handleSubmit(event){
+    handleSubmit(event) {
         event.preventDefault();
-        PlaylistService.addPlaylist(this.state.playlistTitle, this.state.playlistDesc)
+        PlaylistService.addPlaylist(this.state.playlistTitle, this.state.playlistDesc).then((response) => {
+            alert('Playlist Created, redirecting now.');
+            this.props.history.push("/playlist/" + response.data.id);
+        })
     }
 
-    render (){
+    render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>Playlist Title:
-                    <input type="text" value={this.state.playlistTitle} onChange={this.handleTitleChange} />
-                </label>
-                <label>Playlist Description:
-                    <input type="text" value={this.state.playlistDesc} onChange={this.handleDescChange} />
-                </label>
-                <input type="submit" value="Create Playlist" />
-            </form>
+            <div className="row justify-content-center">
+                <div className="col-md-7 col-lg-5">
+                    <div className="login-wrap p-4 p-md-5">
+                        <h3 className="text-center mb-4">New Playlist</h3>
+                        <form onSubmit={this.handleSubmit} action="#" className="login-form">
+                            <label>Title:</label>
+                            <div className="form-group">
+                                <input type="text" value={this.state.playlistTitle} onChange={this.handleTitleChange} />
+                            </div>
+                            <label>Playlist Description:</label>
+                            <div class="form-group">
+                                <input type="text" value={this.state.playlistDesc} onChange={this.handleDescChange} />
+                            </div>
+                            <div className="form-group">
+                                <button type="submit" className="form-control btn btn-primary rounded submit px-3">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         )
     }
 }
-
-export default AddPlaylistComponent

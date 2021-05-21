@@ -24,6 +24,9 @@ public class PlaylistController {
         return this.playlistService.getPlaylists();
     }
 
+    @GetMapping("/id/{id}")
+    public Playlist getPlaylistById(@PathVariable Long id){ return this.playlistService.getPlaylistById(id); }
+
     @GetMapping("/{username}")
     public List<Playlist> getPlaylistsByUser(@PathVariable String username){
         return playlistService.getPlaylistsByUsername(username);
