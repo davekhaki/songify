@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import UserService from '../../services/user.service.js';
 
-export default class UpdateUser extends Component{
+export default class UpdateUser extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             id: this.props.match.params.id,
@@ -17,8 +17,8 @@ export default class UpdateUser extends Component{
         this.changePasswordHandler = this.changePasswordHandler.bind(this);
     }
 
-    componentDidMount(){
-        UserService.getUserById(this.state.id).then((response)=>{
+    componentDidMount() {
+        UserService.getUserById(this.state.id).then((response) => {
             let user = response.data;
             this.setState({
                 email: user.email,
@@ -35,7 +35,7 @@ export default class UpdateUser extends Component{
             username: this.state.username,
             password: this.state.password
         }
-        UserService.updateUser(user, this.state.id).then(()=> {
+        UserService.updateUser(user, this.state.id).then(() => {
             alert('User Updated');
             this.props.history.push("/users");
         });
@@ -53,34 +53,35 @@ export default class UpdateUser extends Component{
         this.setState({ password: event.target.value });
     }
 
-    cancel(){
+    cancel() {
         this.props.history.push("/users");
     }
 
-    render (){
+    render() {
         return (
-            <div>
-                <h3 className="text-center mb-4">Update </h3>
+            <div className="row justify-content-center">
+                <div className="col-md-7 col-lg-5">
+                    <div className="login-wrap p-4 p-md-5">
+                        <h3 className="text-center mb-4">Update</h3>
                         <form onSubmit={this.updateUserDetails} action="#" className="login-form">
+                            <label>Email:</label>
                             <div className="form-group">
-                                Email:
                                 <input type="text" value={this.state.email} onChange={this.changeEmailHandler} className="form-control rounded-left" />
                             </div>
-                            <div class="form-group d-flex">
-                                Username:
+                            <label>Username:</label>
+                            <div class="form-group d-flex">                                
                                 <input type="text" value={this.state.username} onChange={this.changeUsernameHandler} className="form-control rounded-left" />
                             </div>
-                            <div class="form-group d-flex">
-                                Password:
-                                <input type="password" value={this.state.password} onChange={this.changePasswordHandler} className="form-control rounded-left" />
+                            <div className="form-group">
+                                <button type="submit" className="form-control btn btn-success rounded submit px-3">Edit</button>
                             </div>
                             <div className="form-group">
-                                <button type="submit" className="form-control btn btn-primary rounded submit px-3">Edit</button>
+                                <button onClick={this.cancel.bind(this)} className="form-control btn btn-danger rounded submit px-3">Cancel</button>
                             </div>
-                            <div className="form-group">
-                                <button onClick={this.cancel.bind(this)} className="form-control btn btn-primary rounded submit px-3">Cancel</button>
-                            </div>
+
                         </form>
+                    </div>
+                </div>
             </div>
         )
     }
