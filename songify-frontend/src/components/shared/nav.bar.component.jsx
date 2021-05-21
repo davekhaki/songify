@@ -37,6 +37,7 @@ export default class Navbar extends Component {
                         <li><Link to={'/'} className="nav-link"> Songify </Link></li>
                         <li><Link to={'/my-playlists'} className="nav-link"> My Playlists </Link></li>
                         <li><Link to={'/'} className="nav-link"> Browse Playlists </Link></li>
+                        <li><Link to={'/new-playlist'} className="nav-link">New Playlist</Link></li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li><Link to={'/profile'} className="nav-link"> {this.state.currentUser.username}</Link></li>
@@ -86,7 +87,7 @@ export default class Navbar extends Component {
                         <Route path='/profile' component={Profile} />
                         {/* USER ROUTES : */}
                         <Route path='/my-playlists' component={MyPlaylists}/>
-                        <Route path='/newplaylist' component={AddPlaylist} />
+                        <Route path='/new-playlist' component={AddPlaylist} />
                         {/* ADMIN ROUTES : */}
                         <Route path='/users' component={Users} />
                         <Route path='/roles' component={Roles} />                        
