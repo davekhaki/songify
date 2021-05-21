@@ -2,7 +2,7 @@ import './App.css';
 
 import React from 'react';
 
-import NavBarComponent from './components/NavBarComponent';
+import Navbar from './components/shared/nav.bar.component';
 
 import AuthService from './services/auth/auth.service';
 
@@ -28,8 +28,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <NavBarComponent />
-        {/* <PopularPlaylistComponent></PopularPlaylistComponent> */}
+        <Navbar />
+        {/* <PopularPlaylist></PopularPlaylist> */}
       </div>
     );
   }

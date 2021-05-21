@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Card, CardDeck } from 'react-bootstrap';
 
 import PlaylistService from '../../services/playlist.service';
 
-class PopularPlaylistComponent extends React.Component{
+export default class PopularPlaylist extends Component{
 
     constructor(props){
         super(props)
@@ -41,5 +41,3 @@ class PopularPlaylistComponent extends React.Component{
         )
     }
 }
-
-export default PopularPlaylistComponent

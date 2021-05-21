@@ -1,7 +1,7 @@
-import React from 'react';
-import UserService from '../../services/UserService.js';
+import React, {Component} from 'react';
+import UserService from '../../services/user.service.js';
 
-class UsersTable extends React.Component{
+export default class Users extends Component{
 
     constructor(props){
         super(props)
@@ -67,5 +67,3 @@ class UsersTable extends React.Component{
         )
     }
 }
-
-export default UsersTable

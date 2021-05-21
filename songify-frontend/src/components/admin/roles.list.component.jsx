@@ -1,7 +1,7 @@
 import React from 'react';
-import RoleService from '../../services/RoleService.js';
+import RoleService from '../../services/roles.service.js';
 
-class RolesTable extends React.Component{
+export default class Roles extends React.Component{
 
     constructor(props){
         super(props)
@@ -43,5 +43,3 @@ class RolesTable extends React.Component{
         )
     }
 }
-
-export default RolesTable
