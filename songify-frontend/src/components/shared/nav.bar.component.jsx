@@ -7,11 +7,12 @@ import Login from '../auth/login.component';
 import UpdateUser from '../admin/update.user.component';
 import AddPlaylist from '../user/add.playlist.component';
 import Register from '../auth/register.component';
-
+import AddRole from '../admin/add.role.component';
 import AuthService from '../../services/auth/auth.service';
 import Profile from './profile.component';
 import MyPlaylists from '../user/my.playlists.component';
 import SpecificPlaylist from '../user/specific.playlist.component';
+import UpdateRole from '../admin/update.role.component';
 
 export default class Navbar extends Component {
     constructor(props) {
@@ -92,8 +93,10 @@ export default class Navbar extends Component {
                         <Route path='/playlist/:id' component={SpecificPlaylist}/>
                         {/* ADMIN ROUTES : */}
                         <Route path='/users' component={Users} />
-                        <Route path='/roles' component={Roles} />                        
                         <Route path='/update-user/:id' component={UpdateUser} />
+                        <Route path='/roles' component={Roles} /> 
+                        <Route path='/update-role/:id' component={UpdateRole} />                       
+                        <Route path="/add-role" component={AddRole} />
                     </Switch>
 
                 </Router>
