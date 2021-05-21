@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import Image from '../../img/logo.png';
 
 import Roles from '../admin/roles.list.component';
 import Users from '../admin/users.list.component';
@@ -13,6 +14,7 @@ import Profile from './profile.component';
 import MyPlaylists from '../user/my.playlists.component';
 import SpecificPlaylist from '../user/specific.playlist.component';
 import UpdateRole from '../admin/update.role.component';
+import Home from './home.component';
 
 export default class Navbar extends Component {
     constructor(props) {
@@ -36,7 +38,7 @@ export default class Navbar extends Component {
             return (
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <ul className="navbar-nav mr-auto">
-                        <li><Link to={'/'} className="nav-link"> Songify </Link></li>
+                        <li><img src="../../img/logo.png"/><Link to={'/'} className="nav-link"> Songify </Link></li>
                         <li><Link to={'/my-playlists'} className="nav-link"> My Playlists </Link></li>
                         <li><Link to={'/'} className="nav-link"> Browse Playlists </Link></li>
                         <li><Link to={'/new-playlist'} className="nav-link">New Playlist</Link></li>
@@ -67,7 +69,7 @@ export default class Navbar extends Component {
             return (
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <ul className="navbar-nav mr-auto">
-                        <li><Link to={'/'} className="nav-link"> Songify </Link></li>
+                        <li><Link to={'/'} className="nav-link"> <img src={Image} width="40" height="40" alt="cam"/> Songify </Link></li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li><Link to={'/login'} className="nav-link"> Login</Link></li>
@@ -84,6 +86,7 @@ export default class Navbar extends Component {
                     {this.renderNav(this.state.currentUser)}
                     <Switch>
                         {/* SHARED ROUTES: */}
+                        <Route path='/' component={Home} />
                         <Route path='/register' component={Register} />
                         <Route path='/login' component={Login} />
                         <Route path='/profile' component={Profile} />

@@ -4,6 +4,8 @@ import React from 'react';
 
 import Navbar from './components/shared/nav.bar.component';
 
+import Image from './img/logo.png';
+
 import AuthService from './services/auth/auth.service';
 
 class App extends React.Component {
