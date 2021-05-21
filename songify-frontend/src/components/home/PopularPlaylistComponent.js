@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardDeck } from 'react-bootstrap';
 
-import PlaylistService from '../../services/PlaylistService';
+import PlaylistService from '../../services/playlist.service';
 
 class PopularPlaylistComponent extends React.Component{
 

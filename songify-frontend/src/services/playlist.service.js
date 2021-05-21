@@ -1,4 +1,5 @@
 import axios from 'axios'
+import AuthService from './auth/auth.service';
 
 const config = require('../config.json');
 
@@ -18,8 +19,17 @@ class PlaylistService{
             url: config.REST_API_URL + 'playlists',
             data: {
                 title: playlistTitle,
-                desc: playlistDesc
+                desc: playlistDesc,
+                username: AuthService.getCurrentUser().username
             }
+        })
+    }
+
+    getMyPlaylists(){
+        return axios({
+            method: 'get',
+            url: config.REST_API_URL + 'playlists/' + AuthService.getCurrentUser().username,
+
         })
     }
 }

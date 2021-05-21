@@ -11,6 +11,7 @@ import Register from './auth/register.component';
 
 import AuthService from '../services/auth/auth.service';
 import Profile from './profile.component';
+import MyPlaylists from './user/my.playlists.component';
 
 export default class NavbarComponent extends React.Component {
     constructor(props) {
@@ -39,7 +40,7 @@ export default class NavbarComponent extends React.Component {
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <ul className="navbar-nav mr-auto">
                         <li><Link to={'/'} className="nav-link"> Songify </Link></li>
-                        <li><Link to={'/'} className="nav-link"> My Playlists </Link></li>
+                        <li><Link to={'/my-playlists'} className="nav-link"> My Playlists </Link></li>
                         <li><Link to={'/'} className="nav-link"> Browse Playlists </Link></li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
@@ -85,6 +86,9 @@ export default class NavbarComponent extends React.Component {
                 <Router>
                     {this.renderNav(this.state.currentUser)}
                     <Switch>
+                        {/* USER ROUTES : */}
+                        <Route path='/my-playlists' component={MyPlaylists}/>
+
                         <Route path='/profile' component={Profile} />
                         <Route path='/users' component={UsersTable} />
                         <Route path='/roles' component={RoleTable} />

@@ -28,6 +28,10 @@ public class PlaylistService {
         return this.playlistRepository.findAll();
     }
 
+    public List<Playlist> getPlaylistsByUsername(String username){
+        return this.playlistRepository.getPlaylistByCreatedBy(username);
+    }
+
     public Playlist addPlaylist(NewPlaylistRequest newPlaylist) {
         var playlist = new Playlist();
 
@@ -38,8 +42,8 @@ public class PlaylistService {
         playlist.setPlays(0);
         playlist.setSongs(new ArrayList<>());
         // AUDITABLE VALUES
-        playlist.setCreatedBy("");
-        playlist.setLastModifiedBy("");
+        playlist.setCreatedBy(newPlaylist.getUsername());
+        playlist.setLastModifiedBy(newPlaylist.getUsername());
 
         return this.playlistRepository.save(playlist);
     }

@@ -24,6 +24,11 @@ public class PlaylistController {
         return this.playlistService.getPlaylists();
     }
 
+    @GetMapping("/{username}")
+    public List<Playlist> getPlaylistsByUser(@PathVariable String username){
+        return playlistService.getPlaylistsByUsername(username);
+    }
+
     @PostMapping("")
     public ResponseEntity<Playlist> addPlaylist(@RequestBody NewPlaylistRequest newPlaylist) {
         return new ResponseEntity<>(this.playlistService.addPlaylist(newPlaylist), HttpStatus.OK);

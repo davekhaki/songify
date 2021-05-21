@@ -1,5 +1,5 @@
 import React from 'react';
-import PlaylistService from '../../services/PlaylistService';
+import PlaylistService from '../../services/playlist.service';
 
 class AddPlaylistComponent extends React.Component{
 

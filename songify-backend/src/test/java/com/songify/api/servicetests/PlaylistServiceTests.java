@@ -20,7 +20,7 @@ class PlaylistServiceTests {
 
     @Test
     void createPlaylistTest(){
-        Playlist playlist = playlistService.addPlaylist(new NewPlaylistRequest("playlist name", "description!"));
+        Playlist playlist = playlistService.addPlaylist(new NewPlaylistRequest("playlist name", "description!", "username"));
 
         Assertions.assertEquals(Playlist.class, playlist.getClass());
         Assertions.assertEquals("playlist name", playlist.getTitle());
