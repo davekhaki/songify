@@ -1,6 +1,101 @@
 import React, { Component } from 'react';
 import UserService from '../../services/user.service.js';
 
+const useSortableData = (items, config = null) => {
+    const [sortConfig, setSortConfig] = React.useState(config);
+
+    const sortedItems = React.useMemo(() => {
+        let sortableItems = [...items];
+        if (sortConfig !== null) {
+            sortableItems.sort((a, b) => {
+                if (a[sortConfig.key] < b[sortConfig.key]) {
+                    return sortConfig.direction === 'ascending' ? -1 : 1;
+                }
+                if (a[sortConfig.key] > b[sortConfig.key]) {
+                    return sortConfig.direction === 'ascending' ? 1 : -1;
+                }
+                return 0;
+            });
+        }
+        return sortableItems;
+    }, [items, sortConfig]);
+
+    const requestSort = (key) => {
+        let direction = 'ascending';
+        if (
+            sortConfig &&
+            sortConfig.key === key &&
+            sortConfig.direction === 'ascending'
+        ) {
+            direction = 'descending';
+        }
+        setSortConfig({ key, direction });
+    };
+
+    return { items: sortedItems, requestSort, sortConfig };
+};
+
+const UserTable = (props) => {
+    const { items, requestSort, sortConfig } = useSortableData(props.users);
+    const getClassNamesFor = (name) => {
+        if (!sortConfig) {
+            return;
+        }
+        return sortConfig.key === name ? sortConfig.direction : undefined;
+    };
+    return (
+        <table className="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <button type="button" onClick={() => requestSort('id')} className={getClassNamesFor('id')} >
+                            ID
+                </button>
+                    </th>
+                    <th>
+                        <button type="button" onClick={() => requestSort('email')} className={getClassNamesFor('email')} >
+                            Email
+                </button>
+                    </th>
+                    <th>
+                        <button type="button" onClick={() => requestSort('username')} className={getClassNamesFor('username')} >
+                            Username
+                </button>
+                    </th>
+                    <th> Password </th>
+                    <th>
+                        <button type="button" onClick={() => requestSort('username')} className={getClassNamesFor('username')} >
+                            Role ID
+                </button>
+                    </th>
+                    <th>
+                        <button type="button" onClick={() => requestSort('username')} className={getClassNamesFor('username')} >
+                            Role Name
+                </button>
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {items.map((user) => (
+                    <tr key={user.id}>
+                        <td>{user.id}</td>
+                        <td>{user.email}</td>
+                        <td>{user.username}</td>
+                        <td>{user.password}</td>
+                        <td>{user.role.id}</td>
+                        <td>{user.role.name}</td>
+                        <td>
+                            <button type="button" className="btn btn-primary" onClick={() => props.edit(user.id)} >Edit</button>
+                            <button type="button" className="btn btn-danger" onClick={() => props.delete(user.id)} >Delete</button>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    );
+};
+
 export default class Users extends Component {
 
     constructor(props) {
@@ -17,58 +112,25 @@ export default class Users extends Component {
     }
 
     editUser(id) {
-        this.props.history.push(`/update-user/${id}`);
+        window.location.href="/update-user/" + id;
     }
-
+    
     deleteUser(id) {
         var r = window.confirm("Are you sure you want to delete this user?");
         if (r == true) {
-            UserService.deleteUser(id).then((response) => {
+            UserService.deleteUser(id).then(() => {
                 this.setState({ users: this.state.users.filter((user) => user.id !== id) });
             });
         } else {
             window.location.reload();
         }
-       
+    
     }
 
     render() {
         return (
             <div>
-                <h1 className="text-center"> Users List</h1>
-
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <td>ID</td>
-                            <td>Email</td>
-                            <td>Username</td>
-                            <td>Password</td>
-                            <td>Role ID</td>
-                            <td>Role Name</td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.state.users.map(
-                                user =>
-                                    <tr key={user.id}>
-                                        <td>{user.id}</td>
-                                        <td>{user.email}</td>
-                                        <td>{user.username}</td>
-                                        <td>{user.password}</td>
-                                        <td>{user.role.id}</td>
-                                        <td>{user.role.name}</td>
-                                        <td>
-                                            <button type="button" className="btn btn-primary" onClick={() => this.editUser(user.id)} >Edit</button>
-                                            <button type="button" className="btn btn-danger" onClick={() => this.deleteUser(user.id)} >Delete</button>
-                                        </td>
-                                    </tr>
-                            )
-                        }
-                    </tbody>
-                </table>
+                <UserTable users={this.state.users} edit={this.editUser} delete={this.deleteUser} />
             </div>
         )
     }

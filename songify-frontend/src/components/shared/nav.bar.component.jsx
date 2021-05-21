@@ -86,7 +86,7 @@ export default class Navbar extends Component {
                     {this.renderNav(this.state.currentUser)}
                     <Switch>
                         {/* SHARED ROUTES: */}
-                        <Route path='/' component={Home} />
+                        <Route path='/home' component={Home} />
                         <Route path='/register' component={Register} />
                         <Route path='/login' component={Login} />
                         <Route path='/profile' component={Profile} />
