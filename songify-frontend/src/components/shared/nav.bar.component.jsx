@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import Image from '../../img/logo.png';
 
 import Roles from '../admin/roles.list.component';
@@ -38,7 +38,7 @@ export default class Navbar extends Component {
             return (
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <ul className="navbar-nav mr-auto">
-                        <li><img src="../../img/logo.png"/><Link to={'/'} className="nav-link"> Songify </Link></li>
+                        <li><Link to={'/'} className="nav-link"> <img src={Image} width="20" height="20" alt="cam" /> Songify </Link></li>
                         <li><Link to={'/my-playlists'} className="nav-link"> My Playlists </Link></li>
                         <li><Link to={'/'} className="nav-link"> Browse Playlists </Link></li>
                         <li><Link to={'/new-playlist'} className="nav-link">New Playlist</Link></li>
@@ -54,7 +54,7 @@ export default class Navbar extends Component {
             return (
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <ul className="navbar-nav mr-auto">
-                        <li><Link to={'/'} className="nav-link"> Songify </Link></li>
+                        <li><Link to={'/'} className="nav-link"> <img src={Image} width="20" height="20" alt="cam" /> Songify </Link></li>
                         <li><Link to={'/users'} className="nav-link"> Users </Link></li>
                         <li><Link to={'/roles'} className="nav-link"> Roles </Link></li>
                     </ul>
@@ -69,7 +69,7 @@ export default class Navbar extends Component {
             return (
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <ul className="navbar-nav mr-auto">
-                        <li><Link to={'/'} className="nav-link"> <img src={Image} width="40" height="40" alt="cam"/> Songify </Link></li>
+                        <li><Link to={'/'} className="nav-link"> <img src={Image} width="20" height="20" alt="cam" /> Songify </Link></li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li><Link to={'/login'} className="nav-link"> Login</Link></li>
@@ -86,19 +86,20 @@ export default class Navbar extends Component {
                     {this.renderNav(this.state.currentUser)}
                     <Switch>
                         {/* SHARED ROUTES: */}
+                        <Route exact path='/'><Redirect to='/home' /></Route>
                         <Route path='/home' component={Home} />
                         <Route path='/register' component={Register} />
                         <Route path='/login' component={Login} />
                         <Route path='/profile' component={Profile} />
                         {/* USER ROUTES : */}
-                        <Route path='/my-playlists' component={MyPlaylists}/>
+                        <Route path='/my-playlists' component={MyPlaylists} />
                         <Route path='/new-playlist' component={AddPlaylist} />
-                        <Route path='/playlist/:id' component={SpecificPlaylist}/>
+                        <Route path='/playlist/:id' component={SpecificPlaylist} />
                         {/* ADMIN ROUTES : */}
                         <Route path='/users' component={Users} />
                         <Route path='/update-user/:id' component={UpdateUser} />
-                        <Route path='/roles' component={Roles} /> 
-                        <Route path='/update-role/:id' component={UpdateRole} />                       
+                        <Route path='/roles' component={Roles} />
+                        <Route path='/update-role/:id' component={UpdateRole} />
                         <Route path="/add-role" component={AddRole} />
                     </Switch>
 
