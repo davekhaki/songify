@@ -4,7 +4,6 @@ import com.songify.api.service.UserService;
 import com.songify.api.model.User;
 import com.songify.api.model.dto.UserDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

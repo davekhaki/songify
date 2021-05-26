@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User addUser(UserDto dto) { //TODO: add automatic mapper ?
+    public User addUser(UserDto dto) { // add automatic mapper ?
         User user = new User();
 
         user.setEmail(dto.getEmail());
@@ -78,6 +78,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addFriendship(Long firstUserId, Long secondUserId) {
-
+        // wip
     }
 }
