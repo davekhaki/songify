@@ -1,6 +1,7 @@
-package com.songify.api.service;
+package com.songify.api.service.impl;
 
 import com.songify.api.model.User;
+import com.songify.api.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,11 +15,11 @@ import java.util.Collection;
 
 @Service
 @RequiredArgsConstructor
-public class AuthenticationUserDetailService implements UserDetailsService {
+public class AuthenticationUserDetailServiceImpl implements UserDetailsService {
     private final UserService userService;
 
     @Override public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.readUserByUsername(username);
+        User user = userService.getUserByUsername(username);
         if(user == null){
             throw new UsernameNotFoundException(username);
         }

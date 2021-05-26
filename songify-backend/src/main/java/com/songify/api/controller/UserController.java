@@ -3,7 +3,7 @@ package com.songify.api.controller;
 import com.songify.api.service.UserService;
 import com.songify.api.model.User;
 import com.songify.api.model.dto.UserDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,25 +11,25 @@ import java.util.List;
 
 @RestController
 @RequestMapping("v1/api/users")
+@RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-    private UserService userManager;
+    private final UserService userService;
 
     @GetMapping("")
-    public List<User> getUsers(){return userManager.getUsers();}
+    public List<User> getUsers(){ return userService.getAllUsers(); }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id){
-        return this.userManager.getUserById(id);
+    public User getUserById(@PathVariable Long id){
+        return this.userService.getUserById(id);
     }
 
     @PostMapping("")
-    public ResponseEntity<User> addUser(@RequestBody UserDto userDTO){ return this.userManager.addUser(userDTO); }
+    public User addUser(@RequestBody UserDto userDTO){ return this.userService.addUser(userDTO); }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @RequestBody UserDto userDTO) { return this.userManager.updateUser(userId, userDTO); }
+    public User updateUser(@PathVariable(value = "id") Long userId, @RequestBody UserDto userDTO) { return this.userService.updateUser(userId, userDTO); }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable(value = "id") Long userId){ return this.userManager.deleteUser(userId); }
+    public String deleteUser(@PathVariable(value = "id") Long userId){ return this.userService.deleteUser(userId); }
 }

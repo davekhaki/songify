@@ -18,15 +18,13 @@ class AuthService{
     }
 
     login(username, password) {
-        console.log("given username: " + username + "given password " + password);
         return axios
-          .post(config.REST_API_URL + "login/", {
+          .post(config.REST_API_URL + "auth/", {
             username,
             password
           })
           .then(response => {
             if (response.data.id) {
-                console.log("given username: " + username + "given password " + password);
                 this.refreshToken(username, password);
                 localStorage.setItem("user", JSON.stringify(response.data)); 
             }

@@ -2,7 +2,7 @@ package com.songify.api.config;
 
 import com.songify.api.filter.JWTAuthenticationFilter;
 import com.songify.api.filter.JWTAuthorizationFilter;
-import com.songify.api.service.AuthenticationUserDetailService;
+import com.songify.api.service.impl.AuthenticationUserDetailServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,7 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final AuthenticationUserDetailService authenticationUserDetailService;
+    private final AuthenticationUserDetailServiceImpl authenticationUserDetailServiceImpl;
 
     @Override protected void configure (HttpSecurity http) throws Exception{
         http.headers().frameOptions().sameOrigin();
@@ -39,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(authenticationUserDetailService).passwordEncoder(bCryptPasswordEncoder);
+        auth.userDetailsService(authenticationUserDetailServiceImpl).passwordEncoder(bCryptPasswordEncoder);
     }
 
 }

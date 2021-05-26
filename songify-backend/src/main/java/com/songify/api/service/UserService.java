@@ -3,85 +3,25 @@ package com.songify.api.service;
 import com.songify.api.model.dto.UserDto;
 import com.songify.api.exceptions.UserNotFoundException;
 import com.songify.api.model.User;
-import com.songify.api.repository.RoleRepository;
-import com.songify.api.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
-public class UserService {
+public interface UserService {
 
-    private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+    List<User> getAllUsers();
 
-    public List<User> getUsers(){
-        return this.userRepository.findAll();
-    }
+    User getUserById(Long id) throws UserNotFoundException;
 
-    public ResponseEntity<User> getUserById(Long id) throws UserNotFoundException{
-        var user = this.userRepository.findById(id);
+    User getUserByUsername(String username);
 
-        if(user.isPresent()) return new ResponseEntity<>(user.get(), HttpStatus.OK);
-        else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    User getUserByUsernameAndPassword(String username, String password);
 
-    }
+    User addUser(UserDto dto);
 
-    public User getUserByUsernameAndPassword(String username, String password){
-        if(passwordEncoder.matches(password, passwordEncoder.encode(password))){
-            return readUserByUsername(username);
-        }
-        else return null;
-    }
+    User updateUser(Long userId, UserDto dto);
 
-    public ResponseEntity<User> addUser(UserDto dto){
-        User actual = new User();
+    String deleteUser(Long id);
 
-        actual.setEmail(dto.getEmail());
-        actual.setUsername(dto.getUsername());
-        actual.setPassword(passwordEncoder.encode(dto.getPassword()));
-        actual.setRole(roleRepository.findByName(dto.getRole().getName()));
-
-        //save the user
-        this.userRepository.save(actual);
-        return new ResponseEntity<>(actual, HttpStatus.ACCEPTED);
-    }
-
-    public ResponseEntity<User> updateUser(Long userId, UserDto dto)
-    {
-        //find user
-        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-
-        //update the user details
-        user.setEmail(dto.getEmail());
-        user.setUsername(dto.getUsername());
-        user.setPassword(passwordEncoder.encode(dto.getPassword()));
-        //no change role for now
-
-        //save new user details and return updated user and OK http
-        final User updated = userRepository.save(user);
-        return ResponseEntity.ok(updated);
-    }
-
-    public ResponseEntity<String> deleteUser(Long id) {
-        //find user with given id
-        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
-
-        //delete user
-        userRepository.delete(user);
-
-        //return successful deletion
-        return new ResponseEntity<>("Success", HttpStatus.OK);
-    }
-
-    public User readUserByUsername(String username){
-        return userRepository.findByUsername(username);
-    }
+    void addFriendship(Long firstUserId, Long secondUserId);
 
 }

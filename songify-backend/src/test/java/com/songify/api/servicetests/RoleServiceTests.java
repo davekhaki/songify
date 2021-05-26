@@ -5,7 +5,6 @@ import com.songify.api.model.Role;
 import com.songify.api.model.dto.RoleDto;
 import com.songify.api.service.RoleService;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,7 +29,7 @@ class RoleServiceTests {
     @Test
     void getAllRolesTest(){
         createTestData();
-        List<Role> roles = roleService.getRoles().getBody();
+        List<Role> roles = roleService.getRoles();
 
         Assertions.assertEquals("test", roles.get(0).getName());
         Assertions.assertEquals("test2", roles.get(1).getName());
@@ -42,7 +41,7 @@ class RoleServiceTests {
         role.setId(4L);
         role.setName("no");
 
-        String roleName = roleService.getRoleById(4L).getBody().getName();
+        String roleName = roleService.getRoleById(4L).getName();
 
         Assertions.assertEquals("no", roleName);
     }
@@ -53,7 +52,7 @@ class RoleServiceTests {
 
         roleService.updateRole(1L, updatedRole);
 
-        String newName = roleService.getRoleById(1L).getBody().getName();
+        String newName = roleService.getRoleById(1L).getName();
 
         Assertions.assertEquals(updatedRole.getName(), newName);
     }

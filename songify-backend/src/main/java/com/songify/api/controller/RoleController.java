@@ -1,10 +1,9 @@
 package com.songify.api.controller;
 
 import com.songify.api.model.dto.RoleDto;
-import com.songify.api.service.RoleService;
 import com.songify.api.model.Role;
+import com.songify.api.service.RoleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,19 +13,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RoleController {
 
-    private final RoleService roleManager;
+    private final RoleService roleService;
 
     @GetMapping("")
-    public ResponseEntity<List<Role>> getRoles(){ return this.roleManager.getRoles(); }
+    public List<Role> getRoles(){ return this.roleService.getRoles(); }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Role> getRoleById(@PathVariable Long id){ return this.roleManager.getRoleById(id); }
+    public Role getRoleById(@PathVariable Long id){ return this.roleService.getRoleById(id); }
 
     @PostMapping("")
-    public ResponseEntity<Role> addRole(@RequestBody RoleDto dto){ return this.roleManager.addRole(dto); }
+    public Role addRole(@RequestBody RoleDto dto){ return this.roleService.addRole(dto); }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Role> updateRole(@PathVariable Long id, @RequestBody RoleDto dto){ return this.roleManager.updateRole(id , dto); }
+    public Role updateRole(@PathVariable Long id, @RequestBody RoleDto dto){ return this.roleService.updateRole(id , dto); }
 
     //no delete
 }

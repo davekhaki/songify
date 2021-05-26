@@ -1,9 +1,9 @@
 package com.songify.api.controller;
 
 import com.songify.api.model.dto.NewPlaylistRequest;
-import com.songify.api.service.PlaylistService;
 import com.songify.api.model.Playlist;
 import com.songify.api.model.Song;
+import com.songify.api.service.PlaylistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -41,7 +41,7 @@ public class PlaylistController {
     public Page<Playlist> getPopularPlaylists() {return this.playlistService.getPopularPlaylists(); }
 
     @PostMapping("/add/{playlist}/{song}")
-    public ResponseEntity<Song> addSongToPlaylist(@PathVariable Long playlist, @PathVariable Long song){
-        return playlistService.addSong(playlist, song);
+    public Song addSongToPlaylist(@PathVariable Long playlist, @PathVariable Long song){
+        return playlistService.addSongToPlaylist(playlist, song);
     }
 }
