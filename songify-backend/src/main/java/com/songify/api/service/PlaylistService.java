@@ -12,9 +12,13 @@ public interface PlaylistService {
 
     Playlist getPlaylistById(Long id);
 
+    boolean getPlaylistByTitle(String title);
+
     List<Playlist> getPlaylistsByUsername(String username);
 
     Playlist addPlaylist(NewPlaylistRequest request);
+
+    String deletePlaylist(Long id);
 
     Page<Playlist> getPopularPlaylists();
 

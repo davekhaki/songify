@@ -34,8 +34,11 @@ public class PlaylistController {
 
     @PostMapping("")
     public ResponseEntity<Playlist> addPlaylist(@RequestBody NewPlaylistRequest newPlaylist) {
-        return new ResponseEntity<>(this.playlistService.addPlaylist(newPlaylist), HttpStatus.OK);
+        return new ResponseEntity<>(this.playlistService.addPlaylist(newPlaylist), HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}")
+    public String deletePlaylist(@PathVariable Long id){ return this.playlistService.deletePlaylist(id); }
 
     @GetMapping("/popular")
     public Page<Playlist> getPopularPlaylists() {return this.playlistService.getPopularPlaylists(); }

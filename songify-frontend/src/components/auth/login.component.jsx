@@ -46,10 +46,25 @@ export default class Login extends Component {
                         <h3 className="text-center mb-4">Login</h3>
                         <form onSubmit={this.handleLogin} action="#" className="login-form">
                             <div className="form-group">
-                                <input type="text" value={this.state.username} onChange={this.onChangeUsername} className="form-control rounded-left" placeholder="Username" required="" />
+                                <input 
+                                autoFocus 
+                                type="text" 
+                                value={this.state.username} 
+                                onChange={this.onChangeUsername} 
+                                className="form-control rounded-left" 
+                                placeholder="Username" 
+                                required="" 
+                                data-cy="formusernameinput"/>
                             </div>
                             <div class="form-group d-flex">
-                                <input type="password" value={this.state.password} onChange={this.onChangePassword} className="form-control rounded-left" placeholder="Password" required="" />
+                                <input 
+                                type="password" 
+                                value={this.state.password} 
+                                onChange={this.onChangePassword} 
+                                className="form-control rounded-left" 
+                                placeholder="Password" 
+                                required="" 
+                                data-cy="formpasswordinput" />
                             </div>
                             <div className="form-group">
                                 <button type="submit" className="form-control btn btn-primary rounded submit px-3">Login</button>

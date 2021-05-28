@@ -8,5 +8,7 @@ import java.util.List;
 
 @Repository
 public interface PlaylistRepository extends JpaRepository<Playlist, Long> {
+    Playlist getPlaylistByTitle(String title);
+
     List<Playlist> getPlaylistByCreatedBy(String createdBy);
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserService from '../../services/user.service.js';
+import AuthService from '../../services/auth/auth.service';
 
 const useSortableData = (items, config = null) => {
     const [sortConfig, setSortConfig] = React.useState(config);
@@ -106,6 +107,11 @@ export default class Users extends Component {
     }
 
     componentDidMount() {
+        let user = AuthService.getCurrentUser();
+        if(user.role.name !== "ADMIN"){
+            this.props.history.push('/access-denied');
+        }
+
         UserService.getUsers().then((response) => {
             this.setState({ users: response.data })
         });

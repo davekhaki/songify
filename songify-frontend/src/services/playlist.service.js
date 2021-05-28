@@ -32,11 +32,25 @@ class PlaylistService{
         })
     }
 
+    deletePlaylist(id){
+        return axios({
+            method: 'delete',
+            url: config.REST_API_URL + 'playlists/' + id,
+        })
+    }
+
     getMyPlaylists(){
         return axios({
             method: 'get',
             url: config.REST_API_URL + 'playlists/' + AuthService.getCurrentUser().username,
 
+        })
+    }
+
+    getPlaylistsByUsername(username){
+        return axios({
+            method: 'get',
+            url: config.REST_API_URL + 'playlists/' + username,
         })
     }
 }

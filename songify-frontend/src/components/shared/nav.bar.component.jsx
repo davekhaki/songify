@@ -15,6 +15,9 @@ import MyPlaylists from '../user/my.playlists.component';
 import SpecificPlaylist from '../user/specific.playlist.component';
 import UpdateRole from '../admin/update.role.component';
 import Home from './home.component';
+import DeletePlaylist from '../user/delete.playlist.component';
+import BrowsePlaylists from '../user/browse.playlist.component';
+import AccessDenied from './access.denied.component';
 
 export default class Navbar extends Component {
     constructor(props) {
@@ -38,10 +41,11 @@ export default class Navbar extends Component {
             return (
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <ul className="navbar-nav mr-auto">
-                        <li><Link to={'/'} className="nav-link"> <img src={Image} width="20" height="20" alt="cam" /> Songify </Link></li>
+                        <li>
+                            <Link to={'/'} className="nav-link"> <img src={Image} width="20" height="20" alt="cam" /> Songify </Link></li>
                         <li><Link to={'/my-playlists'} className="nav-link"> My Playlists </Link></li>
-                        <li><Link to={'/'} className="nav-link"> Browse Playlists </Link></li>
-                        <li><Link to={'/new-playlist'} className="nav-link">New Playlist</Link></li>
+                        <li><Link to={'/browse'} className="nav-link"> Browse Playlists </Link></li>
+                        <li><Link to={'/new-playlist'} className="nav-link" data-cy="newplaylistbutton">New Playlist</Link></li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li><Link to={'/profile'} className="nav-link"> {this.state.currentUser.username}</Link></li>
@@ -87,6 +91,7 @@ export default class Navbar extends Component {
                     <Switch>
                         {/* SHARED ROUTES: */}
                         <Route exact path='/'><Redirect to='/home' /></Route>
+                        <Route path='/access-denied' component={AccessDenied}></Route>
                         <Route path='/home' component={Home} />
                         <Route path='/register' component={Register} />
                         <Route path='/login' component={Login} />
@@ -95,6 +100,8 @@ export default class Navbar extends Component {
                         <Route path='/my-playlists' component={MyPlaylists} />
                         <Route path='/new-playlist' component={AddPlaylist} />
                         <Route path='/playlist/:id' component={SpecificPlaylist} />
+                        <Route path='/delete-playlist/:id' component={DeletePlaylist}/ >
+                        <Route path='/browse' component={BrowsePlaylists} />
                         {/* ADMIN ROUTES : */}
                         <Route path='/users' component={Users} />
                         <Route path='/update-user/:id' component={UpdateUser} />

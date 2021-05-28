@@ -34,12 +34,20 @@ public class PlaylistServiceImpl implements PlaylistService {
     }
 
     @Override
+    public boolean getPlaylistByTitle(String title) { //return true if a playlist with specific title already exists
+        return this.playlistRepository.getPlaylistByTitle(title) != null;
+    }
+
+    @Override
     public List<Playlist> getPlaylistsByUsername(String username){
         return this.playlistRepository.getPlaylistByCreatedBy(username);
     }
 
     @Override
     public Playlist addPlaylist(NewPlaylistRequest newPlaylist) {
+        if(getPlaylistByTitle(newPlaylist.getTitle())){ // future: make this also check username so different users can have same playlist titles
+            return null; //prevents playlists from having duplicate titles
+        }
         var playlist = new Playlist();
 
         // CHOSEN VALUES
@@ -53,6 +61,14 @@ public class PlaylistServiceImpl implements PlaylistService {
         playlist.setLastModifiedBy(newPlaylist.getUsername());
 
         return this.playlistRepository.save(playlist);
+    }
+
+    @Override
+    public String deletePlaylist(Long id){
+        Playlist playlist = getPlaylistById(id);
+        playlistRepository.delete(playlist);
+
+        return "Success";
     }
 
     @Override //returns the 8 more popular playlists as a 'page'

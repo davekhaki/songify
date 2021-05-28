@@ -10,6 +10,8 @@ export default class MyPlaylists extends Component {
             playlists: [],
             message: undefined
         }
+
+        this.deleteButtonClick = this.deleteButtonClick.bind(this);
     }
 
     componentDidMount() {
@@ -18,6 +20,11 @@ export default class MyPlaylists extends Component {
                 this.setState({ message: "You have no playlists" })
             } else this.setState({ playlists: response.data })
         });
+    }
+
+    deleteButtonClick(event){
+        alert("Deleting playlist, are you sure?")
+        this.props.history.push("/delete-playlist/" + event.target.value)
     }
 
     renderPlaylistsOrError() {
@@ -38,6 +45,7 @@ export default class MyPlaylists extends Component {
                             <Card.Body>
                                 <Card.Title>{playlist.title}</Card.Title>
                                 <Card.Text>{playlist.description}</Card.Text>
+                                <button onClick={this.deleteButtonClick} value={playlist.id} className=" btn btn-danger" data-cy={playlist.title}>Delete</button>
                             </Card.Body>
                             <Card.Footer>
                                 <small className="text-muted">Created By {playlist.createdBy}</small>
