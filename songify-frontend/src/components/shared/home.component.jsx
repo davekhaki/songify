@@ -12,7 +12,7 @@ export default class Home extends Component {
         return (
             <div>
                 <h1>Welcome to Songify</h1>
-                <img src={Image} width="45%" height="45%" alt="cam" />
+                <img src={Image} width="30%" height="30%" alt="cam" />
             </div>
 
         )
