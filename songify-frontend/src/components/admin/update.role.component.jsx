@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RolesService from "../../services/roles.service";
+import RolesService from "../../services/rest/roles.service";
 
 export default class UpdateRole extends Component {
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardDeck } from 'react-bootstrap';
-import PlaylistService from '../../services/playlist.service';
+import PlaylistService from '../../services/rest/playlist.service';
 
 export default class MyPlaylists extends Component {
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserService from '../../services/user.service.js';
+import UserService from '../../services/rest/user.service.js';
 
 export default class UpdateUser extends Component {
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import UserService from '../../services/user.service.js';
-import AuthService from '../../services/auth/auth.service';
+import UserService from '../../services/rest/user.service.js';
+import AuthService from '../../services/rest/auth/auth.service';
 
 const useSortableData = (items, config = null) => {
     const [sortConfig, setSortConfig] = React.useState(config);

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const config = require('../../config.json');
+const config = require('../../../config.json');
 
 class AuthService{
 

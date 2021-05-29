@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PlaylistService from '../../services/playlist.service';
+import PlaylistService from '../../services/rest/playlist.service';
 import { Card} from 'react-bootstrap';
 
 export default class SpecificPlaylist extends Component{

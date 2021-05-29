@@ -1,5 +1,5 @@
 import React from 'react';
-import RoleService from '../../services/roles.service.js';
+import RoleService from '../../services/rest/roles.service.js';
 
 export default class Roles extends React.Component {
 

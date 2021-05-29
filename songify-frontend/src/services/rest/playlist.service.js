@@ -1,7 +1,7 @@
 import axios from 'axios'
 import AuthService from './auth/auth.service';
 
-const config = require('../config.json');
+const config = require('../../config.json');
 
 class PlaylistService{
 
