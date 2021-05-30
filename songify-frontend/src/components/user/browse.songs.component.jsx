@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TokenService from '../../services/spotify/auth/token.service';
-// import PlaylistService from '../../services/playlist.service';
+import SongService from '../../services/spotify/song.service';
 
 // const SearchResultTable = (props) => {
 //     const items = props.playlists;
@@ -43,7 +43,11 @@ export default class BrowseSongs extends Component {
     }
 
     componentDidMount(){
-        console.log(TokenService.getCurrentToken());
+        TokenService.getCurrentToken();
+        SongService.getSongsByIds("7ouMYWpwJ422jRcDASZB7P,4VqPOruhp5EdPBeR92t6lQ").then((response) => {
+            console.log(response.data.tracks)
+            //this.setState({songs: response.data.tracks})
+        })
     }
 
     onChangeSearchTerm(e){

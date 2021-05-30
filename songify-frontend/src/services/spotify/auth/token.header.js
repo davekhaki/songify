@@ -1,7 +1,7 @@
-export default function authHeader() {
+export default function spotifyHeader() {
     const token = JSON.parse(localStorage.getItem('token'));
-  
-    if (JWTToken) {
+    
+    if (token) {
       return { Authorization: token };
     } else {
       return {};
