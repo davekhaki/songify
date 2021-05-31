@@ -59,6 +59,11 @@ class RoleServiceTests {
 
     @Test
     void updateRoleResourceNotFoundExceptionThrownTest(){
-        Assertions.assertThrows(ResourceNotFoundException.class, () -> roleService.updateRole(61613L, new RoleDto(58185L, "yep")));
+        try{ // try catch = only one invocation possibly thrown
+            roleService.updateRole(7573L, new RoleDto(58185L, "yep"));
+            Assertions.fail("Expected a ResourceNotFoundException to be thrown");
+        } catch (ResourceNotFoundException e){
+            Assertions.assertEquals("Could not find resource: update role, find by id", e.getMessage());
+        }
     }
 }
