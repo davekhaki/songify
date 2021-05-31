@@ -1,5 +1,7 @@
+import TokenService from "./token.service";
+
 export default function spotifyHeader() {
-    const token = JSON.parse(localStorage.getItem('token'));
+    const token = TokenService.getCurrentToken()
     
     if (token) {
       return { Authorization: token };

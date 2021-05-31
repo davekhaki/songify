@@ -47,6 +47,7 @@ export default class Navbar extends Component {
                         <li><Link to={'/my-playlists'} className="nav-link"> My Playlists </Link></li>
                         <li><Link to={'/browse'} className="nav-link"> Browse Playlists </Link></li>
                         <li><Link to={'/new-playlist'} className="nav-link" data-cy="newplaylistbutton">New Playlist</Link></li>
+                        <li><Link to={'songs'} className="nav-link" data-cy="songspagebtn">Songs</Link></li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         <li><Link to={'/profile'} className="nav-link"> {this.state.currentUser.username}</Link></li>
