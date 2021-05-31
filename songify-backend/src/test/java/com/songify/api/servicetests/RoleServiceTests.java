@@ -59,8 +59,6 @@ class RoleServiceTests {
 
     @Test
     void updateRoleResourceNotFoundExceptionThrownTest(){
-        Assertions.assertThrows(ResourceNotFoundException.class, () -> {
-            roleService.updateRole(7573L, new RoleDto(58185L, "yep"));
-        });
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> roleService.updateRole(61613L, new RoleDto(58185L, "yep")));
     }
 }
