@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import TokenService from '../../services/spotify/auth/token.service';
 import SongService from '../../services/spotify/song.service';
 
 const SearchResultTable = (props) => {
@@ -13,17 +12,21 @@ const SearchResultTable = (props) => {
                     <th>Title</th>
                     <th>Artist</th>
                     <th>Album</th>
-                    <th>H</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 {items.map((song) => (
                     <tr key={song.id}>
-                        <td><img src={song.album.images[2].url} /></td>
-                        <td>{song.name}</td>
-                        <td>{song.artists[0].name}</td>
-                        <td>album</td>
-                        <td>bruh</td>
+                        <td width="10%"><img src={song.album.images[2].url} /></td>
+                        <td width="20%">{song.name}</td>
+                        <td width="20%">{song.artists[0].name}</td>
+                        <td width="20%">album</td>
+                        <td width="20%">                           
+                            <button>
+                                <li class="fas fa-bars"></li>
+                            </button>
+                        </td>
                     </tr>
                 ))}
             </tbody>
@@ -57,6 +60,7 @@ export default class BrowseSongs extends Component {
     search() {
         SongService.searchForSongs(this.state.searchTerm).then((response) => {
             this.setState({ songs: response.data.tracks.items })
+            console.log(response)
 
             this.setState({ total: response.data.tracks.total })
             this.setState({ pageNr: 0 })
