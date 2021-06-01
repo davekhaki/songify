@@ -27,10 +27,53 @@ class PlaylistServiceTests {
     }
 
     @Test
+    void createPlaylistWithExistingNameTest(){
+        Playlist playlist = playlistService.addPlaylist(new NewPlaylistRequest("playlist name", "description!", "username"));
+
+        Assertions.assertNull(playlist);
+    }
+
+    @Test
     void getPlaylistsTest(){
         List<Playlist> playlists = playlistService.getPlaylists();
 
         Assertions.assertEquals("playlist name", playlists.get(0).getTitle());
+    }
+
+    @Test
+    void getPlaylistByIdTest(){
+        Playlist playlist = playlistService.getPlaylistById(1L);
+
+        Assertions.assertNotNull(playlist);
+    }
+
+    @Test
+    void getPlaylistByTitleTest(){
+        boolean exists = playlistService.getPlaylistByTitle("playlist name");
+
+        Assertions.assertTrue(exists);
+    }
+
+    @Test
+    void getPlaylistByTitleFailTest(){
+        boolean exists = playlistService.getPlaylistByTitle("85832FHWAKHF7727AA;;;;;");
+
+        Assertions.assertFalse(exists);
+    }
+
+    @Test
+    void getPlaylistByUsernameTest(){
+        List<Playlist> playlist = playlistService.getPlaylistsByUsername("username");
+
+        Assertions.assertEquals(playlist.get(0).getId(), 1L);
+    }
+
+    @Test
+    void deletePlaylist(){
+        Playlist playlist = playlistService.addPlaylist(new NewPlaylistRequest("temp", "temp", "temp"));
+        String message = playlistService.deletePlaylist(playlist.getId());
+
+        Assertions.assertEquals(message, "Success");
     }
 
     // TODO: add song to playlist test
