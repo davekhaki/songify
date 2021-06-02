@@ -13,12 +13,12 @@ public class Song {
     private long id;
 
     @Column(name = "spotifyId")
-    private int spotifyId;
+    private String spotifyId;
 
     public Song() {
     }
 
-    public Song(int spotifyId) {
+    public Song(String spotifyId) {
         this.spotifyId = spotifyId;
     }
 
@@ -30,11 +30,11 @@ public class Song {
         this.id = id;
     }
 
-    public int getSpotifyId() {
+    public String getSpotifyId() {
         return spotifyId;
     }
 
-    public void setSpotifyId(int spotifyId) {
+    public void setSpotifyId(String spotifyId) {
         this.spotifyId = spotifyId;
     }
 }

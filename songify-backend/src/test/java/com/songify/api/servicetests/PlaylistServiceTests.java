@@ -1,7 +1,9 @@
 package com.songify.api.servicetests;
 
 import com.songify.api.model.Playlist;
+import com.songify.api.model.Song;
 import com.songify.api.model.dto.NewPlaylistRequest;
+import com.songify.api.repository.SongRepository;
 import com.songify.api.service.PlaylistService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,6 +19,9 @@ class PlaylistServiceTests {
 
     @Autowired
     PlaylistService playlistService;
+
+    @Autowired
+    SongRepository songRepository;
 
     @Test
     void createPlaylistTest(){
@@ -76,7 +81,13 @@ class PlaylistServiceTests {
         Assertions.assertEquals(message, "Success");
     }
 
-    // TODO: add song to playlist test
+    @Test
+    void addSongToPlaylistTest(){
+        Song song = songRepository.save(new Song("12345"));
+        Song addedSong = playlistService.addSongToPlaylist(1L, 1L);
+
+        Assertions.assertEquals(song, addedSong);
+    }
 
     // TODO: get popular playlists test
 }
