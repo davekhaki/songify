@@ -7,30 +7,40 @@ afterEach(() => {
 });
 
 describe('UAT-1: Login', () => {
-    beforeEach(() => {
-        cy.visit('/login')
-    })
-
     it('it focuses the input', () => {
+        cy.visit('/login')
         cy.focused().should('have.class', 'form-control')
     })
 
-    it('submits form', () => {
+    it('fills in username', () => {
         //ENTER USERNAME:
         const input = "user1"
         cy.get('[data-cy=formusernameinput]')
             .type(input)
             .should('have.value', input)
+    })
 
-        //ENTER PASSWORD: 
+    it('fills in password', () => {
+        //ENTER USERNAME:
+        const input = "user1"
         cy.get('[data-cy=formpasswordinput]')
             .type(input)
             .should('have.value', input)
+    })
 
+    it('submits form', () => {
         //SUBMIT FORM: 
         cy.get('[data-cy=formpasswordinput]')
-            .type('{enter}')
-        cy.location('pathname').should('eq', '/profile')
+            .type('{enter}')      
+    })
+
+    it('is redirected', () => {
+        cy.wait(3000)
+        //cy.location('pathname').should('eq', '/profile')
+        cy.url().should(
+            'be.equal',
+            `${Cypress.config("baseUrl")}/profile`
+          )
     })
 })
 
@@ -100,7 +110,7 @@ describe('UAT-4: Adding song to playlist', () => {
 })
 
 describe('UAT-5: Adding duplicate song', () => {
-    it('go to songs page', () => { 
+    it('go to songs page', () => {
 
     })
 
@@ -130,7 +140,7 @@ describe('UAT-6: Admin login', () => {
             .should('have.value', input)
             .type('{enter}')
 
-        cy.location('pathname').should('eq', '/profile')
+        //cy.location('pathname').should('eq', '/profile')
     })
 })
 
@@ -149,20 +159,20 @@ describe('UAT-7: User redirect when accessing admin page', () => {
         cy.get('[data-cy=formpasswordinput]')
             .type(input)
             .should('have.value', input)
-        
+
         cy.get('[data-cy=formpasswordinput]')
             .type('{enter}')
 
         cy.wait(500) //gives the website time to login 
 
     })
-    
+
     it('goes to admin only page', () => {
         cy.visit('/users')
     })
 
     it('is redirected', () => {
-        cy.location('pathname').should('eq', '/access-denied')
+        //cy.location('pathname').should('eq', '/access-denied')
     })
 })
 
@@ -174,11 +184,11 @@ describe('UAT-8 Search for specific user playlists', () => {
     it('searches for a specific user', () => {
         const input = "user1"
         cy.get('[data-cy=searchterminput]')
-        .type(input)
+            .type(input)
         cy.get('[data-cy=searchbtn]')
-        .click()
+            .click()
         cy.get('.table').find('td').its('length').should('be.gte', 1)// at least 1 value in table 
-    })  
+    })
 })
 
 describe('UAT-9 Search for user playlists that doesnt exist', () => {
@@ -189,9 +199,9 @@ describe('UAT-9 Search for user playlists that doesnt exist', () => {
     it('searches for a specific user', () => {
         const input = "hghhhhhhhhhhh"
         cy.get('[data-cy=searchterminput]')
-        .type(input)
+            .type(input)
         cy.get('[data-cy=searchbtn]')
-        .click()
+            .click()
         cy.get('.table').find('td').should('not.exist'); // no results
     })
 })
