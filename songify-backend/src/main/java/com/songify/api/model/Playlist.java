@@ -1,6 +1,7 @@
 package com.songify.api.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class Playlist extends Auditable<String>{
     @Column(name = "description")
     private String description;
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER) // fetch type to prevent LazyInitializationException in addSongToPlaylistTest
     @JoinColumn(name = "id")
     private List<Song> songs;
 
@@ -27,10 +28,10 @@ public class Playlist extends Auditable<String>{
     public Playlist() {
     }
 
-    public Playlist(String title, String description, List<Song> songs, int plays) {
+    public Playlist(String title, String description, int plays) {
         this.title = title;
         this.description = description;
-        this.songs = songs;
+        this.songs = new ArrayList<>();
         this.plays = plays;
     }
 

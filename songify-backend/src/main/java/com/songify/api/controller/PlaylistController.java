@@ -44,7 +44,7 @@ public class PlaylistController {
     public Page<Playlist> getPopularPlaylists() {return this.playlistService.getPopularPlaylists(); }
 
     @PostMapping("/add/{playlist}/{song}")
-    public Song addSongToPlaylist(@PathVariable Long playlist, @PathVariable Long song){
+    public Song addSongToPlaylist(@PathVariable Long playlist, @PathVariable String song){
         return playlistService.addSongToPlaylist(playlist, song);
     }
 }

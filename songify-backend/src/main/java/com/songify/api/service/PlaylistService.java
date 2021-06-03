@@ -22,5 +22,5 @@ public interface PlaylistService {
 
     Page<Playlist> getPopularPlaylists();
 
-    Song addSongToPlaylist(Long playlistId, Long songId);
+    Song addSongToPlaylist(Long playlistId, String spotifyId);
 }

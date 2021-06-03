@@ -23,7 +23,7 @@ class SongTests {
     @Test
     void setSpotifyIdTest(){
         Song song = new Song("2");
-        song.setSpotifyId("2");
+        song.setSpotifyId("3");
         Assertions.assertEquals("3", song.getSpotifyId());
     }
 }

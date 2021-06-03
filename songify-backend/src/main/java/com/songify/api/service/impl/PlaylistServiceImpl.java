@@ -7,6 +7,7 @@ import com.songify.api.model.dto.NewPlaylistRequest;
 import com.songify.api.repository.PlaylistRepository;
 import com.songify.api.repository.SongRepository;
 import com.songify.api.service.PlaylistService;
+import com.songify.api.service.SongService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,7 +22,7 @@ import java.util.List;
 public class PlaylistServiceImpl implements PlaylistService {
 
     private final PlaylistRepository playlistRepository;
-    private final SongRepository songRepository;
+    private final SongService songService;
 
     @Override
     public List<Playlist> getPlaylists(){
@@ -75,9 +76,13 @@ public class PlaylistServiceImpl implements PlaylistService {
     public Page<Playlist> getPopularPlaylists() { return this.playlistRepository.findAll(PageRequest.of(0,8, Sort.by(Sort.Direction.DESC, "Plays"))); }
 
     @Override
-    public Song addSongToPlaylist(Long playlistId, Long songId){
+    public Song addSongToPlaylist(Long playlistId, String spotifyId){
         //determine song based on given id
-        var song = songRepository.findById(songId).orElseThrow(()-> new ResourceNotFoundException("Adding song to playlist, song not found"));
+        Song song = songService.findBySpotifyId(spotifyId);
+        if(song == null){
+            song = songService.addSong(spotifyId);
+        }
+        //var song = songRepository.findById(songId).orElseThrow(()-> new ResourceNotFoundException("Adding song to playlist, song not found"));
         //determine playlist based on given id
         var playlist = playlistRepository.findById(playlistId).orElseThrow(() -> new ResourceNotFoundException("playlist not found during add song"));
 

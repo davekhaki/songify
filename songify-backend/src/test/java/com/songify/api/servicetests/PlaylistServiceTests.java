@@ -84,9 +84,9 @@ class PlaylistServiceTests {
     @Test
     void addSongToPlaylistTest(){
         Song song = songRepository.save(new Song("12345"));
-        Song addedSong = playlistService.addSongToPlaylist(1L, 1L);
+        Song addedSong = playlistService.addSongToPlaylist(1L, "12345");
 
-        Assertions.assertEquals(song, addedSong);
+        Assertions.assertEquals(song.getId(), addedSong.getId());
     }
 
     // TODO: get popular playlists test
