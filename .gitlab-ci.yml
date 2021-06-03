@@ -3,8 +3,8 @@ stages:
 - Tests
 - Sonar
 
-build:
- stage: build
+Build:
+ stage: Build
  script:
     - cd songify-backend
     - ./gradlew build -x test
