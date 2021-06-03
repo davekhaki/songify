@@ -1,7 +1,7 @@
 stages:
-- build
-- test
-- sonarQube
+- Build
+- Tests
+- Sonar
 
 build:
  stage: build
@@ -9,12 +9,17 @@ build:
     - cd songify-backend
     - ./gradlew build -x test
     
-test:
-  stage: test
+Unit:
+  stage: Tests
   script:
     - cd songify-backend
     - ./gradlew test
     
+Cypress:
+  stage: Tests
+  script:
+   - echo "cypress stage"
+  
 sonarQube:
     stage: sonarQube
     script:
