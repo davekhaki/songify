@@ -33,4 +33,10 @@ class AuthenticationUserDetailsServiceTests {
 
         Assertions.assertNotNull(user);
     }
+
+    @Test
+    void loadUserIsNullTest(){
+        var user = authUserDetailsService.loadUserByUsername("kkkkkkkkkkkkkKK");
+        Assertions.assertNull(user);
+    }
 }
