@@ -34,14 +34,15 @@ class UserServiceTests {
 
     @Test
     void getUserByUsernameAndPasswordTest(){
-        User user = userService.getUserByUsernameAndPassword("number1", "first");
-
-        Assertions.assertEquals("uno", user.getEmail());
+        userService.addUser(new UserDto("n", "p", "e", new Role()));
+        User user = userService.getUserByUsernameAndPassword("n", "p");
+        userService.deleteUser(userService.getUserByUsername("n").getId());
+        Assertions.assertNotNull(user);
     }
 
     @Test
     void getUserByUsernameAndPasswordWrongInputTest(){
-        User user = userService.getUserByUsernameAndPassword("fghak", "AwghfH");
+        User user = userService.getUserByUsernameAndPassword("number1", "AwghfH");
 
         Assertions.assertNull(user);
     }
@@ -67,7 +68,7 @@ class UserServiceTests {
         List<User> users = userService.getAllUsers();
 
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
-            users.get(3);
+            users.get(4);
         });
     }
 }
