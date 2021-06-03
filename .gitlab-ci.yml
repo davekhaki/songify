@@ -21,7 +21,7 @@ Cypress:
    - echo "cypress stage"
   
 sonarQube:
-    stage: sonarQube
+    stage: Sonar
     script:
     - cd songify-backend
     - ./gradlew sonarqube "-Dsonar.login=1c7e2825316567d64649d95818633c6d34a7dc00"
