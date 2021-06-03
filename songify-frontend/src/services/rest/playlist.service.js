@@ -53,6 +53,13 @@ class PlaylistService{
             url: config.REST_API_URL + 'playlists/' + username,
         })
     }
+
+    addSongToPlaylist(playlistId, spotifyId){
+        return axios({
+            method: 'post',
+            url: config.REST_API_URL + 'playlists/add/' + playlistId + '/' + spotifyId
+        })
+    }
 }
 
 export default new PlaylistService();

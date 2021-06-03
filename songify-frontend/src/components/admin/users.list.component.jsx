@@ -63,7 +63,6 @@ const UserTable = (props) => {
                             Username
                 </button>
                     </th>
-                    <th> Password </th>
                     <th>
                         <button type="button" onClick={() => requestSort('username')} className={getClassNamesFor('username')} >
                             Role ID
@@ -83,7 +82,6 @@ const UserTable = (props) => {
                         <td>{user.id}</td>
                         <td>{user.email}</td>
                         <td>{user.username}</td>
-                        <td>{user.password}</td>
                         <td>{user.role.id}</td>
                         <td>{user.role.name}</td>
                         <td>

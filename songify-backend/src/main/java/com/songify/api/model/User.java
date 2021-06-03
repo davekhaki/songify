@@ -1,5 +1,7 @@
 package com.songify.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -17,6 +19,7 @@ public class User {
     @Column(name = "username")
     private String username;
 
+    @JsonIgnore // ignores password in JSON api responses
     @Column(name = "password")
     private String password;
 
