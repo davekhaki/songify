@@ -70,7 +70,7 @@ class PlaylistServiceTests {
     void getPlaylistByUsernameTest(){
         List<Playlist> playlist = playlistService.getPlaylistsByUsername("username");
 
-        Assertions.assertEquals(playlist.get(0).getId(), 1L);
+        Assertions.assertEquals(1L, playlist.get(0).getId());
     }
 
     @Test
@@ -78,7 +78,7 @@ class PlaylistServiceTests {
         Playlist playlist = playlistService.addPlaylist(new NewPlaylistRequest("temp", "temp", "temp"));
         String message = playlistService.deletePlaylist(playlist.getId());
 
-        Assertions.assertEquals(message, "Success");
+        Assertions.assertEquals("Success", message);
     }
 
     @Test
@@ -101,7 +101,7 @@ class PlaylistServiceTests {
     void getPopularPlaylistsTest(){
         var playlists = playlistService.getPopularPlaylists();
 
-        Assertions.assertEquals(playlists.getSize(), 8L);
-        Assertions.assertEquals(playlists.getContent().size(), 1L);
+        Assertions.assertEquals(8L, playlists.getSize());
+        Assertions.assertEquals(1L, playlists.getContent().size());
     }
 }

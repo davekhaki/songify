@@ -19,7 +19,7 @@ class SongServiceTests {
     void addSongTest(){
         Song song = songService.addSong("000SONG");
 
-        Assertions.assertEquals(song.getSpotifyId(), "000SONG");
+        Assertions.assertEquals("000SONG", song.getSpotifyId());
     }
 
     @Test
@@ -27,6 +27,6 @@ class SongServiceTests {
         songService.addSong("000HKKAK");
         Song song = songService.findBySpotifyId("000HKKAK");
 
-        Assertions.assertEquals(song.getSpotifyId(), "000HKKAK");
+        Assertions.assertEquals("000HKKAK", song.getSpotifyId() );
     }
 }

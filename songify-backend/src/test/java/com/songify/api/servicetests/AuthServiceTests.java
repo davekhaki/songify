@@ -27,6 +27,6 @@ class AuthServiceTests {
         userService.addUser(new UserDto("logintestusername", "logintestpassword", "email", new Role()));
         User user = authService.login(new LoginRequest("logintestusername", "logintestpassword"));
 
-        Assertions.assertEquals(user.getUsername(), "logintestusername");
+        Assertions.assertEquals( "logintestusername", user.getUsername());
     }
 }

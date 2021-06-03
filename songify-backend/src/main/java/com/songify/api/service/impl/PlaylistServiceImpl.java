@@ -5,7 +5,6 @@ import com.songify.api.model.Playlist;
 import com.songify.api.model.Song;
 import com.songify.api.model.dto.NewPlaylistRequest;
 import com.songify.api.repository.PlaylistRepository;
-import com.songify.api.repository.SongRepository;
 import com.songify.api.service.PlaylistService;
 import com.songify.api.service.SongService;
 import lombok.RequiredArgsConstructor;
@@ -79,10 +78,9 @@ public class PlaylistServiceImpl implements PlaylistService {
     public Song addSongToPlaylist(Long playlistId, String spotifyId){
         //determine song based on given id
         Song song = songService.findBySpotifyId(spotifyId);
-        if(song == null){
+        if(song == null){ //if the song isn't in the system yet, add it.
             song = songService.addSong(spotifyId);
         }
-        //var song = songRepository.findById(songId).orElseThrow(()-> new ResourceNotFoundException("Adding song to playlist, song not found"));
         //determine playlist based on given id
         var playlist = playlistRepository.findById(playlistId).orElseThrow(() -> new ResourceNotFoundException("playlist not found during add song"));
 
