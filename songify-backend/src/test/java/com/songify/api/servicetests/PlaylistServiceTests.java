@@ -89,5 +89,19 @@ class PlaylistServiceTests {
         Assertions.assertEquals(song.getId(), addedSong.getId());
     }
 
-    // TODO: get popular playlists test
+    @Test
+    void addSongToPlaylistNewSongTest(){
+        String id = "H7B3";
+        Song song = playlistService.addSongToPlaylist(1L, id);
+
+        Assertions.assertEquals(song.getSpotifyId(), id);
+    }
+
+    @Test
+    void getPopularPlaylistsTest(){
+        var playlists = playlistService.getPopularPlaylists();
+
+        Assertions.assertEquals(playlists.getSize(), 8L);
+        Assertions.assertEquals(playlists.getContent().size(), 1L);
+    }
 }

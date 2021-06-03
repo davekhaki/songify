@@ -20,9 +20,6 @@ class UserServiceTests {
     @Autowired
     UserService userService;
 
-//    @Autowired
-//    LoginService loginService;
-
     @Test
     void getAllUsersTest(){
         userService.addUser(new UserDto("number1", "first", "uno", new Role()));
@@ -32,7 +29,7 @@ class UserServiceTests {
         List<User> users = userService.getAllUsers();
 
         assert users != null;
-        Assertions.assertEquals("number2",users.get(1).getUsername());
+        Assertions.assertNotNull(users);
     }
 
     @Test
@@ -73,17 +70,4 @@ class UserServiceTests {
             users.get(3);
         });
     }
-
-//    @Test
-//    void tryLoginTest(){
-//        Role role = new Role();
-//        role.setId(1L);
-//        role.setName("role");
-//        User added = userService.addUser(new UserDto("username", "password", "email@gmail.com", role)).getBody();
-//
-//        User user = loginService.tryLogin(new LoginRequest("username", "password"));
-//
-//        assert added != null;
-//        Assertions.assertEquals(added.getUsername(), user.getUsername());
-//    }
 }
