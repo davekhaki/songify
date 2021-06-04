@@ -1,7 +1,8 @@
 stages:
 - Build
 - Tests
-- Sonar
+- Static Analysis
+- Deploy
 
 Build:
  stage: Build
@@ -9,23 +10,29 @@ Build:
     - cd songify-backend
     - ./gradlew build -x test
     
-Unit:
+Unit Tests:
   stage: Tests
   script:
     - cd songify-backend
     - ./gradlew test
     
-Cypress:
+e2e Cypress:
   stage: Tests
   script:
-   - echo "cypress stage"
+   - cd songify-frontend
+   - npx cypress run --browser chrome --spec cypress/integration/init.spec.js
   
-sonarQube:
-    stage: Sonar
+SonarQube:
+    stage: Static Analysis
     script:
     - cd songify-backend
     - ./gradlew sonarqube "-Dsonar.login=1c7e2825316567d64649d95818633c6d34a7dc00"
-    
+  
+Docker Build:
+    stage: Deploy
+    script:
+    - echo "docker build script"
+  
 after_script:
   - echo "End CI"
   - exit
