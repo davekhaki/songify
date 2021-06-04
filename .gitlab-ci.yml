@@ -42,7 +42,7 @@ Frontend:
     - cd songify-frontend
     - docker build -t davekhaki/songifyfrontend .
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PW
-    - docker push davekhaki/songifybackend
+    - docker push davekhaki/songifyfrotend
   
 after_script:
   - echo "End CI"
