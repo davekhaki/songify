@@ -33,6 +33,7 @@ Backend:
     script:
     - cd songify-backend
     - docker build -t songifybackend . 
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PW
     - docker push davekhaki/songifybackend
   
 Frontend:
