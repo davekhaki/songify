@@ -28,10 +28,16 @@ SonarQube:
     - cd songify-backend
     - ./gradlew sonarqube "-Dsonar.login=1c7e2825316567d64649d95818633c6d34a7dc00"
   
-Docker Build:
+Backend:
     stage: Deploy
     script:
-    - echo "docker build script"
+    - docker build -t songifybackend . 
+    - docker push davekhaki/songifybackend
+  
+Frontend:
+    stage: Deploy
+    script:
+    - echo "docker push react"
   
 after_script:
   - echo "End CI"
