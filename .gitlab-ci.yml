@@ -39,7 +39,10 @@ Backend:
 Frontend:
     stage: Deploy
     script:
-    - echo "docker push react"
+    - cd songify-frontend
+    - docker build -t davekhaki/songifyfrontend .
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PW
+    - docker push davekhaki/songifybackend
   
 after_script:
   - echo "End CI"
