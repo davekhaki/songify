@@ -13,12 +13,13 @@ Inside of the documentation folder are also my security document detailing the O
 #### Docker
 This sprint I also implemented docker into my CI/CD Pipeline. Once code is pushed to the repository the docker build and docker push commands are automatically executed inside of the 'Deploy' stage
 ![](images/sprint-5/pipeline.png)
-The links to the docker images pushed to Docker Hub:
-Backend: https://hub.docker.com/r/davekhaki/songifybackend
-Frontend: https://hub.docker.com/r/davekhaki/songifyfrontend
+The links to the docker images pushed to Docker Hub: \
+Backend: https://hub.docker.com/r/davekhaki/songifybackend \
+Frontend: https://hub.docker.com/r/davekhaki/songifyfrontend 
 
 Note: A MySQL image with username "root" and password "Password1234" is also required if you want to run the application through containers.
 
 #### Spotify Api Integration
-Something that I had already started testing out during the second sprint was retrieving information from the Spotify Api. After two sprints focused on other features, documentation and testing I've finally implemented a search feature. It sends a request to the Spotify Api and shows a list of songs based on the response. The next steps is to finish the menu that calls the REST Api to add the song to a selected playlist. The endpoint and logic for this user story are already complete and requests through Postman give the expected result. In the following picture you can see a search bar, the term used to search for and the table full of responses. The next and previous page send more calls to retrieve the next/ previous 10 songs if available. The burger button on the right of each song opens the menu to add the selected song to a specific playlist.
+Something that I had already started testing out during the second sprint was retrieving information from the Spotify Api. After two sprints focused on other features, documentation and testing I've finally implemented a search feature. It sends a request to the Spotify Api and shows a list of songs based on the response. The next steps is to finish the menu that calls the REST Api to add the song to a selected playlist. The endpoint and logic for this user story are already complete and requests through Postman give the expected result. In the following picture you can see a search bar, the term used to search for and the table full of responses. The next and previous page send more calls to retrieve the next/ previous 10 songs if available. The burger button on the right of each song opens the menu to add the selected song to a specific playlist. 
+
 ![](images/sprint-5/songs-page.png)
