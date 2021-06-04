@@ -8,6 +8,9 @@ For the reports, I added a test report document inside of the documentation fold
 
 Inside of the documentation folder are also my security document detailing the OWASP Top 10 risks, the updated UX Feedback Report detailing the steps now taken since the last sprint with images and all documents from the previous sprints.
 
+### DISCLAIMER: 
+There is a bug I encountered with my security document where half the of pdf is corruped and turns into white space. I have therefore uploaded the word document and you will have to download it to view it. I tried changing the name, re-creating the pdf, and while the pdf looks perfectly normal locally, when pushed to git and viewed in the repository via the browser it seems to corrupt.
+
 ## Other sprint 5 additions not discussed in documents:
 
 #### Docker
