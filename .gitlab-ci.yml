@@ -31,6 +31,7 @@ SonarQube:
 Backend:
     stage: Deploy
     script:
+    - cd songify-backend
     - docker build -t songifybackend . 
     - docker push davekhaki/songifybackend
   
