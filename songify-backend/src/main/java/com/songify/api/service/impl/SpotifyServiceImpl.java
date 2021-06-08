@@ -25,14 +25,14 @@ public class SpotifyServiceImpl implements SpotifyService {
 
     @Override
     public void authenticate(String code, HttpServletResponse httpServletResponse){
-        String _clientId = "34581c98d6b84aa0b19e4817b1d6c902";
-        String _clientSecret = "ad4e8c3f816643688f7fd5df7e9e470d";
+        String clientId = "34581c98d6b84aa0b19e4817b1d6c902";
+        String clientSecret = "ad4e8c3f816643688f7fd5df7e9e470d";
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
-        String usernamePassword = _clientId+":"+_clientSecret;
+        String usernamePassword = clientId+":"+clientSecret;
         String basicToken = Base64.getEncoder().encodeToString(usernamePassword.getBytes());
         httpHeaders.set("Authorization", "Basic "+basicToken);
 
@@ -45,10 +45,9 @@ public class SpotifyServiceImpl implements SpotifyService {
         try {
             Object response = restTemplate.postForObject("https://accounts.spotify.com/api/token", httpEntity, Object.class);
             Map<String, Object> map = (Map<String, Object>) response;
-            map.forEach((k, v) -> System.out.println(k+": "+v));
+            map.forEach((k, v) -> log.info(k+": "+v));
             httpServletResponse.setStatus(302);
             String accessToken = (String) map.get("access_token");
-            String patientId = (String) map.get("patient");
             String url = "http://localhost:3000/success-spotify/"+accessToken;
             httpServletResponse.setHeader("Location", url); // redirect to success page
         }
