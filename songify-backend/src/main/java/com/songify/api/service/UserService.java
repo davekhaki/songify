@@ -1,5 +1,6 @@
 package com.songify.api.service;
 
+import com.songify.api.model.dto.AcceptFriendRequestRequest;
 import com.songify.api.model.dto.UserDto;
 import com.songify.api.exceptions.UserNotFoundException;
 import com.songify.api.model.User;
@@ -22,6 +23,6 @@ public interface UserService {
 
     String deleteUser(Long id);
 
-    void addFriendship(Long firstUserId, Long secondUserId);
+    void acceptFriendRequest(AcceptFriendRequestRequest request);
 
 }

@@ -1,5 +1,6 @@
 package com.songify.api.controller;
 
+import com.songify.api.model.dto.AcceptFriendRequestRequest;
 import com.songify.api.service.UserService;
 import com.songify.api.model.User;
 import com.songify.api.model.dto.UserDto;
@@ -31,4 +32,9 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable(value = "id") Long userId){ return this.userService.deleteUser(userId); }
+
+    @PostMapping("/friends/accept")
+    public void acceptFriendRequest(@RequestBody AcceptFriendRequestRequest request){
+        userService.acceptFriendRequest(request);
+    }
 }

@@ -1,6 +1,8 @@
 package com.songify.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.songify.api.service.FriendsSerializer;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -27,8 +29,9 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
     @JoinTable(name = "friends")
+    @JsonSerialize(using = FriendsSerializer.class) //custom serialization prevents json infinite loop
     private Set<User> friends; // set == list but no duplicates allowed
 
     public User() {

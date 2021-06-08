@@ -2,6 +2,7 @@ package com.songify.api.service.impl;
 
 import com.songify.api.exceptions.UserNotFoundException;
 import com.songify.api.model.User;
+import com.songify.api.model.dto.AcceptFriendRequestRequest;
 import com.songify.api.model.dto.UserDto;
 import com.songify.api.repository.UserRepository;
 import com.songify.api.service.RoleService;
@@ -81,7 +82,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addFriendship(Long firstUserId, Long secondUserId) {
-        // wip
+    public void acceptFriendRequest(AcceptFriendRequestRequest request) {
+        User user1 = userRepository.findById(request.getFirstUserId()).orElseThrow(() -> new UserNotFoundException(request.getFirstUserId()));
+
+        User user2 = userRepository.findById(request.getSecondUserId()).orElseThrow(() -> new UserNotFoundException(request.getSecondUserId()));
+
+        user1.addFriend(user2);
+        user2.addFriend(user1);
+
+        userRepository.save(user1);
+        userRepository.save(user2);
     }
 }
