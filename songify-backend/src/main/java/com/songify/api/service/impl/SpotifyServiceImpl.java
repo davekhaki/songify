@@ -53,7 +53,7 @@ public class SpotifyServiceImpl implements SpotifyService {
             httpServletResponse.setHeader("Location", url); // redirect to success page
         }
         catch(HttpClientErrorException e) {
-            e.printStackTrace();
+            log.info("Error: " + e);
         }
     }
 }
