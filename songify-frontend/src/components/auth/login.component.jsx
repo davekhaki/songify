@@ -28,9 +28,8 @@ export default class Login extends Component {
         e.preventDefault();
 
         AuthService.login(this.state.username, this.state.password).then((response) => {
-                console.log("RESEPONSE: " + response);
-                this.props.history.push("/profile");
-                window.location.reload();
+                window.open("https://accounts.spotify.com/authorize?response_type=code&client_id=34581c98d6b84aa0b19e4817b1d6c902&scope=user-read-private&redirect_uri=http://localhost:8080/v1/api/spotify/authenticate");
+                window.close();
             },
             error => {
                 console.log(error);

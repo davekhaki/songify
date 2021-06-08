@@ -19,6 +19,7 @@ import DeletePlaylist from '../user/delete.playlist.component';
 import BrowsePlaylists from '../user/browse.playlist.component';
 import AccessDenied from './access.denied.component';
 import BrowseSongs from '../user/browse.songs.component';
+import SetSpotifyToken from './set.spotify.token.component';
 
 export default class Navbar extends Component {
     constructor(props) {
@@ -98,6 +99,7 @@ export default class Navbar extends Component {
                         <Route path='/register' component={Register} />
                         <Route path='/login' component={Login} />
                         <Route path='/profile' component={Profile} />
+                        <Route path='/success-spotify/:accessToken' component={SetSpotifyToken} />
                         {/* USER ROUTES : */}
                         <Route path='/my-playlists' component={MyPlaylists} />
                         <Route path='/new-playlist' component={AddPlaylist} />

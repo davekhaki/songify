@@ -1,10 +1,10 @@
 import TokenService from "./token.service";
 
 export default function spotifyHeader() {
-    const token = TokenService.getCurrentToken()
+    const token = TokenService.getToken()
     
     if (token) {
-      return { Authorization: token };
+      return { Authorization: "Bearer " + token };
     } else {
       return {};
     }

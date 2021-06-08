@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SongService from '../../services/spotify/song.service';
 
 const SearchResultTable = (props) => {
+    const [popUpMenu, setPopUpMenu] = React.useState(false);
     const items = props.songs;
 
     return (
@@ -11,7 +12,8 @@ const SearchResultTable = (props) => {
                     <th></th>
                     <th>Title</th>
                     <th>Artist</th>
-                    <th>Album</th>
+                    <th>Album Type</th>
+                    <th>Album Name</th>
                     <th></th>
                 </tr>
             </thead>
@@ -21,18 +23,30 @@ const SearchResultTable = (props) => {
                         <td width="10%"><img src={song.album.images[2].url} /></td>
                         <td width="20%">{song.name}</td>
                         <td width="20%">{song.artists[0].name}</td>
-                        <td width="20%">album</td>
+                        <td width="20%">{song.album.album_type}</td>
+                        <td width="20%">{song.album.name}</td>
                         <td width="20%">                           
-                            <button>
+                            <button onClick={()=> setPopUpMenu(!popUpMenu)}>
                                 <li class="fas fa-bars"></li>
                             </button>
-                        </td>
+                            {popUpMenu && PopUpMenu()}
+                        </td>                        
                     </tr>
                 ))}
             </tbody>
         </table>
     );
 };
+  
+  function PopUpMenu() {
+    return (
+      <ul className="drop-down">
+        <li>Menu-item-1</li>
+        <li>Menu-item-2</li>
+        <li>Menu-item-3</li>
+      </ul>
+    );
+  }
 
 export default class BrowseSongs extends Component {
 
@@ -44,7 +58,8 @@ export default class BrowseSongs extends Component {
             total: "",
             pageNr: 0,
             nextPageQuery: "",
-            prevPageQuery: ""
+            prevPageQuery: "",
+            show: false
         }
 
         this.onChangeSearchTerm = this.onChangeSearchTerm.bind(this);
@@ -60,11 +75,8 @@ export default class BrowseSongs extends Component {
     search() {
         SongService.searchForSongs(this.state.searchTerm).then((response) => {
             this.setState({ songs: response.data.tracks.items })
-            console.log(response)
-
             this.setState({ total: response.data.tracks.total })
             this.setState({ pageNr: 0 })
-
             this.setState({ nextPageQuery: response.data.tracks.next })
             this.setState({ prevPageQuery: response.data.tracks.previous })
         })
@@ -73,17 +85,15 @@ export default class BrowseSongs extends Component {
     nextPage() {
         SongService.getSongsByQueryUrl(this.state.nextPageQuery).then((response) => {
             this.setState({ songs: response.data.tracks.items })
-
             this.setState({ pageNr: this.state.pageNr + 1 })
-
             this.setState({ nextPageQuery: response.data.tracks.next })
             this.setState({ prevPageQuery: response.data.tracks.previous })
         })
     }
 
     prevPage() {
-        if (this.state.pageNr == 0) {
-            return alert('No previous page available')
+        if (this.state.pageNr == 0) { 
+            return alert('No previous page available') 
         }
         else if (this.state.pageNr == 1) {
             this.search()
@@ -91,9 +101,7 @@ export default class BrowseSongs extends Component {
         else {
             SongService.getSongsByQueryUrl(this.state.prevPageQuery).then((response) => {
                 this.setState({ songs: response.data.tracks.items })
-
                 this.setState({ pageNr: this.state.pageNr - 1 })
-
                 this.setState({ nextPageQuery: response.data.tracks.next })
                 this.setState({ prevPageQuery: response.data.tracks.previous })
             })
@@ -120,7 +128,7 @@ export default class BrowseSongs extends Component {
                     <button onClick={this.prevPage} className="btn btn-info rounded submit px-3" data-cy="prevpagebtn">Previous Page</button>
                     <button onClick={this.nextPage} className="btn btn-info rounded submit px-3" data-cy="nextpagebtn">Next Page</button>
                 </div>
-                <SearchResultTable songs={this.state.songs}></SearchResultTable>
+                <SearchResultTable songs={this.state.songs} ></SearchResultTable>
             </div>
         )
     }
