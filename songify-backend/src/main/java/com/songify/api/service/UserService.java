@@ -23,6 +23,5 @@ public interface UserService {
 
     String deleteUser(Long id);
 
-    void acceptFriendRequest(AcceptFriendRequestRequest request);
-
+    User save(User user);
 }
