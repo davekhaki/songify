@@ -45,6 +45,7 @@ public class SpotifyServiceImpl implements SpotifyService {
         try {
             Object response = restTemplate.postForObject("https://accounts.spotify.com/api/token", httpEntity, Object.class);
             Map<String, Object> map = (Map<String, Object>) response;
+            assert map != null;
             map.forEach((k, v) -> log.info(k+": "+v));
             httpServletResponse.setStatus(302);
             String accessToken = (String) map.get("access_token");
