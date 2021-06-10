@@ -4,7 +4,6 @@ import com.songify.api.model.chat.ChatRoom;
 import com.songify.api.repository.ChatRoomRepository;
 import com.songify.api.service.ChatRoomService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

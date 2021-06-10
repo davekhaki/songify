@@ -1,5 +1,6 @@
 package com.songify.api.controller;
 
+import com.songify.api.exceptions.ResourceNotFoundException;
 import com.songify.api.model.chat.ChatMessage;
 import com.songify.api.model.chat.ChatNotification;
 import com.songify.api.service.ChatMessageService;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @Slf4j
 @RequiredArgsConstructor
@@ -26,8 +29,8 @@ public class ChatController {
     @MessageMapping("/chat")
     public void processMessage(@Payload ChatMessage chatMessage) {
         log.info("Receiving message" + chatMessage);
-        var chatId = chatRoomService.getChatId(chatMessage.getSenderId(), chatMessage.getRecipientId(), true);
-        chatMessage.setChatId(chatId.get());
+        var chatId = chatRoomService.getChatId(chatMessage.getSenderId(), chatMessage.getRecipientId(), true).orElseThrow(() -> new ResourceNotFoundException("chatid not found for "+ chatMessage.getId() ));
+        chatMessage.setChatId(chatId);
 
         ChatMessage saved = chatMessageService.save(chatMessage);
         messagingTemplate.convertAndSendToUser(chatMessage.getRecipientName(),"/queue/messages", new ChatNotification(saved.getId(), saved.getSenderId(), saved.getSenderName()));
@@ -39,12 +42,12 @@ public class ChatController {
     }
 
     @GetMapping("/messages/{senderId}/{recipientId}")
-    public ResponseEntity<?> findChatMessages ( @PathVariable Long senderId, @PathVariable Long recipientId) {
+    public ResponseEntity<List<ChatMessage>> findChatMessages (@PathVariable Long senderId, @PathVariable Long recipientId) {
         return ResponseEntity.ok(chatMessageService.findChatMessages(senderId, recipientId));
     }
 
     @GetMapping("/messages/{id}")
-    public ResponseEntity<?> findMessage ( @PathVariable Long id) {
+    public ResponseEntity<ChatMessage> findMessage ( @PathVariable Long id) {
         return ResponseEntity.ok(chatMessageService.findById(id));
     }
 }

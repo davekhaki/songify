@@ -5,7 +5,6 @@ import com.songify.api.exceptions.ResourceNotFoundException;
 import com.songify.api.model.Role;
 import com.songify.api.repository.RoleRepository;
 import com.songify.api.service.RoleService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

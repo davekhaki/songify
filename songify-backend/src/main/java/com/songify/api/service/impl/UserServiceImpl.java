@@ -3,7 +3,6 @@ package com.songify.api.service.impl;
 import com.songify.api.exceptions.UserNotFoundException;
 import com.songify.api.model.User;
 import com.songify.api.model.dto.UserDto;
-import com.songify.api.repository.RoleRepository;
 import com.songify.api.repository.UserRepository;
 import com.songify.api.service.RoleService;
 import com.songify.api.service.UserService;

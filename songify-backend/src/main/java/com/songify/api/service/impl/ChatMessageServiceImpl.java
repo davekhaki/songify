@@ -35,9 +35,9 @@ public class ChatMessageServiceImpl implements ChatMessageService {
     public List<ChatMessage> findChatMessages(Long senderId, Long recipientId) {
         var chatId = chatRoomService.getChatId(senderId, recipientId, false);
 
-        var messages = chatId.map(cId -> chatMessageRepository.findByChatId(cId)).orElse(new ArrayList<>());
+        var messages = chatId.map(chatMessageRepository::findByChatId).orElse(new ArrayList<>());
 
-        if(messages.size() > 0) {
+        if(!messages.isEmpty()) {
             updateStatuses(senderId, recipientId, MessageStatus.DELIVERED);
         }
         return messages;

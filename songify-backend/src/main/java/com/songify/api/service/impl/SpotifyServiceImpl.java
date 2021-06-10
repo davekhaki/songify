@@ -2,7 +2,6 @@ package com.songify.api.service.impl;
 
 import com.songify.api.service.SpotifyService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -19,9 +18,6 @@ import java.util.Map;
 @Slf4j
 @Service
 public class SpotifyServiceImpl implements SpotifyService {
-
-    @Autowired
-    RestTemplate restTemplate;
 
     @Override
     public void authenticate(String code, HttpServletResponse httpServletResponse){
