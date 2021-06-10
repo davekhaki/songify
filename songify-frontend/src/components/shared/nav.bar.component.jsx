@@ -20,22 +20,36 @@ import BrowsePlaylists from '../user/browse.playlist.component';
 import AccessDenied from './access.denied.component';
 import BrowseSongs from '../user/browse.songs.component';
 import SetSpotifyToken from './set.spotify.token.component';
+import Chat from '../user/chat.component';
 
 export default class Navbar extends Component {
     constructor(props) {
         super(props);
         this.state = {
             currentUser: undefined,
+            messages: [],
+            messageText: '',
         };
     }
 
     componentDidMount() {
         const user = AuthService.getCurrentUser();
-        if (user) {
-            this.setState({
-                currentUser: user,
-            });
+        if (user) { this.setState({ currentUser: user }); }
+    }
+
+    handleMessageSend = () => {
+        if (this.state.userName) {
+            this.clientRef.sendMessage("/app/chat.sendMessage", JSON.stringify({sender: this.state.userName, content: this.state.messageText, type: 'CHAT'}));
+            this.setState({messageText: ''})
         }
+    }
+
+    handleChange = name => event => {
+        this.setState({ [name]: event.target.value });
+    };
+
+    handleMessageReceived = msg => {
+        this.setState({messages: this.state.messages.concat(msg)});
     }
 
     renderNav(user) {
@@ -51,6 +65,7 @@ export default class Navbar extends Component {
                         <li><Link to={'songs'} className="nav-link" data-cy="songspagebtn">Songs</Link></li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
+                    <li><Link to={'/chat'} className="nav-link">Chat</Link></li>
                         <li><Link to={'/profile'} className="nav-link"> {this.state.currentUser.username}</Link></li>
                         <li onClick={AuthService.logout}><Link to={'/'} className="nav-link"> Logout </Link></li>
                     </ul>
@@ -107,6 +122,7 @@ export default class Navbar extends Component {
                         <Route path='/delete-playlist/:id' component={DeletePlaylist}/ >
                         <Route path='/browse' component={BrowsePlaylists} />
                         <Route path='/songs' component={BrowseSongs} />
+                        <Route exact path="/chat" render={(props) => <Chat {...props} />} />
                         {/* ADMIN ROUTES : */}
                         <Route path='/users' component={Users} />
                         <Route path='/update-user/:id' component={UpdateUser} />

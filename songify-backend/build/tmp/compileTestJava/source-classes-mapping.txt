@@ -1,32 +1,30 @@
-com/songify/api/model/SongTests.java
- com.songify.api.model.SongTests
 com/songify/api/servicetests/RoleServiceTests.java
  com.songify.api.servicetests.RoleServiceTests
-com/songify/api/model/dto/LoginRequestTests.java
- com.songify.api.model.dto.LoginRequestTests
+com/songify/api/model/SongTests.java
+ com.songify.api.model.SongTests
 com/songify/api/model/AuditableTests.java
  com.songify.api.model.AuditableTests
-com/songify/api/model/dto/RoleDtoTests.java
- com.songify.api.model.dto.RoleDtoTests
-com/songify/api/model/PlaylistTest.java
- com.songify.api.model.PlaylistTest
+com/songify/api/servicetests/AuthServiceTests.java
+ com.songify.api.servicetests.AuthServiceTests
+com/songify/api/servicetests/PlaylistServiceTests.java
+ com.songify.api.servicetests.PlaylistServiceTests
 com/songify/api/model/dto/UserDtoTests.java
  com.songify.api.model.dto.UserDtoTests
 com/songify/api/model/dto/NewPlaylistRequestTests.java
  com.songify.api.model.dto.NewPlaylistRequestTests
-com/songify/api/model/dto/SpotifyGenreTests.java
- com.songify.api.model.dto.SpotifyGenreTests
-com/songify/api/UserTest.java
- com.songify.api.UserTest
-com/songify/api/ApiApplicationTests.java
- com.songify.api.ApiApplicationTests
 com/songify/api/servicetests/SongServiceTests.java
  com.songify.api.servicetests.SongServiceTests
-com/songify/api/servicetests/PlaylistServiceTests.java
- com.songify.api.servicetests.PlaylistServiceTests
-com/songify/api/servicetests/AuthServiceTests.java
- com.songify.api.servicetests.AuthServiceTests
 com/songify/api/servicetests/AuthenticationUserDetailsServiceTests.java
  com.songify.api.servicetests.AuthenticationUserDetailsServiceTests
+com/songify/api/model/PlaylistTest.java
+ com.songify.api.model.PlaylistTest
+com/songify/api/ApiApplicationTests.java
+ com.songify.api.ApiApplicationTests
+com/songify/api/model/dto/RoleDtoTests.java
+ com.songify.api.model.dto.RoleDtoTests
+com/songify/api/UserTest.java
+ com.songify.api.UserTest
+com/songify/api/model/dto/LoginRequestTests.java
+ com.songify.api.model.dto.LoginRequestTests
 com/songify/api/servicetests/UserServiceTests.java
  com.songify.api.servicetests.UserServiceTests

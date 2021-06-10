@@ -4,8 +4,8 @@ import AuthService from './auth/auth.service';
 const config = require('../../config.json');
 
 class FriendsService{
-    getMyFriendRequests(){
-        return axios({
+    async getMyFriendRequests(){
+        return await axios({
             method: 'get',
             url: config.REST_API_URL + 'friends/requests/' + AuthService.getCurrentUser().id,
         })

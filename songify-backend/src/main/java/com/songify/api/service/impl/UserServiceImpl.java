@@ -3,10 +3,12 @@ package com.songify.api.service.impl;
 import com.songify.api.exceptions.UserNotFoundException;
 import com.songify.api.model.User;
 import com.songify.api.model.dto.UserDto;
+import com.songify.api.repository.RoleRepository;
 import com.songify.api.repository.UserRepository;
 import com.songify.api.service.RoleService;
 import com.songify.api.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +18,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
-    private final RoleService roleService;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private UserRepository userRepository;
+    private RoleService roleService;
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService) {
+        this.userRepository = userRepository;
+        this.roleService = roleService;
+    }
 
     @Override
     public List<User> getAllUsers(){ return this.userRepository.findAll(); }
@@ -84,4 +96,7 @@ public class UserServiceImpl implements UserService {
     public User save(User user){
         return this.userRepository.save(user);
     }
+
+    @Override
+    public String getUsernameById(Long id) { return this.getUserById(id).getUsername(); }
 }

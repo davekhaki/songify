@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import AuthService from '../../services/rest/auth/auth.service';
 import FriendsService from "../../services/rest/friends.service";
+import UserService from "../../services/rest/user.service";
 
 export default class Profile extends Component {
   constructor(props) {
@@ -11,25 +12,44 @@ export default class Profile extends Component {
       userReady: false,
       currentUser: { username: "", role: [] },
       friends: [],
-      friendRequests: []
-    };
+      friendRequests: [],
+      usernames: []
+    }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const currentUser = AuthService.getCurrentUser();
-
     if (!currentUser) this.props.history.push('/login');
     this.setState({ currentUser: currentUser })
     this.setState({ friends: currentUser.friends })
 
-    FriendsService.getMyFriendRequests().then((response) => {
-      console.log(response);
-      this.setState({ friendRequests: response.data })
-    })
+    const raw = await FriendsService.getMyFriendRequests();
+    this.setState({ friendRequests: raw.data })
+  }
+
+  componentDidUpdate() {
+    this.state.friendRequests.map(
+      request => {
+        UserService.getUsername(request.senderId).then((response) => {
+
+          // this.setState(prevState => ({
+          //   usernames: {
+          //     ...prevState.usernames,
+          //     [prevState.usernames[0]]: "hey",
+          //   },
+          // }))
+
+          //this.state.usernames[request.senderId] = response.data;
+          //console.log(this.state.usernames[request.senderId]);
+        
+        })
+      }
+    )
   }
 
   acceptRequest(id) {
     FriendsService.acceptRequest(this.state.currentUser.id, id)
+    window.location.reload()
   }
 
   render() {
@@ -50,28 +70,14 @@ export default class Profile extends Component {
             </p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-6">
+        <div className="row">
+          <div className="col-sm-6">
             <h1>Friends List</h1>
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <td col-md-1>Username</td>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  this.state.friends.map(
-                    friend =>
-                      <tr key={friend.friendName}>
-                        <td>{friend.friendName}</td>
-                      </tr>
-                  )
-                }
-              </tbody>
-            </table>
+            <ul className="list-group">
+              {this.state.friends.map(friend => <li className='list-group-item'> {friend.friendName} </li>)}
+            </ul>
           </div>
-          <div class="col-sm-6">
+          <div className="col-sm-6">
             <h1>Friend Requests:</h1>
             <table className="table table-striped">
               <thead>
@@ -85,8 +91,9 @@ export default class Profile extends Component {
                   this.state.friendRequests.map(
                     request =>
                       <tr key={request.id}>
-                        <td col-md-1>{request.senderId}</td>
-                        <td col-md-2>
+                        {console.log(this.state.usernames[0])}
+                        <td className="col-md-1" >{this.state.usernames[request.senderId]}</td>
+                        <td className="col-md-2">
                           <button type="button" className="btn btn-success" onClick={() => this.acceptRequest(request.senderId)}>Accept</button>
                         </td>
                       </tr>
@@ -96,7 +103,10 @@ export default class Profile extends Component {
             </table>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }
+
+
+

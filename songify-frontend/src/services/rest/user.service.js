@@ -32,6 +32,10 @@ class UserService{
     deleteUser(id){
         return axios.delete(config.REST_API_URL + "users/" + id)
     }
+
+    async getUsername(id){
+        return await axios.get(config.REST_API_URL + 'users/username/' + id)
+    }
 }
 
 export default new UserService();
