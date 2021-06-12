@@ -16,8 +16,8 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-@ActiveProfiles("test")
 @SpringBootTest
 class UserServiceTests {
 
@@ -32,10 +32,9 @@ class UserServiceTests {
 
         this.users = new ArrayList<>();
         users.add(new User("username", "password", "email", new Role()));
+        users.add(new User("username", "gaming", "password", new Role()));
         users.add(new User("username", "password", "email", new Role()));
         users.add(new User("username", "password", "email", new Role()));
-        users.add(new User("username", "password", "email", new Role()));
-
 
     }
 
@@ -48,43 +47,41 @@ class UserServiceTests {
         Assertions.assertEquals(4, users.size());
     }
 
-//    @Test
-//    void getUserByUsernameAndPasswordTest(){
-//        userService.addUser(new UserDto("n", "p", "e", new Role()));
-//        User user = userService.getUserByUsernameAndPassword("n", "p");
-//        userService.deleteUser(userService.getUserByUsername("n").getId());
-//        Assertions.assertNotNull(user);
-//    }
-//
-//    @Test
-//    void getUserByUsernameAndPasswordWrongInputTest(){
-//        User user = userService.getUserByUsernameAndPassword("number1", "AwghfH");
-//
-//        Assertions.assertNull(user);
-//    }
-//
-//    @Test
-//    void updateUserTest(){
-//        userService.updateUser(3L, new UserDto("updatedUsername", "updatedPassword", "updatedEmail", new Role()));
-//
-//        Assertions.assertEquals("updatedUsername", userService.getUserById(3L).getUsername());
-//    }
-//
-//    @Test
+    @Test
+    void getUserByUsernameAndPasswordTest(){
+        Mockito.when(userRepository.findByUsername("gaming")).thenReturn(new User("username", "gaming", "$2a$10$p4lyJPB7eVBlEjj3a9Yt4.QQm2iFlts9T3w6cMg3GYWXn/vAwgo8m", new Role()));
+        //
+        User user = userService.getUserByUsernameAndPassword("gaming", "user1");
+
+        Assertions.assertNotNull(user);
+    }
+
+    @Test
+    void getUserByUsernameAndPasswordWrongInputTest(){
+        Mockito.when(userRepository.findByUsername("")).thenReturn(new User("facts","facts", "facts", new Role()));
+        User user = userService.getUserByUsernameAndPassword("newuser", "yessir");
+
+        Assertions.assertNull(user);
+    }
+
+    @Test
+    void updateUserTest(){
+        User user = new User("email", "username", "password", new Role());
+        user.setId(5L);
+        Mockito.when(userRepository.findById(5L)).thenReturn(Optional.of(user));
+        Mockito.when(userRepository.save(user)).thenReturn(new User("updatedUsername", ".", ".", new Role()));
+        userService.updateUser(5L, new UserDto("updatedUsername", "updatedPassword", "updatedEmail", new Role()));
+
+        Assertions.assertEquals("updatedUsername", user.getUsername());
+    }
+
+//    @Test()
 //    void updateUserThrowsUserNotFoundExceptionTest(){
+//        User toBeSaved = new User("email", "username", "password", new Role());
+//        toBeSaved.setId(500L);
+//        Mockito.when(userRepository.findById(toBeSaved.getId())).thenThrow(UserNotFoundException.class);
 //        Assertions.assertThrows(UserNotFoundException.class, () -> {
 //            userService.updateUser(578123L, new UserDto(".", ".", ".", new Role()));
-//        });
-//    }
-//
-//    @Test
-//    void deleteUserTest(){
-//        userService.deleteUser(3L);
-//
-//        List<User> users = userService.getAllUsers();
-//
-//        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
-//            users.get(4);
 //        });
 //    }
 }

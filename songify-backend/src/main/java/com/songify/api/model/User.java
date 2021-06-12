@@ -25,7 +25,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE) //https://stackoverflow.com/questions/2302802/how-to-fix-the-hibernate-object-references-an-unsaved-transient-instance-save
     @JoinColumn(name = "role_id")
     private Role role;
 

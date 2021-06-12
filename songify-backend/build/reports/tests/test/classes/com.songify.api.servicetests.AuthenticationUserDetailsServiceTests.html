@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.510s</div>
+<div class="counter">0.796s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,12 +79,12 @@
 </thead>
 <tr>
 <td class="success">loadUserIsNullTest()</td>
-<td class="success">0.279s</td>
+<td class="success">0.487s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">loadUserTest()</td>
-<td class="success">0.231s</td>
+<td class="success">0.309s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -92,12 +92,44 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2021-06-10 17:54:03.284  INFO 9652 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.songify.api.servicetests.AuthenticationUserDetailsServiceTests], using SpringBootContextLoader
-2021-06-10 17:54:03.286  INFO 9652 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.songify.api.servicetests.AuthenticationUserDetailsServiceTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-2021-06-10 17:54:03.287  INFO 9652 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.songify.api.servicetests.AuthenticationUserDetailsServiceTests]: AuthenticationUserDetailsServiceTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2021-06-10 17:54:03.290  INFO 9652 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.songify.api.ApiApplication for test class com.songify.api.servicetests.AuthenticationUserDetailsServiceTests
-2021-06-10 17:54:03.292  INFO 9652 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2021-06-10 17:54:03.294  INFO 9652 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@7853c981, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@5d2d85a4, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@277c93fc, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3a72340a, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5c8bed04, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6dba5394, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2e9adeac, org.springframework.test.context.event.EventPublishingTestExecutionListener@5e36d11, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@6835364, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@399a86d3, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@410d50f2, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@5f182627, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@431c46d3, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@2e5dfc7d]
+<pre>2021-06-12 15:37:02.522  INFO 1964 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.songify.api.servicetests.AuthenticationUserDetailsServiceTests], using SpringBootContextLoader
+2021-06-12 15:37:02.523  INFO 1964 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.songify.api.servicetests.AuthenticationUserDetailsServiceTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2021-06-12 15:37:02.524  INFO 1964 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.songify.api.servicetests.AuthenticationUserDetailsServiceTests]: AuthenticationUserDetailsServiceTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2021-06-12 15:37:02.537  INFO 1964 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.songify.api.ApiApplication for test class com.songify.api.servicetests.AuthenticationUserDetailsServiceTests
+2021-06-12 15:37:02.538  INFO 1964 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2021-06-12 15:37:02.539  INFO 1964 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@45621b93, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@db5860c, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5ebfedc2, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5bb2d8da, org.springframework.test.context.support.DirtiesContextTestExecutionListener@e59febc, org.springframework.test.context.transaction.TransactionalTestExecutionListener@2ffd8c9d, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@e8db55d, org.springframework.test.context.event.EventPublishingTestExecutionListener@43b4c85e, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@259728a, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@41838f38, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@22c7fd08, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@47d43736, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@ed0c064, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@537774c9]
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.3.1.RELEASE)
+
+2021-06-12 15:37:02.573  INFO 1964 --- [    Test worker] .s.AuthenticationUserDetailsServiceTests : Starting AuthenticationUserDetailsServiceTests on LAPTOP-4IPIM65U with PID 1964 (started by david in D:\S3\individual track\songify-backend)
+2021-06-12 15:37:02.573  INFO 1964 --- [    Test worker] .s.AuthenticationUserDetailsServiceTests : The following profiles are active: test
+2021-06-12 15:37:02.897  INFO 1964 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-06-12 15:37:02.938  INFO 1964 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40ms. Found 7 JPA repository interfaces.
+2021-06-12 15:37:03.147  INFO 1964 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2021-06-12 15:37:04.114  INFO 1964 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2021-06-12 15:37:04.147  INFO 1964 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-06-12 15:37:04.157  INFO 1964 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-06-12 15:37:04.534  INFO 1964 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-06-12 15:37:04.534  INFO 1964 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-06-12 15:37:04.595  WARN 1964 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-06-12 15:37:04.675  INFO 1964 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2021-06-12 15:37:04.682  INFO 1964 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2021-06-12 15:37:04.792  INFO 1964 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3dbd1718, org.springframework.security.web.context.SecurityContextPersistenceFilter@6052222, org.springframework.security.web.header.HeaderWriterFilter@793a783a, org.springframework.security.web.authentication.logout.LogoutFilter@237b85b4, com.songify.api.filter.JWTAuthenticationFilter@438b9ee2, com.songify.api.filter.JWTAuthorizationFilter@1466e9a0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@717c6865, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5bad25d8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@65e876f3, org.springframework.security.web.session.SessionManagementFilter@bcb9e27, org.springframework.security.web.access.ExceptionTranslationFilter@116cdc43, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5ae9a2d]
+2021-06-12 15:37:04.837  INFO 1964 --- [    Test worker] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2021-06-12 15:37:04.857  INFO 1964 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2021-06-12 15:37:05.145  INFO 1964 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:songifydb'
+2021-06-12 15:37:05.197  INFO 1964 --- [    Test worker] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2021-06-12 15:37:05.197  INFO 1964 --- [    Test worker] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2021-06-12 15:37:05.198  INFO 1964 --- [    Test worker] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2021-06-12 15:37:05.198  INFO 1964 --- [    Test worker] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2021-06-12 15:37:05.348  INFO 1964 --- [    Test worker] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2021-06-12 15:37:05.351  INFO 1964 --- [    Test worker] .s.AuthenticationUserDetailsServiceTests : Started AuthenticationUserDetailsServiceTests in 2.803 seconds (JVM running for 18.469)
 </pre>
 </span>
 </div>
@@ -109,7 +141,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.8.3</a> at 10 Jun 2021, 17:54:04</p>
+<a href="http://www.gradle.org">Gradle 6.8.3</a> at 12 Jun 2021, 15:37:08</p>
 </div>
 </div>
 </body>
