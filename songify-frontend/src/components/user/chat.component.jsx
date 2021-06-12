@@ -104,12 +104,12 @@ const Chat = (props) => {
                     <p>{currentUser.username}</p>
                 </div>
                 <div>
-                    <ul class="list-group">
+                    <ul className="list-group">
                         {contacts.map((contact) => (
-                            <li onClick={() => setActiveContact(contact)} class={activeContact && contact.id === activeContact.id ? "list-group-item d-flex justify-content-between align-items-center active" : "list-group-item d-flex justify-content-between align-items-center list-group-item-dark"} >
+                            <li onClick={() => setActiveContact(contact)} className={activeContact && contact.id === activeContact.id ? "list-group-item d-flex justify-content-between align-items-center active" : "list-group-item d-flex justify-content-between align-items-center list-group-item-dark"} >
                                 {contact.username}
                                 {contact.newMessages !== undefined && contact.newMessages > 0 && (
-                                    <span class="badge badge-primary badge-pill">{contact.newMessages}</span>
+                                    <span className="badge badge-primary badge-pill">{contact.newMessages}</span>
                                 )}
 
                             </li>
@@ -134,9 +134,9 @@ const Chat = (props) => {
                     </ul>
                 </ScrollToBottom>
 
-                <div class="input-group mb-3">
+                <div className="input-group mb-3">
                     <input
-                        class="form-control"
+                        className="form-control"
                         name="user_input"
                         size="large"
                         type="text"
@@ -150,8 +150,8 @@ const Chat = (props) => {
                             }
                         }}
                     />
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" onClick={() => { sendMessage(text); setText(""); }}>Send</button>
+                    <div className="input-group-append">
+                        <button className="btn btn-outline-secondary" type="button" onClick={() => { sendMessage(text); setText(""); }}>Send</button>
                     </div>
                 </div>
             </div>

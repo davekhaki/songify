@@ -52,7 +52,7 @@ export default class AddPlaylist extends Component {
                                 data-cy="playlisttitleinput"/>
                             </div>
                             <label>Playlist Description:</label>
-                            <div class="form-group">
+                            <div className="form-group">
                                 <input 
                                 type="text" 
                                 value={this.state.playlistDesc} 
