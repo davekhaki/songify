@@ -36,11 +36,15 @@ describe('UAT-1: Login', () => {
 
     it('is redirected', () => {
         cy.wait(3000)
+        cy.visit('/home')
+        cy.visit('/my-playlists')
+        cy.visit('/home')
         //cy.location('pathname').should('eq', '/profile')
-        cy.url().should(
-            'be.equal',
-            `${Cypress.config("baseUrl")}/profile`
-          )
+        // cy.url().should('include', 'spotify')
+        // cy.url().should(
+        //     'be.equal',
+        //     `${Cypress.config("baseUrl")}/profile`
+        //   )
     })
 })
 
