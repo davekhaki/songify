@@ -77,6 +77,7 @@ export default class BrowseSongs extends Component {
             this.setState({ songs: response.data.tracks.items })
             this.setState({ total: response.data.tracks.total })
             this.setState({ pageNr: 0 })
+            console.log(response.data.tracks)
             this.setState({ nextPageQuery: response.data.tracks.next })
             this.setState({ prevPageQuery: response.data.tracks.previous })
         })
