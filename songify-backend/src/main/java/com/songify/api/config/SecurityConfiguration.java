@@ -26,11 +26,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST, AuthenticationConstants.SIGN_UP_URL).permitAll()
 
-                .antMatchers("/**").permitAll()
-                .antMatchers("/v1/api/users/add").permitAll()
-                .antMatchers("/v1/api/**").permitAll() //ALLOWS ALL REQUESTS
-                .antMatchers("/ws/**").permitAll()
+//                .antMatchers("/**").permitAll() //allows all requests for the api
 
+//                .antMatchers("/v1/api/users/add").permitAll() //allows registration to the app
+                .antMatchers("/v1/api/auth/**").permitAll() //allows login request
+                .antMatchers("/v1/api/spotify/**").permitAll()// allows spotify auth
+                .antMatchers("/ws/**").permitAll() //allows all websocket requests
+                .antMatchers("/login").permitAll() //allows get bearer token request
 
                 .anyRequest().authenticated()
                 .and()

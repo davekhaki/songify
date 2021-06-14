@@ -21,7 +21,7 @@ public class User {
     @Column(name = "username")
     private String username;
 
-    @JsonIgnore // ignores password in JSON api responses
+    //@JsonIgnore // ignores password in JSON api responses
     @Column(name = "password")
     private String password;
 

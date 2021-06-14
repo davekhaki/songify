@@ -1,12 +1,18 @@
 import axios from 'axios'
 import AuthService from './auth/auth.service';
+import authHeader from './auth/auth-header';
 
 const config = require('../../config.json');
 
 class PlaylistService{
 
     getPlaylists(){
-        return axios.get(config.REST_API_URL + "playlists");
+        console.log("Auth Header: " + authHeader())
+        return axios({
+            method: 'get',            
+            url: config.REST_API_URL + "playlists",
+            headers: authHeader(),
+        });
     }
 
     getPlaylistById(id){
@@ -40,17 +46,21 @@ class PlaylistService{
     }
 
     getMyPlaylists(){
+        console.log("Auth Header !!!!: " + authHeader())
         return axios({
             method: 'get',
             url: config.REST_API_URL + 'playlists/' + AuthService.getCurrentUser().username,
-
+            headers: authHeader(),
         })
     }
 
     getPlaylistsByUsername(username){
+        console.log("auth header(): ")
+        console.log(authHeader())
         return axios({
             method: 'get',
             url: config.REST_API_URL + 'playlists/' + username,
+            headers: authHeader(),
         })
     }
 

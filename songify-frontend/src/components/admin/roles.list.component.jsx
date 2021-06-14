@@ -1,8 +1,8 @@
 import React from 'react';
 import RoleService from '../../services/rest/roles.service.js';
+import AuthService from '../../services/rest/auth/auth.service';
 
 export default class Roles extends React.Component {
-
     constructor(props) {
         super(props)
         this.state = {
@@ -11,12 +11,17 @@ export default class Roles extends React.Component {
     }
 
     componentDidMount() {
+        let user = AuthService.getCurrentUser();
+        if (user.role.name !== "ADMIN") {
+            this.props.history.push('/access-denied');
+        }
+
         RoleService.getRoles().then((response) => {
             this.setState({ roles: response.data })
         });
     }
 
-    editRole(id){
+    editRole(id) {
         this.props.history.push(`/update-role/${id}`);
     }
 
@@ -40,7 +45,13 @@ export default class Roles extends React.Component {
                                         <td>{role.id}</td>
                                         <td>{role.name}</td>
                                         <td>
-                                            <button type="button" className="btn btn-primary" onClick={() => this.editRole(role.id)} >Edit</button>
+                                            <button
+                                                type="button"
+                                                className="btn btn-primary"
+                                                onClick={() => this.editRole(role.id)}
+                                            >
+                                                Edit
+                                            </button>
                                         </td>
                                     </tr>
                             )

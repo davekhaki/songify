@@ -123,7 +123,8 @@ export default class Users extends Component {
         var r = window.confirm("Are you sure you want to delete this user?");
         if (r == true) {
             UserService.deleteUser(id).then(() => {
-                this.setState({ users: this.state.users.filter((user) => user.id !== id) });
+                //this.setState({ users: this.state.users.filter((user) => user.id !== id) });
+                window.location.reload();
             });
         } else {
             window.location.reload();

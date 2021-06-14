@@ -25,7 +25,9 @@ class AuthService{
           })
           .then(response => {
             if (response.data.id) {
-                this.refreshToken(username, password);
+                this.refreshToken(username, password).then((response)=>{
+                    console.log(response);
+                })
                 localStorage.setItem("user", JSON.stringify(response.data)); 
             }
     
@@ -39,22 +41,24 @@ class AuthService{
     }
 
     refreshToken(username, password){
-        return axios
-        .post("http://localhost:8080/login", {
-          username,
-          password
-        })
-        .then(response => {
-          if (response.data.Authorization) {
-              localStorage.setItem("JWTToken", JSON.stringify(response.data));
+        return axios({
+            method: 'post',
+            url: "http://localhost:8080/login",
+            data: {
+                username: username,
+                password: password
+            }
+        }).then((response) => {
+          if (response) {
+              localStorage.setItem("bearer", JSON.stringify(response.data));
           }
           return response.data;
         });
     }
 
     getToken(){
-        console.log("JWT TOKEN: " + localStorage.getItem("JWTToken"));
-        return JSON.parse(localStorage.getItem("JWTToken"));
+        console.log("JWT TOKEN: " + localStorage.getItem("bearer"));
+        return JSON.parse(localStorage.getItem("bearer"));
     }
 
     getCurrentUser(){

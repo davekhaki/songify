@@ -55,7 +55,7 @@ export default class Login extends Component {
                                 required="" 
                                 data-cy="formusernameinput"/>
                             </div>
-                            <div class="form-group d-flex">
+                            <div className="form-group d-flex">
                                 <input 
                                 type="password" 
                                 value={this.state.password} 
