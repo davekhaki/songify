@@ -23,4 +23,6 @@ public interface PlaylistService {
     Page<Playlist> getPopularPlaylists();
 
     Song addSongToPlaylist(Long playlistId, String spotifyId);
+
+    String removeSongFromPlaylist(Long playlistId, String spotifyId);
 }

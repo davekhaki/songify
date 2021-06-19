@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
@@ -79,9 +79,9 @@ public class UserServiceImpl implements UserService {
         if(dto.getUsername() != null){
             user.setUsername(dto.getUsername());
         }
-        if(dto.getPassword() != null) {
-            user.setPassword(passwordEncoder.encode(dto.getPassword()));
-        }
+//        if(dto.getPassword() != null) {
+//            user.setPassword(passwordEncoder.encode(dto.getPassword()));
+//        }
         //no change role for now
 
         //save new user details and return updated user
