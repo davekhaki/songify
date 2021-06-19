@@ -47,4 +47,9 @@ public class PlaylistController {
     public Song addSongToPlaylist(@PathVariable Long playlist, @PathVariable String song){
         return playlistService.addSongToPlaylist(playlist, song);
     }
+
+    @PostMapping("/remove/{playlist}/{song}")
+    public String removeSongFromPlaylist(@PathVariable Long playlist, @PathVariable String song){
+        return playlistService.removeSongFromPlaylist(playlist, song);
+    }
 }
