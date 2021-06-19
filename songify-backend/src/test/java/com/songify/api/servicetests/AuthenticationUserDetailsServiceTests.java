@@ -1,42 +1,47 @@
 package com.songify.api.servicetests;
 
 import com.songify.api.model.Role;
-import com.songify.api.model.dto.RoleDto;
-import com.songify.api.model.dto.UserDto;
-import com.songify.api.service.RoleService;
+import com.songify.api.model.User;
+import com.songify.api.repository.UserRepository;
 import com.songify.api.service.UserService;
 import com.songify.api.service.impl.AuthenticationUserDetailServiceImpl;
+import com.songify.api.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.security.core.userdetails.UserDetails;
 
-@ActiveProfiles("test")
 @SpringBootTest
 class AuthenticationUserDetailsServiceTests {
 
-    @Autowired
     private AuthenticationUserDetailServiceImpl authUserDetailsService;
-
-    @Autowired
     private UserService userService;
+    private UserRepository userRepository;
 
-    @Autowired
-    private RoleService roleService;
-
-    @Test
-    void loadUserTest(){
-        roleService.addRole(new RoleDto(35L, "test"));
-        userService.addUser(new UserDto("name", "password", "mail", new Role("test")));
-        var user = authUserDetailsService.loadUserByUsername("name");
-
-        Assertions.assertNotNull(user);
+    @BeforeEach
+    void createTestData(){
+        this.userRepository = Mockito.mock(UserRepository.class);
+        this.userService = new UserServiceImpl(userRepository);
+        this.authUserDetailsService = new AuthenticationUserDetailServiceImpl(userService);
     }
 
     @Test
-    void loadUserIsNullTest(){
-        var user = authUserDetailsService.loadUserByUsername("kkkkkkkkkkkkkKK");
+    void loadUserTest(){
+        Mockito.when(userRepository.findByUsername("username")).thenReturn(new User("email", "username", "password", new Role("role")));
+
+        UserDetails user = authUserDetailsService.loadUserByUsername("username");
+
+        Assertions.assertEquals("password", user.getPassword());
+    }
+
+    @Test
+    void loadUserFailTest(){
+        Mockito.when(userRepository.findByUsername("fail test")).thenReturn(null);
+
+        UserDetails user = authUserDetailsService.loadUserByUsername("fail test");
+
         Assertions.assertNull(user);
     }
 }
