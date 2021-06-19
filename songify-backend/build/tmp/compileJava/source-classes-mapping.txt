@@ -4,8 +4,8 @@ com/songify/api/controller/FriendsController.java
  com.songify.api.controller.FriendsController
 com/songify/api/controller/SpotifyController.java
  com.songify.api.controller.SpotifyController
-com/songify/api/controller/UserController.java
- com.songify.api.controller.UserController
+com/songify/api/model/User.java
+ com.songify.api.model.User
 com/songify/api/service/impl/SongServiceImpl.java
  com.songify.api.service.impl.SongServiceImpl
 com/songify/api/service/impl/PlaylistServiceImpl.java
@@ -19,10 +19,10 @@ com/songify/api/model/chat/ChatNotification.java
  com.songify.api.model.chat.ChatNotification$ChatNotificationBuilder
 com/songify/api/repository/ChatMessageRepository.java
  com.songify.api.repository.ChatMessageRepository
-com/songify/api/repository/RoleRepository.java
- com.songify.api.repository.RoleRepository
-com/songify/api/ApiApplication.java
- com.songify.api.ApiApplication
+com/songify/api/repository/UserRepository.java
+ com.songify.api.repository.UserRepository
+com/songify/api/service/AuthService.java
+ com.songify.api.service.AuthService
 com/songify/api/model/Role.java
  com.songify.api.model.Role
 com/songify/api/model/dto/RoleDto.java
@@ -35,19 +35,19 @@ com/songify/api/exceptions/ResourceNotFoundException.java
  com.songify.api.exceptions.ResourceNotFoundException
 com/songify/api/model/Playlist.java
  com.songify.api.model.Playlist
-com/songify/api/controller/RoleController.java
- com.songify.api.controller.RoleController
-com/songify/api/service/ChatMessageService.java
- com.songify.api.service.ChatMessageService
-com/songify/api/model/dto/UserDto.java
- com.songify.api.model.dto.UserDto
+com/songify/api/controller/UserController.java
+ com.songify.api.controller.UserController
+com/songify/api/service/impl/AuthenticationUserDetailServiceImpl.java
+ com.songify.api.service.impl.AuthenticationUserDetailServiceImpl
+com/songify/api/service/impl/AuthServiceImpl.java
+ com.songify.api.service.impl.AuthServiceImpl
 com/songify/api/model/chat/ChatRoom.java
  com.songify.api.model.chat.ChatRoom
  com.songify.api.model.chat.ChatRoom$ChatRoomBuilder
 com/songify/api/service/impl/SpotifyServiceImpl.java
  com.songify.api.service.impl.SpotifyServiceImpl
-com/songify/api/model/dto/NewPlaylistRequest.java
- com.songify.api.model.dto.NewPlaylistRequest
+com/songify/api/service/impl/UserServiceImpl.java
+ com.songify.api.service.impl.UserServiceImpl
 com/songify/api/service/FriendsService.java
  com.songify.api.service.FriendsService
 com/songify/api/service/ChatRoomService.java
@@ -56,13 +56,12 @@ com/songify/api/service/PlaylistService.java
  com.songify.api.service.PlaylistService
 com/songify/api/service/impl/ChatMessageServiceImpl.java
  com.songify.api.service.impl.ChatMessageServiceImpl
-com/songify/api/repository/PlaylistRepository.java
- com.songify.api.repository.PlaylistRepository
+com/songify/api/config/SecurityConfiguration.java
+ com.songify.api.config.SecurityConfiguration
 com/songify/api/service/SongService.java
  com.songify.api.service.SongService
-com/songify/api/model/chat/ChatMessage.java
- com.songify.api.model.chat.ChatMessage
- com.songify.api.model.chat.ChatMessage$ChatMessageBuilder
+com/songify/api/controller/AuthController.java
+ com.songify.api.controller.AuthController
 com/songify/api/service/impl/RoleServiceImpl.java
  com.songify.api.service.impl.RoleServiceImpl
 com/songify/api/config/WebSocketConfiguration.java
@@ -71,24 +70,24 @@ com/songify/api/service/RoleService.java
  com.songify.api.service.RoleService
 com/songify/api/service/impl/FriendsServiceImpl.java
  com.songify.api.service.impl.FriendsServiceImpl
-com/songify/api/model/chat/MessageStatus.java
- com.songify.api.model.chat.MessageStatus
 com/songify/api/service/impl/ChatRoomServiceImpl.java
  com.songify.api.service.impl.ChatRoomServiceImpl
 com/songify/api/model/dto/LoginRequest.java
  com.songify.api.model.dto.LoginRequest
 com/songify/api/service/SpotifyService.java
  com.songify.api.service.SpotifyService
-com/songify/api/model/dto/SendFriendRequestRequest.java
- com.songify.api.model.dto.SendFriendRequestRequest
+com/songify/api/service/UserService.java
+ com.songify.api.service.UserService
+com/songify/api/filter/CorsFilter.java
+ com.songify.api.filter.CorsFilter
 com/songify/api/filter/JWTAuthorizationFilter.java
  com.songify.api.filter.JWTAuthorizationFilter
 com/songify/api/model/SimpleFriend.java
  com.songify.api.model.SimpleFriend
 com/songify/api/model/FriendRequest.java
  com.songify.api.model.FriendRequest
-com/songify/api/controller/PlaylistController.java
- com.songify.api.controller.PlaylistController
+com/songify/api/config/WebConfig.java
+ com.songify.api.config.WebConfig
 com/songify/api/model/Song.java
  com.songify.api.model.Song
 com/songify/api/repository/SongRepository.java
@@ -99,27 +98,28 @@ com/songify/api/repository/FriendRequestRepository.java
  com.songify.api.repository.FriendRequestRepository
 com/songify/api/repository/ChatRoomRepository.java
  com.songify.api.repository.ChatRoomRepository
-com/songify/api/service/impl/AuthenticationUserDetailServiceImpl.java
- com.songify.api.service.impl.AuthenticationUserDetailServiceImpl
-com/songify/api/repository/UserRepository.java
- com.songify.api.repository.UserRepository
-com/songify/api/service/AuthService.java
- com.songify.api.service.AuthService
-com/songify/api/service/impl/AuthServiceImpl.java
- com.songify.api.service.impl.AuthServiceImpl
-com/songify/api/service/UserService.java
- com.songify.api.service.UserService
-com/songify/api/config/WebConfig.java
- com.songify.api.config.WebConfig
-com/songify/api/model/User.java
- com.songify.api.model.User
-com/songify/api/controller/AuthController.java
- com.songify.api.controller.AuthController
-com/songify/api/config/SecurityConfiguration.java
- com.songify.api.config.SecurityConfiguration
+com/songify/api/service/ChatMessageService.java
+ com.songify.api.service.ChatMessageService
+com/songify/api/controller/RoleController.java
+ com.songify.api.controller.RoleController
+com/songify/api/model/chat/MessageStatus.java
+ com.songify.api.model.chat.MessageStatus
+com/songify/api/model/dto/SendFriendRequestRequest.java
+ com.songify.api.model.dto.SendFriendRequestRequest
+com/songify/api/model/chat/ChatMessage.java
+ com.songify.api.model.chat.ChatMessage
+ com.songify.api.model.chat.ChatMessage$ChatMessageBuilder
 com/songify/api/filter/JWTAuthenticationFilter.java
  com.songify.api.filter.JWTAuthenticationFilter
-com/songify/api/filter/CorsFilter.java
- com.songify.api.filter.CorsFilter
-com/songify/api/service/impl/UserServiceImpl.java
- com.songify.api.service.impl.UserServiceImpl
+com/songify/api/model/dto/NewPlaylistRequest.java
+ com.songify.api.model.dto.NewPlaylistRequest
+com/songify/api/repository/RoleRepository.java
+ com.songify.api.repository.RoleRepository
+com/songify/api/model/dto/UserDto.java
+ com.songify.api.model.dto.UserDto
+com/songify/api/ApiApplication.java
+ com.songify.api.ApiApplication
+com/songify/api/controller/PlaylistController.java
+ com.songify.api.controller.PlaylistController
+com/songify/api/repository/PlaylistRepository.java
+ com.songify.api.repository.PlaylistRepository
