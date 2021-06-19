@@ -14,7 +14,11 @@ class UserService{
     }
 
     getUserById(id){
-        return axios.get(config.REST_API_URL + "users/" + id)
+        return axios({
+            method: 'get',
+            url: config.REST_API_URL + "users/" + id,
+            headers: authHeader()
+        })
     }
 
     addUser(usernameParam, passwordParam, emailParam){
@@ -36,8 +40,10 @@ class UserService{
             url: config.REST_API_URL + "users/" + id,
             headers: authHeader(),
             data: {
-                id: id,
-                user: user
+                username: user.username,
+                password: "",
+                email: user.email,
+                role: ""  
             }
         })
         return axios.put(config.REST_API_URL + "users/" + id, user)
@@ -52,7 +58,11 @@ class UserService{
     }
 
     async getUsername(id){
-        return await axios.get(config.REST_API_URL + 'users/username/' + id)
+        return axios({
+            method: 'get',
+            url: config.REST_API_URL + 'users/username/' + id,
+            headers: authHeader()
+        })
     }
 }
 

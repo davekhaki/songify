@@ -1,20 +1,8 @@
+import authHeader from './auth/auth-header';
 const CHAT_SERVICE = "http://localhost:8080";
 
 const request = (options) => {
-    const headers = new Headers();
-  
-    // if (options.setContentType !== false) {
-    //   headers.append("Content-Type", "application/json");
-    // }
-  
-    // if (localStorage.getItem("accessToken")) {
-    //   headers.append(
-    //     "Authorization",
-    //     "Bearer " + localStorage.getItem("accessToken")
-    //   );
-    // }
-  
-    const defaults = { headers: headers };
+    const defaults = { headers: authHeader() };
     options = Object.assign({}, defaults, options);
   
     return fetch(options.url, options).then((response) =>
@@ -28,10 +16,6 @@ const request = (options) => {
   };
 
 export function countNewMessages(senderId, recipientId) {
-    // if (!localStorage.getItem("accessToken")) {
-    //   return Promise.reject("No access token set.");
-    // }
-  
     return request({
       url: CHAT_SERVICE + "/messages/" + senderId + "/" + recipientId + "/count",
       method: "GET",
@@ -39,10 +23,6 @@ export function countNewMessages(senderId, recipientId) {
   }
   
   export function findChatMessages(senderId, recipientId) {
-    // if (!localStorage.getItem("accessToken")) {
-    //   return Promise.reject("No access token set.");
-    // }
-  
     return request({
       url: CHAT_SERVICE + "/messages/" + senderId + "/" + recipientId,
       method: "GET",
@@ -50,10 +30,6 @@ export function countNewMessages(senderId, recipientId) {
   }
   
   export function findChatMessage(id) {
-    // if (!localStorage.getItem("accessToken")) {
-    //   return Promise.reject("No access token set.");
-    // }
-  
     return request({
       url: CHAT_SERVICE + "/messages/" + id,
       method: "GET",

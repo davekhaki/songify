@@ -19,6 +19,7 @@ class PlaylistService{
         return axios({
             method: 'get',
             url: config.REST_API_URL + "playlists/id/" + id,
+            headers: authHeader(),
         })
     }
 
@@ -30,6 +31,7 @@ class PlaylistService{
         return axios({
             method: 'post',
             url: config.REST_API_URL + 'playlists',
+            headers: authHeader(),
             data: {
                 title: playlistTitle,
                 desc: playlistDesc,
@@ -42,6 +44,7 @@ class PlaylistService{
         return axios({
             method: 'delete',
             url: config.REST_API_URL + 'playlists/' + id,
+            headers: authHeader(),
         })
     }
 
@@ -67,7 +70,16 @@ class PlaylistService{
     addSongToPlaylist(playlistId, spotifyId){
         return axios({
             method: 'post',
-            url: config.REST_API_URL + 'playlists/add/' + playlistId + '/' + spotifyId
+            url: config.REST_API_URL + 'playlists/add/' + playlistId + '/' + spotifyId,
+            headers: authHeader(),
+        })
+    }
+
+    removeSongFromPlaylist(playlistId, spotifyId){
+        return axios({
+            method: 'post',
+            url: config.REST_API_URL + 'playlists/remove/' + playlistId + '/' + spotifyId,
+            headers: authHeader()
         })
     }
 }

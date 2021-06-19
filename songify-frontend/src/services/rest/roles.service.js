@@ -1,17 +1,23 @@
 import axios from 'axios'
+import authHeader from './auth/auth-header';
 
 const config = require('../../config.json');
 
 class RoleService{
 
     getRoles(){
-        return axios.get(config.REST_API_URL + "roles");
+        return axios({
+            method: 'get',
+            url: config.REST_API_URL + "roles",
+            headers: authHeader()
+        })
     }
 
     getRoleById(id){
         return axios({
             method: 'get',
-            url: config.REST_API_URL + "roles/" + id
+            url: config.REST_API_URL + "roles/" + id,
+            headers: authHeader()
         })
     }
 
@@ -19,6 +25,7 @@ class RoleService{
         return axios({
             method: 'post',
             url: config.REST_API_URL + "roles",
+            headers: authHeader(),
             data: {
                 name: roleName
             }
@@ -29,6 +36,7 @@ class RoleService{
         return axios({
             method: 'put',
             url: config.REST_API_URL + "roles/" + id,
+            headers: authHeader(),
             data: { 
                 name: name
             }
