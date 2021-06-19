@@ -28,7 +28,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 //                .antMatchers("/**").permitAll() //allows all requests for the api
 
-//                .antMatchers("/v1/api/users/add").permitAll() //allows registration to the app
                 .antMatchers("/v1/api/auth/**").permitAll() //allows login request
                 .antMatchers("/v1/api/spotify/**").permitAll()// allows spotify auth
                 .antMatchers("/ws/**").permitAll() //allows all websocket requests
