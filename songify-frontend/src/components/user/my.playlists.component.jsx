@@ -12,6 +12,7 @@ export default class MyPlaylists extends Component {
         }
 
         this.deleteButtonClick = this.deleteButtonClick.bind(this);
+        this.openPlaylist = this.openPlaylist.bind(this);
     }
 
     componentDidMount() {
@@ -20,6 +21,10 @@ export default class MyPlaylists extends Component {
                 this.setState({ message: "You have no playlists" })
             } else this.setState({ playlists: response.data })
         });
+    }
+
+    openPlaylist(id){
+        this.props.history.push('/playlist/'+ id);
     }
 
     deleteButtonClick(event){
@@ -36,12 +41,12 @@ export default class MyPlaylists extends Component {
             )
         }
         else return (
-            <div>
+            <div className="col-lg-12">
                 <h1>Your Playlists:</h1>
                 <CardDeck>
                     {this.state.playlists.map(playlist =>
                         <Card key={playlist.id} className="bg-dark text-white">
-                            <Card.Img variant="top" src="http://via.placeholder.com/640x360" />
+                            <Card.Img onClick={() => {this.openPlaylist(playlist.id)}} variant="top" src="http://via.placeholder.com/640x360" />
                             <Card.Body>
                                 <Card.Title>{playlist.title}</Card.Title>
                                 <Card.Text>{playlist.description}</Card.Text>

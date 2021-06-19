@@ -213,7 +213,3 @@ describe('UAT-9 Search for user playlists that doesnt exist', () => {
 describe('UAT-10 Accepting friend request', () => {
 
 })
-
-describe('UAT-11 50 limit for friend requests', () => {
-
-})

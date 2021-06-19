@@ -42,7 +42,7 @@ const SearchResultTable = (props) => {
                         <td width="20%">{song.album.album_type}</td>
                         <td width="20%">{song.album.name}</td>
                         <td width="20%">
-                            <Button aria-describedby={id} variant="contained" color="primary" onClick={handleClick}>
+                            <Button aria-describedby={id} variant="contained" className="btn btn-primary" onClick={handleClick}>
                                 Add To..
                             </Button>
                             <Popover
@@ -58,6 +58,7 @@ const SearchResultTable = (props) => {
                                     vertical: 'top',
                                     horizontal: 'center',
                                 }}
+                                
                             >
                                 <ul className="list-group">
                                     {
@@ -175,8 +176,8 @@ export default class BrowseSongs extends Component {
                 </div>
                 <div>
                     <span>Total Results Found: {this.state.total}</span>
-                    <button onClick={this.prevPage} className="btn btn-info rounded submit px-3" data-cy="prevpagebtn">Previous Page</button>
-                    <button onClick={this.nextPage} className="btn btn-info rounded submit px-3" data-cy="nextpagebtn">Next Page</button>
+                    <button onClick={this.prevPage} className="btn btn-primary rounded submit px-3" data-cy="prevpagebtn">Previous Page</button>
+                    <button onClick={this.nextPage} className="btn btn-primary rounded submit px-3" data-cy="nextpagebtn">Next Page</button>
                 </div>
                 <SearchResultTable songs={this.state.songs} playlists={this.state.playlists} handle={this.handleAddToPlaylist}></SearchResultTable>
             </div>
