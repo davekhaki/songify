@@ -22,6 +22,11 @@ public class Song {
         this.spotifyId = spotifyId;
     }
 
+    public Song(long id, String spotifyId) {
+        this.id = id;
+        this.spotifyId = spotifyId;
+    }
+
     public long getId() {
         return id;
     }

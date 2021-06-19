@@ -72,6 +72,10 @@ public class Playlist extends Auditable<String>{
         return song;
     }
 
+    public void removeSong(Song song){
+        this.songs.remove(song);
+    }
+
     public int getPlays() {
         return plays;
     }
