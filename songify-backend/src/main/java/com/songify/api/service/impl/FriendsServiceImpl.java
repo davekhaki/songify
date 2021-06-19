@@ -47,13 +47,19 @@ public class FriendsServiceImpl extends JsonSerializer<Set<User>> implements Fri
 
         userService.save(user1);
         userService.save(user2);
+
+        //FriendRequest actual = friendRequestRepository.findByReceiverIdAndSenderId(request.getSecondUserId(), request.getFirstUserId());
+        FriendRequest test = friendRequestRepository.findByReceiverIdAndSenderId(request.getFirstUserId(), request.getSecondUserId());
+
+
+        friendRequestRepository.delete(test);
     }
 
     @Override // custom serialization prevent json loop with friends inside of friends inside of friends etc
     public void serialize(Set<User> users, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
         Set<SimpleFriend> simpleFriends = new HashSet<>();
 
-        users.forEach(user -> simpleFriends.add(new SimpleFriend(user.getUsername())));
+        users.forEach(user -> simpleFriends.add(new SimpleFriend(user.getId(),user.getUsername())));
 
         jsonGenerator.writeObject(simpleFriends);
     }
