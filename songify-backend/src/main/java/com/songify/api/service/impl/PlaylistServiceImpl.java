@@ -91,4 +91,18 @@ public class PlaylistServiceImpl implements PlaylistService {
         return song;
 
     }
+
+    @Override
+    public String removeSongFromPlaylist(Long playlistId, String spotifyId){
+        Song song = songService.findBySpotifyId(spotifyId);
+        if(song == null){ song = songService.addSong(spotifyId); }
+
+        Playlist playlist = playlistRepository.findById(playlistId).orElseThrow(() -> new ResourceNotFoundException("remove playlist, playlist with id not found:" + playlistId));
+
+        if(playlist.getSongs().contains(song)){
+            playlist.removeSong(song);
+        }
+        playlistRepository.save(playlist);
+        return("Success");
+    }
 }
