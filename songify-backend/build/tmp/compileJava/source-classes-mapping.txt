@@ -78,8 +78,8 @@ com/songify/api/service/SpotifyService.java
  com.songify.api.service.SpotifyService
 com/songify/api/service/UserService.java
  com.songify.api.service.UserService
-com/songify/api/filter/CorsFilter.java
- com.songify.api.filter.CorsFilter
+com/songify/api/repository/PlaylistRepository.java
+ com.songify.api.repository.PlaylistRepository
 com/songify/api/filter/JWTAuthorizationFilter.java
  com.songify.api.filter.JWTAuthorizationFilter
 com/songify/api/model/SimpleFriend.java
@@ -121,5 +121,5 @@ com/songify/api/ApiApplication.java
  com.songify.api.ApiApplication
 com/songify/api/controller/PlaylistController.java
  com.songify.api.controller.PlaylistController
-com/songify/api/repository/PlaylistRepository.java
- com.songify.api.repository.PlaylistRepository
+com/songify/api/filter/CorsFilter.java
+ com.songify.api.filter.CorsFilter
