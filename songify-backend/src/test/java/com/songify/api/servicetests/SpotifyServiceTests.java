@@ -12,9 +12,9 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootTest
-public class SpotifyServiceTests {
+class SpotifyServiceTests {
     @Mock
-    private RestTemplate restTemplate;
+    private RestTemplate restTemplate = new RestTemplate();
 
     @InjectMocks
     private SpotifyService spotifyService = new SpotifyServiceImpl();

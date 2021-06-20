@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
-public class ChatMessageServiceTests {
+class ChatMessageServiceTests {
 
     private ChatMessageRepository chatMessageRepository;
     private ChatMessageService chatMessageService;

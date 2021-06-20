@@ -8,9 +8,6 @@ import com.songify.api.repository.PlaylistRepository;
 import com.songify.api.service.PlaylistService;
 import com.songify.api.service.SongService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -70,9 +67,6 @@ public class PlaylistServiceImpl implements PlaylistService {
 
         return "Success";
     }
-
-    @Override //returns the 8 more popular playlists as a 'page'
-    public Page<Playlist> getPopularPlaylists() { return this.playlistRepository.findAll(PageRequest.of(0,8, Sort.by(Sort.Direction.DESC, "Plays"))); }
 
     @Override
     public Song addSongToPlaylist(Long playlistId, String spotifyId){

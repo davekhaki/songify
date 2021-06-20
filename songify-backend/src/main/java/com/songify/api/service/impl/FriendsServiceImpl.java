@@ -48,11 +48,9 @@ public class FriendsServiceImpl extends JsonSerializer<Set<User>> implements Fri
         userService.save(user1);
         userService.save(user2);
 
-        //FriendRequest actual = friendRequestRepository.findByReceiverIdAndSenderId(request.getSecondUserId(), request.getFirstUserId());
-        FriendRequest test = friendRequestRepository.findByReceiverIdAndSenderId(request.getFirstUserId(), request.getSecondUserId());
+        FriendRequest actual = friendRequestRepository.findByReceiverIdAndSenderId(request.getFirstUserId(), request.getSecondUserId());
 
-
-        friendRequestRepository.delete(test);
+        friendRequestRepository.delete(actual);
     }
 
     @Override // custom serialization prevent json loop with friends inside of friends inside of friends etc

@@ -21,7 +21,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @SpringBootTest
-public class FriendsServiceTests {
+class FriendsServiceTests {
 
     FriendRequestRepository friendRequestRepository;
     FriendsService friendsService;

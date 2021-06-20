@@ -5,7 +5,6 @@ import com.songify.api.model.Playlist;
 import com.songify.api.model.Song;
 import com.songify.api.service.PlaylistService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,9 +38,6 @@ public class PlaylistController {
 
     @DeleteMapping("/{id}")
     public String deletePlaylist(@PathVariable Long id){ return this.playlistService.deletePlaylist(id); }
-
-    @GetMapping("/popular")
-    public Page<Playlist> getPopularPlaylists() {return this.playlistService.getPopularPlaylists(); }
 
     @PostMapping("/add/{playlist}/{song}")
     public Song addSongToPlaylist(@PathVariable Long playlist, @PathVariable String song){

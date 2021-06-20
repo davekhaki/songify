@@ -14,9 +14,8 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Optional;
 
-@ActiveProfiles("test")
 @SpringBootTest
-public class ChatRoomServiceTests {
+class ChatRoomServiceTests {
 
     @Autowired
     private ChatRoomService chatRoomService;
