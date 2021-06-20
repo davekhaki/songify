@@ -97,33 +97,58 @@ describe('UAT-3: Duplicate Playlist Creation', () => {
     })
 
     it('does not redirect', () => {
-        //cy.location('pathname').should('eq', 'playlist/:id')
         cy.location('pathname').should('eq', '/new-playlist')
     })
 })
 
 describe('UAT-4: Adding song to playlist', () => {
     it('go to songs page', () => {
-
+        cy.visit('/songs')
     })
 
     it('adds the first song', () => {
+        cy.get('[data-cy=searchterminput]')
+        .type("katy perry")
+        .should('have.value', "katy perry")
 
+        cy.get('[data-cy=searchbtn]')
+        .type("{enter}")
+
+        //cy.get('tbody>tr').eq(0)
+        cy.contains('td', 'Katy Perry')
+        .siblings()
+        .contains('button', 'Add To..')
+        .click()
+
+        .get('ul').eq(2).children().first().click({ force: true})
     })
 
 })
 
 describe('UAT-5: Adding duplicate song', () => {
     it('go to songs page', () => {
-
+        cy.visit('/songs')
     })
 
     it('adds the first song', () => {
+        cy.get('[data-cy=searchterminput]')
+        .type("katy perry")
+        .should('have.value', "katy perry")
 
+        cy.get('[data-cy=searchbtn]')
+        .type("{enter}")
+
+        //cy.get('tbody>tr').eq(0)
+        cy.contains('td', 'Katy Perry')
+        .siblings()
+        .contains('button', 'Add To..')
+        .click()
+
+        .get('ul').eq(2).children().first().click({ force: true})
     })
 
-    it('does not add the song', () => {
-
+    it("doesn't add the song", () => {
+        // feature no longer wanted 
     })
 })
 
@@ -176,7 +201,7 @@ describe('UAT-7: User redirect when accessing admin page', () => {
     })
 
     it('is redirected', () => {
-        //cy.location('pathname').should('eq', '/access-denied')
+        cy.location('pathname').should('eq', '/access-denied')
     })
 })
 
@@ -211,5 +236,15 @@ describe('UAT-9 Search for user playlists that doesnt exist', () => {
 })
 
 describe('UAT-10 Accepting friend request', () => {
+    it('goes to the profile page', () => {
+        cy.visit('/profile')
+    })
 
+    it('accepts the first friend request', () => {
+        cy.get('[data-cy=acceptreqbtn]').click()
+    })
+
+    it('verifies that the request is gone', () => {
+        cy.get('[data-cy=friendreqtr]').children().should('have.length', 0)
+    })
 })

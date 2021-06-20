@@ -54,7 +54,7 @@ export default class Profile extends Component {
   acceptRequest(id) {
     console.log("current user id: " + this.state.currentUser.id + " request friend id: " + id);
     FriendsService.acceptRequest(this.state.currentUser.id, id)
-    // window.location.reload()
+    window.location.reload()
   }
 
   render() {
@@ -91,14 +91,14 @@ export default class Profile extends Component {
                   <td></td>
                 </tr>
               </thead>
-              <tbody>
+              <tbody data-cy="friendreqtr">
                 {
                   this.state.friendRequests.map(
                     request =>
                       <tr key={request.id}>
                         <td className="col-md-1" >{request.senderId}</td>
                         <td className="col-md-2">
-                          <button type="button" className="btn btn-success" onClick={() => this.acceptRequest(request.senderId)}>Accept</button>
+                          <button data-cy="acceptreqbtn" type="button" className="btn btn-success" onClick={() => this.acceptRequest(request.senderId)}>Accept</button>
                         </td>
                       </tr>
                   )
