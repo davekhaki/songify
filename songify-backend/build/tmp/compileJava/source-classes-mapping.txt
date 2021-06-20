@@ -8,8 +8,8 @@ com/songify/api/model/User.java
  com.songify.api.model.User
 com/songify/api/service/impl/SongServiceImpl.java
  com.songify.api.service.impl.SongServiceImpl
-com/songify/api/service/impl/PlaylistServiceImpl.java
- com.songify.api.service.impl.PlaylistServiceImpl
+com/songify/api/config/WebConfig.java
+ com.songify.api.config.WebConfig
 com/songify/api/exceptions/JWTException.java
  com.songify.api.exceptions.JWTException
 com/songify/api/controller/ChatController.java
@@ -46,14 +46,14 @@ com/songify/api/model/chat/ChatRoom.java
  com.songify.api.model.chat.ChatRoom$ChatRoomBuilder
 com/songify/api/service/impl/SpotifyServiceImpl.java
  com.songify.api.service.impl.SpotifyServiceImpl
-com/songify/api/service/impl/UserServiceImpl.java
- com.songify.api.service.impl.UserServiceImpl
+com/songify/api/filter/CorsFilter.java
+ com.songify.api.filter.CorsFilter
 com/songify/api/service/FriendsService.java
  com.songify.api.service.FriendsService
 com/songify/api/service/ChatRoomService.java
  com.songify.api.service.ChatRoomService
-com/songify/api/service/PlaylistService.java
- com.songify.api.service.PlaylistService
+com/songify/api/service/impl/FriendsServiceImpl.java
+ com.songify.api.service.impl.FriendsServiceImpl
 com/songify/api/service/impl/ChatMessageServiceImpl.java
  com.songify.api.service.impl.ChatMessageServiceImpl
 com/songify/api/config/SecurityConfiguration.java
@@ -68,8 +68,8 @@ com/songify/api/config/WebSocketConfiguration.java
  com.songify.api.config.WebSocketConfiguration
 com/songify/api/service/RoleService.java
  com.songify.api.service.RoleService
-com/songify/api/service/impl/FriendsServiceImpl.java
- com.songify.api.service.impl.FriendsServiceImpl
+com/songify/api/model/dto/UserDto.java
+ com.songify.api.model.dto.UserDto
 com/songify/api/service/impl/ChatRoomServiceImpl.java
  com.songify.api.service.impl.ChatRoomServiceImpl
 com/songify/api/model/dto/LoginRequest.java
@@ -86,8 +86,8 @@ com/songify/api/model/SimpleFriend.java
  com.songify.api.model.SimpleFriend
 com/songify/api/model/FriendRequest.java
  com.songify.api.model.FriendRequest
-com/songify/api/config/WebConfig.java
- com.songify.api.config.WebConfig
+com/songify/api/ApiApplication.java
+ com.songify.api.ApiApplication
 com/songify/api/model/Song.java
  com.songify.api.model.Song
 com/songify/api/repository/SongRepository.java
@@ -115,11 +115,11 @@ com/songify/api/model/dto/NewPlaylistRequest.java
  com.songify.api.model.dto.NewPlaylistRequest
 com/songify/api/repository/RoleRepository.java
  com.songify.api.repository.RoleRepository
-com/songify/api/model/dto/UserDto.java
- com.songify.api.model.dto.UserDto
-com/songify/api/ApiApplication.java
- com.songify.api.ApiApplication
+com/songify/api/service/impl/UserServiceImpl.java
+ com.songify.api.service.impl.UserServiceImpl
+com/songify/api/service/PlaylistService.java
+ com.songify.api.service.PlaylistService
+com/songify/api/service/impl/PlaylistServiceImpl.java
+ com.songify.api.service.impl.PlaylistServiceImpl
 com/songify/api/controller/PlaylistController.java
  com.songify.api.controller.PlaylistController
-com/songify/api/filter/CorsFilter.java
- com.songify.api.filter.CorsFilter
