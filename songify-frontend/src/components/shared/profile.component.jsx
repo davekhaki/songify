@@ -27,7 +27,7 @@ export default class Profile extends Component {
     this.setState({ currentUser: currentUser })
     this.setState({ friends: currentUser.friends })
 
-    FriendsService.getMyFriendRequests().then((response)=>{
+    FriendsService.getMyFriendRequests().then((response) => {
       this.setState({ friendRequests: response.data })
     });
   }
@@ -40,12 +40,13 @@ export default class Profile extends Component {
     this.setState({ searchTerm: e.target.value })
   }
 
-  sendFriendRequest(){
-    UserService.getUsers().then((response)=>{
+  sendFriendRequest() {
+    UserService.getUsers().then((response) => {
       var list = response.data
       list.forEach(user => {
-        if(user.username == this.state.searchTerm){
+        if (user.username == this.state.searchTerm) {
           FriendsService.createRequest(user.id)
+          alert('Friend Request Sent.');
         }
       });
     })
@@ -110,18 +111,18 @@ export default class Profile extends Component {
         <div>
           <h1>Send a friend request</h1>
           <div className="d-flex justify-content-center">
-                <div className="col-lg-6">
-                  <label>Search</label>
-                  <input
-                        type="text"
-                        value={this.state.searchTerm}
-                        onChange={this.onChangeSearchTerm}
-                        className="form-control rounded-left"
-                        placeholder="User Name"
-                        required=""/>
-                  <button type="button" className="btn btn-primary" placeholder="User Name" onClick={this.sendFriendRequest}> Send Request </button>
+            <div className="col-lg-6">
+              <label>Search</label>
+              <input
+                type="text"
+                value={this.state.searchTerm}
+                onChange={this.onChangeSearchTerm}
+                className="form-control rounded-left"
+                placeholder="User Name"
+                required="" />
+              <button type="button" className="btn btn-primary" placeholder="User Name" onClick={this.sendFriendRequest}> Send Request </button>
+            </div>
           </div>
-        </div>
         </div>
       </div >
     );

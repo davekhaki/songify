@@ -22,4 +22,6 @@ https://hub.docker.com/r/davekhaki/songifybackend
 https://hub.docker.com/r/davekhaki/certiorem
 https://hub.docker.com/r/davekhaki/certiorem-front
 
+GitLab repository:
+https://git.fhict.nl/I434661/songify/-/tree/Sprint6
 	
