@@ -28,7 +28,9 @@ class AuthService{
                 this.refreshToken(username, password).then((response)=>{
                     console.log(response);
                 })
-                localStorage.setItem("user", JSON.stringify(response.data)); 
+                var user = response.data;
+                user.password = "XXXXXXXX"
+                localStorage.setItem("user", JSON.stringify(user)); 
             }
     
             return response.data;
@@ -37,6 +39,7 @@ class AuthService{
 
     logout() { 
         localStorage.removeItem("user");
+        localStorage.removeItem("bearer");
         window.location.reload();
     }
 

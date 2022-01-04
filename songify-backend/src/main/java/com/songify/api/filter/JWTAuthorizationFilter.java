@@ -5,6 +5,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.songify.api.config.AuthenticationConstants;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
@@ -37,8 +40,14 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                     .build()
                     .verify(token.replace(AuthenticationConstants.TOKEN_PREFIX, ""))
                     .getSubject();
+            String role = JWT.require(Algorithm.HMAC512(AuthenticationConstants.SECRET.getBytes()))
+                    .build()
+                    .verify(token.replace(AuthenticationConstants.TOKEN_PREFIX, ""))
+                    .getClaim("role").asString();
             if (user != null) {
-                return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
+                List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+                list.add(new SimpleGrantedAuthority(role));
+                return new UsernamePasswordAuthenticationToken(user, null,/* new ArrayList<> */ list);
             }
             return null;
         }

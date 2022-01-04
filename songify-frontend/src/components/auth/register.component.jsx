@@ -9,6 +9,8 @@ class RegisterForm extends Component {
             username: "",
             password: "",
             email: "",
+            isPasswordGood: false,
+            passwordRegex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,32}$/
         }
 
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -31,9 +33,17 @@ class RegisterForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        UserService.addUser(this.state.username, this.state.password, this.state.email);
-        alert("Account created.")
-        this.props.history.push("/login");
+        if(!this.state.passwordRegex.test(this.state.password)){
+            this.setState({ isPasswordGood: false});
+        } else this.setState({ isPasswordGood: true});
+        
+        if (this.state.isPasswordGood == true) {
+            UserService.addUser(this.state.username, this.state.password, this.state.email);
+            alert("Account created.")
+            this.props.history.push("/login");
+        }
+        else alert("A password must have atleast one lower and uppercase letter, a digit and 8-32 characters");
+
     }
 
     render() {

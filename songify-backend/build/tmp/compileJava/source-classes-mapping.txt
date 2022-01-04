@@ -8,8 +8,8 @@ com/songify/api/model/User.java
  com.songify.api.model.User
 com/songify/api/service/impl/SongServiceImpl.java
  com.songify.api.service.impl.SongServiceImpl
-com/songify/api/service/impl/PlaylistServiceImpl.java
- com.songify.api.service.impl.PlaylistServiceImpl
+com/songify/api/config/WebConfig.java
+ com.songify.api.config.WebConfig
 com/songify/api/exceptions/JWTException.java
  com.songify.api.exceptions.JWTException
 com/songify/api/controller/ChatController.java
@@ -25,6 +25,8 @@ com/songify/api/service/AuthService.java
  com.songify.api.service.AuthService
 com/songify/api/model/Role.java
  com.songify.api.model.Role
+com/songify/api/bucket/RateLimiterService.java
+ com.songify.api.bucket.RateLimiterService
 com/songify/api/model/dto/RoleDto.java
  com.songify.api.model.dto.RoleDto
 com/songify/api/model/dto/AcceptFriendRequestRequest.java
@@ -35,10 +37,15 @@ com/songify/api/exceptions/ResourceNotFoundException.java
  com.songify.api.exceptions.ResourceNotFoundException
 com/songify/api/model/Playlist.java
  com.songify.api.model.Playlist
+com/songify/api/filter/JWTAuthenticationFilter.java
+ com.songify.api.filter.JWTAuthenticationFilter
 com/songify/api/controller/UserController.java
  com.songify.api.controller.UserController
-com/songify/api/service/impl/AuthenticationUserDetailServiceImpl.java
- com.songify.api.service.impl.AuthenticationUserDetailServiceImpl
+com/songify/api/security/LoginAttemptService.java
+ com.songify.api.security.LoginAttemptService
+ com.songify.api.security.LoginAttemptService$1
+com/songify/api/bucket/RateLimiterServiceImpl.java
+ com.songify.api.bucket.RateLimiterServiceImpl
 com/songify/api/service/impl/AuthServiceImpl.java
  com.songify.api.service.impl.AuthServiceImpl
 com/songify/api/model/chat/ChatRoom.java
@@ -56,8 +63,8 @@ com/songify/api/service/PlaylistService.java
  com.songify.api.service.PlaylistService
 com/songify/api/service/impl/ChatMessageServiceImpl.java
  com.songify.api.service.impl.ChatMessageServiceImpl
-com/songify/api/config/SecurityConfiguration.java
- com.songify.api.config.SecurityConfiguration
+com/songify/api/bucket/RateLimitInterceptor.java
+ com.songify.api.bucket.RateLimitInterceptor
 com/songify/api/service/SongService.java
  com.songify.api.service.SongService
 com/songify/api/controller/AuthController.java
@@ -78,16 +85,20 @@ com/songify/api/service/SpotifyService.java
  com.songify.api.service.SpotifyService
 com/songify/api/service/UserService.java
  com.songify.api.service.UserService
-com/songify/api/filter/CorsFilter.java
- com.songify.api.filter.CorsFilter
-com/songify/api/filter/JWTAuthorizationFilter.java
- com.songify.api.filter.JWTAuthorizationFilter
+com/songify/api/security/AuthenticationFailureListener.java
+ com.songify.api.security.AuthenticationFailureListener
+com/songify/api/repository/PlaylistRepository.java
+ com.songify.api.repository.PlaylistRepository
+com/songify/api/service/impl/AuthenticationUserDetailServiceImpl.java
+ com.songify.api.service.impl.AuthenticationUserDetailServiceImpl
 com/songify/api/model/SimpleFriend.java
  com.songify.api.model.SimpleFriend
 com/songify/api/model/FriendRequest.java
  com.songify.api.model.FriendRequest
-com/songify/api/config/WebConfig.java
- com.songify.api.config.WebConfig
+com/songify/api/controller/PlaylistController.java
+ com.songify.api.controller.PlaylistController
+com/songify/api/security/AuthenticationSuccessEventListener.java
+ com.songify.api.security.AuthenticationSuccessEventListener
 com/songify/api/model/Song.java
  com.songify.api.model.Song
 com/songify/api/repository/SongRepository.java
@@ -106,11 +117,13 @@ com/songify/api/model/chat/MessageStatus.java
  com.songify.api.model.chat.MessageStatus
 com/songify/api/model/dto/SendFriendRequestRequest.java
  com.songify.api.model.dto.SendFriendRequestRequest
+com/songify/api/filter/CorsFilter.java
+ com.songify.api.filter.CorsFilter
 com/songify/api/model/chat/ChatMessage.java
  com.songify.api.model.chat.ChatMessage
  com.songify.api.model.chat.ChatMessage$ChatMessageBuilder
-com/songify/api/filter/JWTAuthenticationFilter.java
- com.songify.api.filter.JWTAuthenticationFilter
+com/songify/api/actuator/TestEndpoint.java
+ com.songify.api.actuator.TestEndpoint
 com/songify/api/model/dto/NewPlaylistRequest.java
  com.songify.api.model.dto.NewPlaylistRequest
 com/songify/api/repository/RoleRepository.java
@@ -119,7 +132,9 @@ com/songify/api/model/dto/UserDto.java
  com.songify.api.model.dto.UserDto
 com/songify/api/ApiApplication.java
  com.songify.api.ApiApplication
-com/songify/api/controller/PlaylistController.java
- com.songify.api.controller.PlaylistController
-com/songify/api/repository/PlaylistRepository.java
- com.songify.api.repository.PlaylistRepository
+com/songify/api/service/impl/PlaylistServiceImpl.java
+ com.songify.api.service.impl.PlaylistServiceImpl
+com/songify/api/filter/JWTAuthorizationFilter.java
+ com.songify.api.filter.JWTAuthorizationFilter
+com/songify/api/config/SecurityConfiguration.java
+ com.songify.api.config.SecurityConfiguration

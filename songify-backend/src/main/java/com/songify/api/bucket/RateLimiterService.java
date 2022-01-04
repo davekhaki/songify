@@ -1,2 +1,9 @@
-package com.songify.api.bucket;public class RateLimiterService {
+package com.songify.api.bucket;
+
+import io.github.bucket4j.Bucket;
+
+public interface RateLimiterService {
+    Bucket resolveBucket(String jwt);
 }
+
+

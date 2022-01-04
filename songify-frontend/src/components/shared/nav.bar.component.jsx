@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import Image from '../../img/logo.png';
 import AuthService from '../../services/rest/auth/auth.service';
+import JWTDecode from '../../services/jwt.decode';
 
 import Roles from '../admin/roles.list.component';
 import Users from '../admin/users.list.component';
@@ -29,12 +30,20 @@ export default class Navbar extends Component {
             currentUser: undefined,
             messages: [],
             messageText: '',
+            userRole: undefined,
         };
     }
 
     componentDidMount() {
         const user = AuthService.getCurrentUser();
         if (user) { this.setState({ currentUser: user }); }
+        if(localStorage.getItem("bearer")){
+            const jwt = localStorage.getItem("bearer")
+            console.log("jwt nav bar: " + jwt)
+            const role = JWTDecode.parseJwt(jwt).role.slice(5);
+            this.setState({ userRole: role})
+        }
+        
     }
 
     handleMessageSend = () => {
@@ -52,8 +61,8 @@ export default class Navbar extends Component {
         this.setState({messages: this.state.messages.concat(msg)});
     }
 
-    renderNav(user) {
-        if (user && user.role.name == "USER") { // nav bar for regular users
+    renderNav(user, role) {
+        if (user && role && role == "USER") { // nav bar for regular users
             return (
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <ul className="navbar-nav mr-auto">
@@ -72,7 +81,7 @@ export default class Navbar extends Component {
                 </nav>
             )
         }
-        else if (user && user.role.name == "ADMIN") { // nav bar for admin
+        else if (user && role && role == "ADMIN") { // nav bar for admin
             return (
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <ul className="navbar-nav mr-auto">
@@ -105,7 +114,7 @@ export default class Navbar extends Component {
         return (
             <div id="nav">
                 <Router>
-                    {this.renderNav(this.state.currentUser)}
+                    {this.renderNav(this.state.currentUser, this.state.userRole)}
                     <Switch>
                         {/* SHARED ROUTES: */}
                         <Route exact path='/'><Redirect to='/home' /></Route>

@@ -4,6 +4,7 @@ import com.songify.api.service.UserService;
 import com.songify.api.model.User;
 import com.songify.api.model.dto.UserDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class UserController {
 
     private final UserService userService;
 
+  //  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("")
     public List<User> getUsers(){ return userService.getAllUsers(); }
 

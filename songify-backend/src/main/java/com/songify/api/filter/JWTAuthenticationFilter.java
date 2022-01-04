@@ -48,7 +48,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withClaim("role", auth.getAuthorities().iterator().next().getAuthority())
                 .withExpiresAt(new Date(System.currentTimeMillis() + AuthenticationConstants.EXPIRATION_TIME))
                 .sign(Algorithm.HMAC512(AuthenticationConstants.SECRET.getBytes()));
-
+        logger.info("New Token Created " + token + "  for user " + ((org.springframework.security.core.userdetails.User) auth.getPrincipal()).getUsername());
         //START - SENDING JWT AS A BODY
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

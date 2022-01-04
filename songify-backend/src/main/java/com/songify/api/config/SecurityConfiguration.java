@@ -2,6 +2,7 @@ package com.songify.api.config;
 
 import com.songify.api.filter.JWTAuthenticationFilter;
 import com.songify.api.filter.JWTAuthorizationFilter;
+import com.songify.api.model.Role;
 import com.songify.api.service.impl.AuthenticationUserDetailServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +33,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v1/api/spotify/**").permitAll()// allows spotify auth
                 .antMatchers("/ws/**").permitAll() //allows all websocket requests
                 .antMatchers("/login").permitAll() //allows get bearer token request
+                .antMatchers("/actuator/**").permitAll() //actuator (monitoring) requests.
+
+                .antMatchers("/v1/api/users/**").hasRole("ADMIN")
 
                 .anyRequest().authenticated()
                 .and()

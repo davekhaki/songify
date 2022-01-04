@@ -45,6 +45,12 @@ dependencies {
     implementation group: 'org.springframework.security', name: 'spring-security-config', version: '5.4.6'
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
 
+    // https://mvnrepository.com/artifact/com.google.guava/guava
+    implementation group: 'com.google.guava', name: 'guava', version: '31.0.1-jre'
+
+    // https://mvnrepository.com/artifact/com.github.vladimir-bukhtoyarov/bucket4j-core
+    implementation group: 'com.github.vladimir-bukhtoyarov', name: 'bucket4j-core', version: '7.0.0'
+
     runtimeOnly 'mysql:mysql-connector-java'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -53,6 +59,7 @@ dependencies {
     testRuntimeOnly 'com.h2database:h2'
 
     compile "org.springframework.boot:spring-boot-configuration-processor"
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.2.5.RELEASE'
 
     compileOnly 'org.projectlombok:lombok'
 

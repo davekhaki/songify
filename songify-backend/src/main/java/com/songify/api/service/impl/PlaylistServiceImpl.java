@@ -8,12 +8,17 @@ import com.songify.api.repository.PlaylistRepository;
 import com.songify.api.service.PlaylistService;
 import com.songify.api.service.SongService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.slf4j.SLF4JLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class PlaylistServiceImpl implements PlaylistService {
 
@@ -62,9 +67,10 @@ public class PlaylistServiceImpl implements PlaylistService {
 
     @Override
     public String deletePlaylist(Long id){
+        Logger logger = LoggerFactory.getLogger(SLF4JLogger.class);
         Playlist playlist = getPlaylistById(id);
         playlistRepository.delete(playlist);
-
+        logger.info("Playlist delete with ID: " + playlist.getId() + " and name: " + playlist.getTitle());
         return "Success";
     }
 
